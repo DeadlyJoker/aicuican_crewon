@@ -1,0 +1,18 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HyperFrames 隔离验证</title><style>
+*{box-sizing:border-box}body{margin:0;padding:24px;background:#131313;color:#ddd;font:13px/1.6 system-ui,sans-serif}main{max-width:960px;margin:auto}h1{font-size:18px;font-weight:500}p{color:#aaa}hyperframes-player{display:block;width:100%;aspect-ratio:16/9;background:#090909;border:1px solid #383838;border-radius:10px;overflow:hidden}nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}button{height:34px;padding:0 12px;border:1px solid #424242;border-radius:8px;background:#252525;color:#eee;font:inherit;cursor:pointer}pre{white-space:pre-wrap;padding:14px;border:1px solid #333;background:#1c1c1c;border-radius:10px;color:#bbb}code{font-size:12px}
+</style><script src="../../vendor/hyperframes/hyperframes-player.global.js"></script></head><body><main>
+<h1>HyperFrames 0.9.30 · 隔离验证</h1><p>自制色卡视频（含原声）、校准图片与字幕。仅验证官方播放器与运行时，不是专业剪辑器，不修改 Studio 项目。</p>
+<hyperframes-player id="player" src="composition.html" width="640" height="360" muted controls></hyperframes-player>
+<nav><button id="play">播放</button><button id="pause">暂停</button><button id="seek-video">定位到1秒</button><button id="seek-image">定位到4秒</button><button id="save">保存当前播放位置</button><button id="restore">恢复保存位置</button><button id="missing">检查缺失工程</button><button id="reset">恢复测试工程</button></nav>
+<pre id="status" role="status">等待播放器就绪</pre><pre id="events">事件记录</pre>
+</main><script>
+const player=document.getElementById('player'),status=document.getElementById('status'),events=document.getElementById('events');
+function update(){status.textContent=JSON.stringify({ready:player.ready,duration:player.duration,currentTime:Number(player.currentTime?.toFixed(3)),paused:player.paused,composition:[player.compositionWidth,player.compositionHeight]},null,2);}
+for(const type of ['ready','error','playbackerror','play','pause','ended','seeked','assetsready'])player.addEventListener(type,event=>{events.textContent+='\n'+type+(event.detail?' '+JSON.stringify(event.detail):'');update();});
+player.addEventListener('timeupdate',update);
+document.getElementById('play').onclick=()=>player.play();document.getElementById('pause').onclick=()=>player.pause();
+document.getElementById('seek-video').onclick=()=>{player.seek(1);update();};document.getElementById('seek-image').onclick=()=>{player.seek(4);update();};
+document.getElementById('save').onclick=()=>{localStorage.setItem('crewon-hyperframes-probe-v1',JSON.stringify({time:player.currentTime}));events.textContent+='\n已保存播放位置';};
+document.getElementById('restore').onclick=()=>{const saved=JSON.parse(localStorage.getItem('crewon-hyperframes-probe-v1')||'null');if(saved&&Number.isFinite(saved.time)){player.seek(saved.time);events.textContent+='\n已恢复播放位置';update();}};
+document.getElementById('missing').onclick=()=>player.setAttribute('src','missing-composition.html');document.getElementById('reset').onclick=()=>{player.setAttribute('src','composition.html');};
+</script></body></html>

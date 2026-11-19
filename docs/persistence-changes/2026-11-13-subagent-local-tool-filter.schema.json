@@ -1,0 +1,22 @@
+{
+  "formatVersion": 2,
+  "roots": [
+    {"key":"event:subagent/descriptor","kind":"event","event":"subagent/descriptor","surface":false,"digest":"233d9c8fb2b63c888b27d81060fe98a6abef00964fb9a03ddd9ae616b32b739c"}
+  ],
+  "types": [],
+  "nodes": {
+    "0657d3ca5ac4e7bf": {"kind":"primitive","type":"number"},
+    "233d9c8fb2b63c88": {"kind":"object","properties":[{"name":"data","type":"816c403d019d0570","optional":false},{"name":"ignorable","type":"dacf3d5f3e4ff619","optional":true},{"name":"seq","type":"0657d3ca5ac4e7bf","optional":false},{"name":"time","type":"0657d3ca5ac4e7bf","optional":false},{"name":"type","type":"5ebce1317eacd2c1","optional":false}],"indices":[]},
+    "4b79333cd2623400": {"kind":"object","properties":[{"name":"allow","type":"93c33d9687613293","optional":true},{"name":"deny","type":"93c33d9687613293","optional":true},{"name":"includeLocal","type":"aa93010d0e521ad7","optional":true}],"indices":[]},
+    "4cd48f3e5108bd6e": {"kind":"primitive","type":"string"},
+    "5ebce1317eacd2c1": {"kind":"literal","value":"subagent/descriptor"},
+    "5f758f3de5f00c18": {"kind":"object","properties":[{"name":"label","type":"4cd48f3e5108bd6e","optional":true},{"name":"mode","type":"d28765f87d6b6ab4","optional":false},{"name":"provider","type":"4cd48f3e5108bd6e","optional":false},{"name":"version","type":"0657d3ca5ac4e7bf","optional":false}],"indices":[]},
+    "62fad8f40d211bea": {"kind":"object","properties":[{"name":"agentModel","type":"4cd48f3e5108bd6e","optional":true},{"name":"agentProvider","type":"4cd48f3e5108bd6e","optional":true},{"name":"agentReasoningEffort","type":"4cd48f3e5108bd6e","optional":true},{"name":"label","type":"4cd48f3e5108bd6e","optional":false},{"name":"mode","type":"e5d3828df1ec3e2a","optional":false},{"name":"persona","type":"4cd48f3e5108bd6e","optional":true},{"name":"provider","type":"4cd48f3e5108bd6e","optional":false},{"name":"toolFilter","type":"4b79333cd2623400","optional":true},{"name":"version","type":"0657d3ca5ac4e7bf","optional":false}],"indices":[]},
+    "816c403d019d0570": {"kind":"union","types":["5f758f3de5f00c18","62fad8f40d211bea"]},
+    "93c33d9687613293": {"kind":"array","element":"4cd48f3e5108bd6e"},
+    "aa93010d0e521ad7": {"kind":"primitive","type":"boolean"},
+    "d28765f87d6b6ab4": {"kind":"literal","value":"one-shot"},
+    "dacf3d5f3e4ff619": {"kind":"literal","value":true},
+    "e5d3828df1ec3e2a": {"kind":"literal","value":"continuable"}
+  }
+}

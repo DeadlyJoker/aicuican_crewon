@@ -1,0 +1,9 @@
+/* A compact text menu remains independent of the transformed canvas. */
+.reference-node-menu{position:fixed;z-index:4500;width:212px;max-width:calc(100vw - 24px);padding:8px;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;border:1px solid var(--ref-theme-border);border-radius:11px;background:var(--ref-theme-panel);color:var(--ref-theme-ink);box-shadow:0 12px 32px #0007;font-size:12px}
+.reference-node-menu button{display:flex;align-items:center;gap:10px;justify-content:space-between;width:100%;min-height:34px;padding:7px 10px;border:0;border-radius:5px;background:transparent;color:inherit;font:inherit;line-height:20px;text-align:left;white-space:nowrap;cursor:pointer}
+.reference-node-menu button:hover:not(:disabled),.reference-node-menu button:focus-visible{background:var(--ref-theme-hover);color:var(--ref-theme-ink);outline:none}
+.reference-node-menu button:disabled{color:var(--muted);opacity:.45;cursor:default}
+.reference-command-hint{font-size:10px;color:var(--muted)}
+.reference-command-divider{height:1px;margin:6px 0;background:var(--ref-theme-border)}
+.ref-canvas-body .node .reference-node-name-input{display:block;width:100%;min-width:0;height:24px;padding:0 4px;border:1px solid #999;border-radius:3px;background:var(--panel);color:var(--text);font:inherit;line-height:22px;box-sizing:border-box;cursor:text;outline:none}
+.reference-node-menu [data-node-command="duplicate"]{justify-content:flex-start;gap:6px}

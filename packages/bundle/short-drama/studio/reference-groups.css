@@ -1,0 +1,49 @@
+/* Group names stay above adjacent backings, while cards and links retain their own layers. */
+.ref-canvas-body .ref-asset-group{z-index:auto;background:rgba(163,159,159,.21);border:1.5px solid rgba(103,103,104,.6);border-radius:12px;box-sizing:border-box;pointer-events:auto;cursor:grab;touch-action:none}
+.ref-canvas-body .ref-asset-group.group-selected{outline:1px solid #7c9edb;outline-offset:0}
+.ref-canvas-body .ref-asset-group>.world-section-label{position:absolute;top:-44px;left:8px;z-index:5;pointer-events:auto;max-width:100%}
+.ref-group-name,.ref-group-name-input{font-family:inherit;font-size:32px;font-weight:500;line-height:38.4px;color:rgba(255,255,255,.75);background:transparent;border:0;border-radius:3px;padding:0 4px;text-align:left;white-space:nowrap}
+.ref-group-name{cursor:default;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.ref-group-name-input{width:380px;max-width:100%;outline:1px solid #7c9edb66}
+.ref-group-name:focus-visible{outline:1px solid #7c9edb}
+.ref-group-toolbar{position:absolute;z-index:35;display:flex;background:var(--studio-chrome-panel,#202020);border:1px solid var(--studio-chrome-border,#414141);border-radius:22px;padding:3px 10px;box-shadow:0 6px 24px #0005}
+.ref-group-layout{position:relative}
+.ref-group-layout>summary{list-style:none;display:flex;align-items:center;gap:7px;height:30px;padding:0 6px;color:var(--studio-chrome-label,#d0d0d0);font-size:12px;cursor:pointer}
+.ref-group-layout>summary::-webkit-details-marker{display:none}
+.ref-group-layout svg{width:15px;height:15px}
+.ref-group-layout [role=menu]{position:absolute;top:38px;left:-10px;min-width:150px;background:var(--studio-chrome-panel,#252525);border:1px solid var(--studio-chrome-border,#414141);border-radius:10px;padding:5px;box-shadow:0 10px 28px #0006}
+.ref-group-layout [role=menuitem]{display:block;width:100%;height:31px;text-align:left;padding:0 10px;border:0;border-radius:6px;background:transparent;color:var(--studio-chrome-label,#d0d0d0);font-family:inherit;font-size:12px;font-weight:400;cursor:pointer}
+.ref-group-layout [role=menuitem]:hover,.ref-group-layout [role=menuitem]:focus-visible{background:var(--studio-chrome-raised,#383838)}
+
+.ref-group-layout [role=menu]{overflow-y:auto;overscroll-behavior:contain}
+.ref-group-caret{font-size:14px;line-height:1}
+
+
+.ref-group-toolbar>button{display:flex;align-items:center;gap:6px;border:0;background:transparent;color:var(--studio-chrome-label,#d0d0d0);padding:0 8px;min-height:30px;font-family:inherit;font-size:12px;white-space:nowrap;cursor:pointer}
+.ref-group-toolbar>button:hover{background:var(--studio-chrome-raised,#333);border-radius:16px}
+.ref-group-toolbar>button svg{width:15px;height:15px}
+.ref-group-separator{width:1px;background:var(--studio-chrome-raised,#414141);margin:6px 4px}
+.ref-canvas-body .node.ref-multi-selected{outline:2px solid #7c9edb;outline-offset:3px}
+.canvas-viewport.group-dragging,.canvas-viewport.group-dragging .ref-asset-group{cursor:grabbing}
+
+.ref-group-colors>summary{width:28px;padding:0;justify-content:center}
+.ref-group-colors [role=menu]{display:grid;grid-template-columns:repeat(4,26px);gap:8px;min-width:0;padding:12px}
+.ref-group-colors [data-group-color]{width:26px;height:26px;border:2px solid rgba(var(--swatch),.35);border-radius:50%;background:rgba(var(--swatch),.12);cursor:pointer}
+.ref-group-colors [data-group-color]:hover{background:rgba(var(--swatch),.35)}
+.ref-group-colors [data-group-color][aria-checked=true]{box-shadow:0 0 0 2px #202020,0 0 0 3px rgba(var(--swatch),.85)}
+.ref-group-colors [data-group-color]:focus-visible{outline:2px solid var(--studio-chrome-focus,#ddd);outline-offset:3px}
+
+.ref-group-resizers{position:absolute;inset:0;z-index:34;pointer-events:none}
+.ref-group-resizers button{position:absolute;transform:translate(-50%,-50%);width:14px;height:14px;border:0;padding:0;background:transparent;pointer-events:auto;touch-action:none}
+.ref-group-resizers button::after{content:"";position:absolute;inset:4px;border-radius:1px;background:#739fe8}
+.ref-group-resizers button:focus-visible{outline:1px solid #aacaff;outline-offset:2px}
+.ref-resize-n,.ref-resize-s{cursor:ns-resize}
+.ref-resize-e,.ref-resize-w{cursor:ew-resize}
+.ref-resize-ne,.ref-resize-sw{cursor:nesw-resize}
+.ref-resize-nw,.ref-resize-se{cursor:nwse-resize}
+
+/* Edge grips stay visible at overview zoom without enlarging corner markers. */
+.ref-group-resizers .ref-resize-n,.ref-group-resizers .ref-resize-s{width:32px;height:18px}
+.ref-group-resizers .ref-resize-n::after,.ref-group-resizers .ref-resize-s::after{inset:auto;left:4px;right:4px;top:7px;height:4px;border-radius:2px}
+.ref-group-resizers .ref-resize-e,.ref-group-resizers .ref-resize-w{width:18px;height:32px}
+.ref-group-resizers .ref-resize-e::after,.ref-group-resizers .ref-resize-w::after{inset:auto;top:4px;bottom:4px;left:7px;width:4px;border-radius:2px}

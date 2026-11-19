@@ -1,0 +1,1703 @@
+diff --git a/lib/capabilities.js b/lib/capabilities.js
+index 50c1648f16fc6c4a5d4e4dd89aafc2acca8a18b7..3214d86215bca429b797afb587db79cf02d65acf 100644
+--- a/lib/capabilities.js
++++ b/lib/capabilities.js
+@@ -42,9 +42,8 @@ export function installTeamCapabilities(ctx, config) {
+     const states = new WeakMap();
+     const active = new Set();
+     let mounted = true;
+-    // Snapshot policy once: profiles, team state, and tool results must never
+-    // rewrite this prefix or control whether core instructions are available.
+-    const captainPrompt = `${TEAM_ACTIVATION_PROMPT}\n\n${config.captainPrompt()}`;
++    // User-authored profile edits apply to subsequent model requests.
++    const captainPrompt = () => `${TEAM_ACTIVATION_PROMPT}\n\n${config.captainPrompt()}`;
+     function attach(agent) {
+         const prior = states.get(agent);
+         if (prior !== undefined)
+@@ -96,7 +95,7 @@ export function installTeamCapabilities(ctx, config) {
+     ctx.systemPrompt.section({
+         name: 'agent-teams:usage', order: config.order ?? 117,
+         text: ({ agent }) => {
+-            return agent !== undefined && states.get(agent)?.member ? TEAM_MEMBER_PROMPT : captainPrompt;
++            return agent !== undefined && states.get(agent)?.member ? TEAM_MEMBER_PROMPT : captainPrompt();
+         },
+     });
+     onAgentReady(ctx, agent => { attach(agent); });
+diff --git a/lib/client.js b/lib/client.js
+index d7d36d9877bbc80cf9920f9fbbabc5213ebbd5c2..35d6ee739b89dae61ae2a46d6cb468c51d507213 100644
+--- a/lib/client.js
++++ b/lib/client.js
+@@ -685,18 +685,19 @@ window.__ModuleLoader__.load({
+ 		/** Render one durable team as a compact conversation card. */
+ 		const noWorkspace = () => void 0;
+ 		const noSubscription = () => () => {};
+-		function AgentTeamsCard({ node, openMember, sessionId, t, workspaceBridge }) {
++		function AgentTeamsCard({ node, openMember, sessionId, t, workspaceBridge, modelDirectories }) {
+ 			const native = (0, react.useSyncExternalStore)(workspaceBridge?.subscribe ?? noSubscription, workspaceBridge?.getSnapshot ?? noWorkspace);
+ 			const location = node.location;
+ 			if (native && (location.kind === "turn" || location.kind === "step") && location.turn.status === "closed") return null;
+ 			return (0, react_jsx_runtime.jsx)(AgentTeamsSummary, {
+ 				data: node.data,
++				modelDirectories,
+ 				openMember,
+ 				sessionId,
+ 				t
+ 			});
+ 		}
+-		function AgentTeamsSummary({ data, openMember, sessionId, t }) {
++		function AgentTeamsSummary({ data, openMember, sessionId, t, modelDirectories }) {
+ 			const owner = data.captainSessionId || sessionId;
+ 			const { teams, archivedTeams } = (0, react.useSyncExternalStore)(subscribeActivitySnapshots, getActivitySnapshotsSnapshot);
+ 			(0, react.useEffect)(() => {
+@@ -717,6 +718,7 @@ window.__ModuleLoader__.load({
+ 				owner,
+ 				snapshot
+ 			]);
++			if (snapshot?.phase === "staged") return null;
+ 			return (0, react_jsx_runtime.jsxs)("section", {
+ 				className: AgentTeamsCard_module_css_default.root,
+ 				"data-agent-teams-card": true,
+@@ -724,12 +726,6 @@ window.__ModuleLoader__.load({
+ 				children: [(0, react_jsx_runtime.jsxs)("header", {
+ 					className: AgentTeamsCard_module_css_default.head,
+ 					children: [
+-						(0, react_jsx_runtime.jsx)("img", {
+-							className: AgentTeamsCard_module_css_default.leadAvatar,
+-							src: LEAD_ART,
+-							alt: "",
+-							"aria-hidden": true
+-						}),
+ 						(0, react_jsx_runtime.jsx)("span", {
+ 							className: AgentTeamsCard_module_css_default.teamName,
+ 							title: resolved.teamName,
+@@ -750,28 +746,6 @@ window.__ModuleLoader__.load({
+ 							children: t("workspace.focus")
+ 						})
+ 					]
+-				}), resolved.members.length > 0 && (0, react_jsx_runtime.jsx)("div", {
+-					className: AgentTeamsCard_module_css_default.members,
+-					children: resolved.members.map((member) => (0, react_jsx_runtime.jsxs)("button", {
+-						type: "button",
+-						className: AgentTeamsCard_module_css_default.member,
+-						onClick: () => {
+-							if (member.id !== "") openMember(owner, member.id);
+-						},
+-						title: member.role === "" ? member.name : `${member.name} · ${member.role}`,
+-						children: [memberArtUrl(member.name, member.role) !== null ? (0, react_jsx_runtime.jsx)("img", {
+-							className: AgentTeamsCard_module_css_default.memberArt,
+-							src: memberArtUrl(member.name, member.role) ?? "",
+-							alt: "",
+-							"aria-hidden": true
+-						}) : (0, react_jsx_runtime.jsx)("span", {
+-							className: AgentTeamsCard_module_css_default.memberInitial,
+-							children: member.name.trim().slice(0, 1).toUpperCase() || "?"
+-						}), (0, react_jsx_runtime.jsx)("span", {
+-							className: AgentTeamsCard_module_css_default.memberName,
+-							children: member.name
+-						})]
+-					}, member.id || member.name))
+ 				})]
+ 			});
+ 		}
+@@ -783,7 +757,7 @@ window.__ModuleLoader__.load({
+ 			const tag = document.createElement("style");
+ 			tag.dataset.plugin = "@nanmicoder/dsh-agent-teams";
+ 			tag.dataset.pluginCss = tagId$1;
+-			tag.textContent = css$1;
++			tag.textContent = css$1 + ".crewon-plan-columns{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:10px}.crewon-plan-columns[data-task-columns]{grid-template-columns:minmax(0,1fr) minmax(100px,.38fr);padding-left:58px;padding-right:34px}" + "[data-staging-editor] [data-plan-task]>.aYQbCq_planCardHeader{display:grid;grid-template-columns:36px minmax(0,1fr) minmax(100px,.38fr) auto;text-align:left;gap:10px}[data-staging-editor] .aYQbCq_planTaskSummary{text-align:left;justify-self:stretch}[data-staging-editor] .aYQbCq_planCardBody{margin:0 12px 12px 24px;padding:12px 14px;border-left:2px solid var(--dsw-alias-border-l2)}.crewon-plan-columns{padding:10px 12px;border-bottom:1px solid var(--dsw-alias-border-l2);color:var(--dsw-alias-label-secondary);font-size:11px}.crewon-plan-add{border-top:1px solid var(--dsw-alias-border-l2);padding:12px}.crewon-plan-add>summary{cursor:pointer;color:var(--dsw-alias-state-business-primary);font-size:12px}.crewon-plan-add-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.crewon-plan-add fieldset{border:0;padding:0;display:grid;gap:12px}.crewon-plan-add .aYQbCq_planNewTask{margin-top:12px}.crewon-plan-dependencies{display:grid;gap:6px;min-width:0}.crewon-plan-dependencies details{border:1px solid var(--dsw-alias-border-l2);border-radius:6px;padding:8px}.crewon-plan-dependencies summary{cursor:pointer}.crewon-plan-options{display:grid;gap:8px;max-height:180px;overflow:auto;padding:10px 0}.crewon-plan-options label{display:flex!important;align-items:center;gap:8px}.crewon-plan-options input{width:16px!important;height:16px;flex:none}.crewon-plan-options strong{font-weight:500}.crewon-plan-dependencies small{color:var(--dsw-alias-label-secondary)}@media(max-width:600px){[data-staging-editor] [data-plan-task]>.aYQbCq_planCardHeader{grid-template-columns:30px minmax(0,1fr) auto}[data-staging-editor] [data-plan-task] .aYQbCq_planCardMeta{grid-column:2;grid-row:2;text-align:left;justify-self:start}[data-staging-editor] [data-plan-task] .aYQbCq_planChevron{grid-column:3;grid-row:1}.crewon-plan-add-fields{grid-template-columns:1fr}}" + "[data-staging-editor] .aYQbCq_planApproveRow{position:static;background:transparent;border:0;padding:12px 0 0;border-top:1px solid var(--dsw-alias-border-l2);box-shadow:none;border-radius:0;gap:10px}[data-staging-editor] .aYQbCq_planApproveCopy>strong{display:none}[data-staging-editor] .aYQbCq_planReviewActions{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px;justify-content:flex-end}[data-staging-editor] .aYQbCq_planSecondaryActions{display:contents}[data-staging-editor] .aYQbCq_planReviewActions button,[data-staging-editor] .aYQbCq_planApproveActions button{flex:0 0 auto;width:auto;min-width:100px;min-height:36px;margin:0;padding:7px 16px;font-weight:500}[data-staging-editor] .aYQbCq_planHeader strong,[data-staging-editor] .aYQbCq_planSectionToggle strong{font-weight:500}@media(max-width:480px){[data-staging-editor] .aYQbCq_planReviewActions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}[data-staging-editor] .aYQbCq_planReviewActions button{min-width:0;width:100%;padding:7px 8px}}" + "\n[data-staging-editor] {\n  background: var(--dsw-alias-bg-layer-1);\n  border: 1px solid var(--dsw-alias-border-l2);\n  border-radius: 12px;\n  padding: 16px;\n  margin: 0;\n  gap: 16px;\n  box-shadow: none;\n}\n[data-staging-editor] .aYQbCq_planHeader { margin: 0; }\n[data-staging-editor] .aYQbCq_planHeader strong { font-size: 14px; font-weight: 500; }\n[data-staging-editor] .aYQbCq_planHeader small { font-size: 12px; margin-top: 4px; }\n[data-staging-editor] .aYQbCq_planHeader p { font-size: 12px; line-height: 1.5; margin: 8px 0 0; }\n[data-staging-editor] .aYQbCq_planHeader em { font-size: 11px; padding: 2px 8px; border-radius: 6px; }\n[data-staging-editor] .aYQbCq_planSection { border: 0; border-radius: 0; background: transparent; overflow: visible; }\n[data-staging-editor] .aYQbCq_planSectionToggle { padding: 0 0 8px; min-height: 28px; background: transparent; }\n[data-staging-editor] .aYQbCq_planSectionToggle strong { font-size: 13px; font-weight: 500; }\n[data-staging-editor] .aYQbCq_planSectionToggle small { font-size: 12px; }\n[data-staging-editor] .aYQbCq_planCard { background: transparent; border: 0; border-top: 1px solid var(--dsw-alias-border-l2); border-radius: 0; }\n[data-staging-editor] .aYQbCq_planCardHeader { min-height: 48px; padding: 9px 0; gap: 12px; background: transparent; text-align: left; }\n[data-staging-editor] .aYQbCq_planCardHeader:hover { background: var(--dsw-alias-button-ghost-active-fill); }\n[data-staging-editor] .aYQbCq_planCardIdentity { gap: 3px; }\n[data-staging-editor] .aYQbCq_planCardIdentity strong { font-size: 13px; font-weight: 500; }\n[data-staging-editor] .aYQbCq_planCardIdentity>span { font-size: 12px; line-height: 1.5; }\n[data-staging-editor] .aYQbCq_planCardMeta { font-size: 12px; font-family: inherit; }\n[data-staging-editor] [data-plan-task]>.aYQbCq_planCardHeader { grid-template-columns: 28px minmax(0,1fr) auto 12px; gap: 10px; }\n[data-staging-editor] .aYQbCq_planTaskId { font-size: 11px; padding: 1px 4px; min-width: 0; }\n[data-staging-editor] .aYQbCq_planTaskSummary { font-size: 13px; line-height: 1.5; font-weight: 500; }\n[data-staging-editor] .aYQbCq_planCardBody { background: transparent; margin: 0 0 12px 12px; padding: 8px 0 4px 14px; border-left: 2px solid var(--dsw-alias-border-l2); gap: 12px; }\n[data-staging-editor] .crewon-plan-add { border-top: 1px solid var(--dsw-alias-border-l2); padding: 9px 0 0; }\n[data-staging-editor] .crewon-plan-add>summary { display: block; width: fit-content; list-style: none; font-size: 12px; line-height: 20px; cursor: pointer; }\n[data-staging-editor] .crewon-plan-add>summary::-webkit-details-marker { display: none; }\n[data-staging-editor] .crewon-plan-add>summary::before { content: '+'; display: inline-block; width: 18px; }\n[data-staging-editor] .crewon-plan-add[open]>summary::before { content: '\u2212'; }\n[data-staging-editor] .crewon-plan-add>form { margin-top: 12px; }\n[data-staging-editor] .aYQbCq_planApproveRow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; margin: 0; padding-top: 12px; gap: 12px; }\n[data-staging-editor] .aYQbCq_planApproveCopy { flex: 1; min-width: 180px; }\n[data-staging-editor] .aYQbCq_planApproveCopy small { font-size: 12px; line-height: 1.5; }\n[data-staging-editor] .aYQbCq_planReviewActions { width: auto; flex: none; }\n[data-staging-editor] .aYQbCq_planReviewActions button,\n[data-staging-editor] .aYQbCq_planApproveActions button { min-width: 84px; min-height: 32px; padding: 5px 12px; font-size: 12px; font-weight: 500; border-radius: 6px; }\n[data-staging-editor] .aYQbCq_planReviewActions [data-plan-discard] { color: var(--dsw-alias-label-secondary); border-color: transparent; background: transparent; }\n[data-staging-editor] .aYQbCq_planReviewActions [data-plan-discard]:hover { color: var(--dsw-alias-state-error-primary); background: var(--dsw-alias-button-ghost-active-fill); }\n@media(max-width:600px) {\n  [data-staging-editor] { padding: 12px; }\n  [data-staging-editor] .aYQbCq_planReviewActions { display: flex; margin-left: auto; }\n  [data-staging-editor] [data-plan-task]>.aYQbCq_planCardHeader { grid-template-columns: 28px minmax(0,1fr) 12px; }\n}\n" + "[data-staging-editor] .aYQbCq_planApproveRow{flex-direction:row}[data-staging-editor] .aYQbCq_planApproveCopy{align-items:flex-start;text-align:left;width:auto}[data-staging-editor] [data-plan-member]>.aYQbCq_planCardHeader{display:grid;grid-template-columns:minmax(0,1fr) auto 12px}[data-staging-editor] [data-plan-member] .aYQbCq_planCardMeta{justify-self:end;max-width:220px}@media(max-width:600px){[data-staging-editor] .aYQbCq_planApproveCopy{flex-basis:100%}[data-staging-editor] [data-plan-member]>.aYQbCq_planCardHeader{grid-template-columns:minmax(0,1fr) 12px}[data-staging-editor] [data-plan-member] .aYQbCq_planCardMeta{grid-column:1;justify-self:start}[data-staging-editor] [data-plan-member] .aYQbCq_planChevron{grid-column:2;grid-row:1}}" + ".crewon-plan-reuse{display:grid;gap:10px;padding-top:8px}.crewon-plan-reuse>label{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--dsw-alias-label-secondary)}.crewon-plan-reuse input[type=checkbox]{width:15px!important;height:15px;flex:none;margin:0;accent-color:var(--dsw-alias-state-business-primary)}.crewon-plan-reuse-name input{max-width:280px}" + ".crewon-plan-reuse-name{display:grid!important;grid-template-columns:72px minmax(0,280px);align-items:center}.crewon-plan-reuse-name input{box-sizing:border-box;width:100%;min-height:32px;padding:6px 10px;background:var(--dsw-alias-bg-base);border:1px solid var(--dsw-alias-border-l2);border-radius:6px;color:var(--dsw-alias-label-primary);font:inherit}.crewon-plan-reuse-name input:focus-visible{outline:2px solid var(--dsw-alias-state-business-primary);outline-offset:2px}" + "[data-staging-editor] :is(.aYQbCq_planCardBody, .aYQbCq_planNewTask) {\n  font-size: 13px;\n  line-height: 1.5;\n}\n[data-staging-editor] :is(.aYQbCq_planCardBody, .aYQbCq_planNewTask) label,\n[data-staging-editor] .crewon-plan-dependencies > span {\n  color: var(--dsw-alias-label-secondary);\n  font-size: 12px;\n  line-height: 18px;\n}\n[data-staging-editor] :is(.aYQbCq_planCardBody, .aYQbCq_planNewTask) :is(input:not([type=checkbox]), textarea, select) {\n  box-sizing: border-box;\n  width: 100%;\n  min-width: 0;\n  min-height: 34px;\n  padding: 7px 10px;\n  border: 1px solid var(--dsw-alias-border-l2);\n  border-radius: 6px;\n  background: var(--dsw-alias-bg-base);\n  color: var(--dsw-alias-label-primary);\n  font: inherit;\n  font-size: 13px;\n}\n[data-staging-editor] .aYQbCq_planCardBody fieldset,\n[data-staging-editor] .aYQbCq_planGrid {\n  gap: 12px;\n}\n[data-staging-editor] :is(.aYQbCq_planActions, .aYQbCq_planNewTask) button {\n  min-height: 34px;\n  font-size: 12px;\n  font-weight: 500;\n}\n[data-staging-editor] .crewon-plan-dependencies details {\n  padding: 0;\n  background: var(--dsw-alias-bg-base);\n}\n[data-staging-editor] .crewon-plan-dependencies summary {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 8px;\n  min-height: 34px;\n  box-sizing: border-box;\n  padding: 6px 10px;\n  list-style: none;\n  font-size: 13px;\n}\n[data-staging-editor] .crewon-plan-dependencies summary::-webkit-details-marker { display: none; }\n[data-staging-editor] .crewon-plan-dependencies summary::after {\n  content: '';\n  width: 6px;\n  height: 6px;\n  flex: none;\n  border: solid currentColor;\n  border-width: 0 1px 1px 0;\n  transform: rotate(45deg);\n}\n[data-staging-editor] .crewon-plan-dependencies details[open] summary::after { transform: rotate(225deg); }\n[data-staging-editor] .crewon-plan-options {\n  gap: 2px;\n  max-height: 196px;\n  border-top: 1px solid var(--dsw-alias-border-l2);\n  padding: 4px;\n}\n[data-staging-editor] .crewon-plan-options label {\n  flex-direction: row;\n  align-items: center;\n  justify-content: flex-start;\n  gap: 9px;\n  min-height: 30px;\n  padding: 4px 6px;\n  border-radius: 4px;\n  text-align: left;\n  cursor: pointer;\n}\n[data-staging-editor] .crewon-plan-options label:hover,\n[data-staging-editor] .crewon-plan-options label:focus-within {\n  background: var(--dsw-alias-button-ghost-active-fill);\n}\n[data-staging-editor] .crewon-plan-options input[type=checkbox] {\n  min-height: 0;\n  margin: 0;\n  padding: 0;\n  accent-color: var(--dsw-alias-state-business-primary);\n}\n[data-staging-editor] .crewon-plan-options label > span {\n  min-width: 0;\n  overflow-wrap: anywhere;\n}\n[data-staging-editor] .crewon-plan-dependencies > small {\n  font-size: 11px;\n  line-height: 16px;\n}\n" + "\n[data-staging-editor] [data-plan-task] .aYQbCq_planGrid { grid-template-columns: minmax(0, 1fr); }\n[data-staging-editor] [data-plan-task] .aYQbCq_planGrid > label { max-width: 320px; }\n[data-staging-editor] .crewon-plan-add .aYQbCq_planNewTask {\n  margin-left: 12px;\n  padding-left: 14px;\n  border-left: 2px solid var(--dsw-alias-border-l2);\n}\n" + "\n[data-staging-editor] .crewon-plan-input { display:flex; width:100%; box-sizing:border-box; }\n[data-staging-editor] .crewon-plan-input > input { border:0; background:transparent; min-height:0; padding:0; box-shadow:none; }\n[data-staging-editor] .crewon-plan-input > input:focus-visible { box-shadow:none; }\n[data-staging-editor] .aYQbCq_planCardBody :is(textarea,select),\n[data-staging-editor] .crewon-plan-dependency-trigger {\n  background:var(--dsw-alias-bg-layer-1); border:1px solid var(--dsw-alias-border-l4);\n  border-radius:var(--dsw-radius-md); color:var(--dsw-alias-label-primary);\n}\n[data-staging-editor] .aYQbCq_planCardBody textarea { padding:8px 10px; resize:vertical; }\n.crewon-plan-dependency-trigger {\n  display:flex; align-items:center; justify-content:space-between; gap:12px;\n  width:140px; max-width:100%; min-height:32px; padding:5px 9px;\n  font:inherit; font-size:13px; cursor:pointer;\n}\n.crewon-plan-dependency-trigger:focus-visible { outline:2px solid var(--dsw-alias-state-business-primary); outline-offset:2px; }\n.crewon-plan-dependency-menu { width:min(360px, var(--dsh-anchored-max-width, 100vw)); }\n.crewon-plan-option-label { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }\n" + "\n[data-staging-editor] .crewon-plan-row-end { display:flex; align-items:center; gap:8px; justify-self:end; white-space:nowrap; }\n[data-staging-editor] [data-plan-task]>.aYQbCq_planCardHeader { grid-template-columns:28px minmax(0,1fr) minmax(0,max-content) max-content; }\n[data-staging-editor] [data-plan-task] .aYQbCq_planCardMeta { max-width:min(180px,25vw); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }\n[data-staging-editor] [data-plan-member]>.aYQbCq_planCardHeader { grid-template-columns:minmax(0,1fr) auto max-content; }\n@media(max-width:600px) {\n  [data-staging-editor] [data-plan-task]>.aYQbCq_planCardHeader { grid-template-columns:28px minmax(0,1fr) max-content; }\n  [data-staging-editor] [data-plan-task] .aYQbCq_planCardMeta { max-width:100%; }\n  [data-staging-editor] [data-plan-member]>.aYQbCq_planCardHeader { grid-template-columns:minmax(0,1fr) max-content; }\n  [data-staging-editor] .crewon-plan-row-end { grid-column:-2; grid-row:1; }\n}\n";
+ 			document.head.appendChild(tag);
+ 		}
+ 		var ActivityPanel_module_css_default = {
+@@ -1249,186 +1223,94 @@ window.__ModuleLoader__.load({
+ 				]
+ 			});
+ 		}
+-		function StagedMemberEditor({ team, member, modelDirectory, onPendingChange, t }) {
+-			const bodyId = (0, react.useId)();
+-			const [open, setOpen] = (0, react.useState)(false);
+-			const [role, setRole] = (0, react.useState)(member.role);
+-			const [provider, setProvider] = (0, react.useState)(member.provider ?? "");
+-			const [model, setModel] = (0, react.useState)(member.model ?? "");
+-			const [reasoningEffort, setReasoningEffort] = (0, react.useState)(member.reasoningEffort ?? "");
+-			const [executionPrompt, setExecutionPrompt] = (0, react.useState)(member.executionPrompt ?? "");
+-			const remoteSignature = JSON.stringify([
+-				member.role,
+-				member.provider ?? "",
+-				member.model ?? "",
+-				member.reasoningEffort ?? "",
+-				member.executionPrompt ?? ""
+-			]);
+-			const [savedSignature, setSavedSignature] = (0, react.useState)(remoteSignature);
+-			const [busy, setBusy] = (0, react.useState)(false);
+-			const [feedback, setFeedback] = (0, react.useState)();
+-			useDismissSuccess(feedback, setFeedback);
+-			const dirty = JSON.stringify([
+-				role,
+-				provider,
+-				model,
+-				reasoningEffort,
+-				executionPrompt
+-			]) !== savedSignature;
+-			(0, react.useEffect)(() => {
+-				onPendingChange(`member:${member.name}`, dirty || busy);
+-				return () => {
+-					onPendingChange(`member:${member.name}`, false);
+-				};
+-			}, [
+-				busy,
+-				dirty,
+-				member.name,
+-				onPendingChange
+-			]);
+-			(0, react.useEffect)(() => {
+-				setRole(member.role);
+-				setProvider(member.provider ?? "");
+-				setModel(member.model ?? "");
+-				setReasoningEffort(member.reasoningEffort ?? "");
+-				setExecutionPrompt(member.executionPrompt ?? "");
+-				setSavedSignature(remoteSignature);
+-			}, [
+-				member.role,
+-				member.provider,
+-				member.model,
+-				member.reasoningEffort,
+-				member.executionPrompt,
+-				remoteSignature
+-			]);
+-			const markEdited = () => {
+-				setFeedback(void 0);
+-			};
+-			const persist = async (selection = {
+-				provider,
+-				model,
+-				reasoningEffort
+-			}) => {
+-				const nextSignature = JSON.stringify([
+-					role,
+-					selection.provider,
+-					selection.model,
+-					selection.reasoningEffort,
+-					executionPrompt
+-				]);
+-				setProvider(selection.provider);
+-				setModel(selection.model);
+-				setReasoningEffort(selection.reasoningEffort);
+-				setBusy(true);
+-				setFeedback(void 0);
+-				try {
+-					await mutatePlan({
+-						sessionId: team.captainSessionId,
+-						teamId: team.teamId,
+-						action: "update_member",
+-						memberName: member.name,
+-						role,
+-						provider: selection.provider,
+-						model: selection.model,
+-						reasoningEffort: selection.reasoningEffort,
+-						executionPrompt
+-					});
+-					setSavedSignature(nextSignature);
+-					setFeedback({
+-						tone: "success",
+-						message: t("plan.saved")
+-					});
+-				} catch (error) {
+-					setFeedback({
+-						tone: "error",
+-						message: t("plan.failed", { message: errorMessage(error) })
+-					});
+-				} finally {
+-					setBusy(false);
+-				}
+-			};
+-			const save = async (event) => {
+-				event.preventDefault();
+-				await persist();
+-			};
+-			const route = `${provider}/${model}`.replace(/^\//u, "");
+-			return (0, react_jsx_runtime.jsxs)("article", {
+-				className: ActivityPanel_module_css_default.planCard,
+-				"data-plan-member": member.name,
+-				"data-open": open,
+-				children: [(0, react_jsx_runtime.jsxs)("button", {
+-					type: "button",
+-					className: ActivityPanel_module_css_default.planCardHeader,
+-					"aria-expanded": open,
+-					"aria-controls": bodyId,
+-					onClick: () => {
+-						setOpen((current) => !current);
+-					},
+-					children: [
+-						(0, react_jsx_runtime.jsxs)("span", {
+-							className: ActivityPanel_module_css_default.planCardIdentity,
+-							children: [(0, react_jsx_runtime.jsx)("strong", { children: member.name }), (0, react_jsx_runtime.jsx)("span", { children: role || t("plan.member.roleFallback") })]
+-						}),
+-						(0, react_jsx_runtime.jsx)("span", {
+-							className: ActivityPanel_module_css_default.planCardMeta,
+-							title: route,
+-							children: route
+-						}),
+-						dirty && (0, react_jsx_runtime.jsx)("em", {
+-							className: ActivityPanel_module_css_default.planDirty,
+-							children: t("plan.unsaved")
+-						}),
+-						(0, react_jsx_runtime.jsx)(DisclosureChevron, { open })
+-					]
+-				}), open && (0, react_jsx_runtime.jsxs)("form", {
+-					id: bodyId,
+-					className: ActivityPanel_module_css_default.planCardBody,
+-					onSubmit: (event) => {
+-						save(event);
+-					},
+-					children: [(0, react_jsx_runtime.jsxs)("fieldset", {
+-						disabled: busy,
+-						children: [
+-							(0, react_jsx_runtime.jsxs)("label", { children: [t("plan.member.role"), (0, react_jsx_runtime.jsx)("input", {
+-								name: "role",
+-								value: role,
+-								onChange: (event) => {
+-									setRole(event.currentTarget.value);
+-									markEdited();
+-								}
+-							})] }),
+-							(0, react_jsx_runtime.jsx)(StagedModelPicker, {
+-								directory: modelDirectory,
+-								provider,
+-								model,
+-								reasoningEffort,
+-								busy,
+-								onChange: (selection) => {
+-									persist(selection);
+-								},
+-								t
+-							}),
+-							(0, react_jsx_runtime.jsxs)("label", { children: [t("plan.member.prompt"), (0, react_jsx_runtime.jsx)("textarea", {
+-								name: "executionPrompt",
+-								value: executionPrompt,
+-								onChange: (event) => {
+-									setExecutionPrompt(event.currentTarget.value);
+-									markEdited();
+-								},
+-								rows: 3
+-							})] })
+-						]
+-					}), (0, react_jsx_runtime.jsxs)("span", {
+-						className: ActivityPanel_module_css_default.planActions,
+-						children: [(0, react_jsx_runtime.jsx)(Feedback, { value: feedback }), (0, react_jsx_runtime.jsx)("button", {
+-							type: "submit",
+-							disabled: busy || !dirty || provider.trim() === "" || model.trim() === "",
+-							children: busy ? t("plan.saving") : t("plan.save")
+-						})]
+-					})]
+-				})]
+-			});
+-		}
++        function StagedMemberEditor({ team, member, modelDirectory, onPendingChange, renderExpertPicker, t }) {
++            const bodyId = react.useId();
++            const [open, setOpen] = react.useState(false);
++            const [role, setRole] = react.useState(member.role ?? '');
++            const [provider, setProvider] = react.useState(member.provider ?? '');
++            const [model, setModel] = react.useState(member.model ?? '');
++            const [reasoningEffort, setReasoningEffort] = react.useState(member.reasoningEffort ?? '');
++            const [executionPrompt, setExecutionPrompt] = react.useState(member.executionPrompt ?? '');
++            const [agentPreset, setAgentPreset] = react.useState(member.agentPreset ?? '');
++            const [selectingExpert, setSelectingExpert] = react.useState(false);
++            const [busy, setBusy] = react.useState(false);
++            const [feedback, setFeedback] = react.useState();
++            useDismissSuccess(feedback, setFeedback);
++            const remoteSignature = JSON.stringify([member.role ?? '', member.provider ?? '', member.model ?? '',
++                member.reasoningEffort ?? '', member.executionPrompt ?? '', member.agentPreset ?? '']);
++            const [savedSignature, setSavedSignature] = react.useState(remoteSignature);
++            const signature = JSON.stringify([role, provider, model, reasoningEffort, executionPrompt, agentPreset]);
++            const dirty = signature !== savedSignature;
++            react.useEffect(() => {
++                onPendingChange(`member:${member.name}`, dirty || busy || selectingExpert);
++                return () => onPendingChange(`member:${member.name}`, false);
++            }, [dirty, busy, selectingExpert, member.name, onPendingChange]);
++            react.useEffect(() => {
++                setRole(member.role ?? ''); setProvider(member.provider ?? ''); setModel(member.model ?? '');
++                setReasoningEffort(member.reasoningEffort ?? ''); setExecutionPrompt(member.executionPrompt ?? '');
++                setAgentPreset(member.agentPreset ?? ''); setSavedSignature(remoteSignature);
++            }, [remoteSignature]);
++            const persist = async (selection = { provider, model, reasoningEffort }) => {
++                if (selectingExpert || busy) return;
++                setProvider(selection.provider); setModel(selection.model); setReasoningEffort(selection.reasoningEffort);
++                setBusy(true); setFeedback(undefined);
++                try {
++                    await mutatePlan({ sessionId: team.captainSessionId, teamId: team.teamId,
++                        action: 'update_member', memberName: member.name, role,
++                        provider: selection.provider, model: selection.model, reasoningEffort: selection.reasoningEffort,
++                        executionPrompt, agentPreset });
++                    setSavedSignature(JSON.stringify([role, selection.provider, selection.model,
++                        selection.reasoningEffort, executionPrompt, agentPreset]));
++                    setFeedback({ tone: 'success', message: t('plan.saved') });
++                } catch (error) {
++                    setFeedback({ tone: 'error', message: t('plan.failed', { message: errorMessage(error) }) });
++                } finally { setBusy(false); }
++            };
++            const route = `${provider}/${model}`.replace(/^\//u, '');
++            return react_jsx_runtime.jsxs('article', {
++                className: ActivityPanel_module_css_default.planCard, 'data-plan-member': member.name, 'data-open': open,
++                children: [react_jsx_runtime.jsxs('button', {
++                    type: 'button', className: ActivityPanel_module_css_default.planCardHeader,
++                    'aria-expanded': open, 'aria-controls': bodyId, disabled: selectingExpert,
++                    onClick: () => setOpen(value => !value),
++                    children: [react_jsx_runtime.jsxs('span', { className: ActivityPanel_module_css_default.planCardIdentity,
++                        children: [react_jsx_runtime.jsx('strong', { children: member.name }),
++                            react_jsx_runtime.jsx('span', { children: role || t('plan.member.roleFallback') })] }),
++                        react_jsx_runtime.jsx('span', { className: ActivityPanel_module_css_default.planCardMeta,
++                            title: route, children: model || t('plan.model.choose') }),
++                        react_jsx_runtime.jsxs('span', { className: 'crewon-plan-row-end', children: [
++                            dirty && react_jsx_runtime.jsx('em', { className: ActivityPanel_module_css_default.planDirty,
++                                children: t('plan.unsaved') }), react_jsx_runtime.jsx(DisclosureChevron, { open })] })]
++                }), open && react_jsx_runtime.jsxs('form', {
++                    id: bodyId, className: ActivityPanel_module_css_default.planCardBody,
++                    onSubmit: event => { event.preventDefault(); void persist(); },
++                    children: [react_jsx_runtime.jsxs('fieldset', { disabled: busy || selectingExpert, children: [
++                        renderExpertPicker?.({ value: agentPreset, disabled: busy, onPendingChange: setSelectingExpert,
++                            onSelect: selection => {
++                                setAgentPreset(selection.agentPreset);
++                                if (selection.role) setRole(value => value.trim() ? value : selection.role);
++                                if (selection.executionPrompt) setExecutionPrompt(value => value.trim() ? value : selection.executionPrompt);
++                                if (selection.provider && selection.model) {
++                                    if (selection.provider !== provider || selection.model !== model) setReasoningEffort('');
++                                    setProvider(selection.provider); setModel(selection.model);
++                                }
++                                setFeedback(undefined);
++                            } }),
++                        react_jsx_runtime.jsxs('label', { children: [t('plan.member.role'),
++                            react_jsx_runtime.jsx(_deepseek_ai_dsh_client_ui_primitives.Input, { className: 'crewon-plan-input',
++                                name: 'role', value: role, onChange: event => { setRole(event.currentTarget.value); setFeedback(undefined); } })] }),
++                        react_jsx_runtime.jsx(StagedModelPicker, { directory: modelDirectory, provider, model, reasoningEffort,
++                            busy: busy || selectingExpert, onChange: selection => { void persist(selection); }, t }),
++                        react_jsx_runtime.jsxs('label', { children: [t('plan.member.prompt'),
++                            react_jsx_runtime.jsx('textarea', { name: 'executionPrompt', rows: 3, value: executionPrompt,
++                                onChange: event => { setExecutionPrompt(event.currentTarget.value); setFeedback(undefined); } })] })] }),
++                        react_jsx_runtime.jsxs('span', { className: ActivityPanel_module_css_default.planActions,
++                            children: [react_jsx_runtime.jsx(Feedback, { value: feedback }), react_jsx_runtime.jsx('button', {
++                                type: 'submit', disabled: busy || selectingExpert || !dirty || !provider.trim() || !model.trim(),
++                                children: busy ? t('plan.saving') : t('plan.save') })] })]
++                })]
++            });
++        }
+ 		function StagedTaskEditor({ team, task, onPendingChange, t }) {
+ 			const bodyId = (0, react.useId)();
+ 			const taskDependencies = task.dependencies.join(", ");
+@@ -1565,11 +1447,16 @@ window.__ModuleLoader__.load({
+ 								dependencySummary
+ 							]
+ 						}),
+-						dirty && (0, react_jsx_runtime.jsx)("em", {
+-							className: ActivityPanel_module_css_default.planDirty,
+-							children: t("plan.unsaved")
+-						}),
+-						(0, react_jsx_runtime.jsx)(DisclosureChevron, { open })
++						(0, react_jsx_runtime.jsxs)("span", {
++							className: "crewon-plan-row-end",
++							children: [
++								dirty && (0, react_jsx_runtime.jsx)("em", {
++									className: ActivityPanel_module_css_default.planDirty,
++									children: t("plan.unsaved")
++								}),
++								(0, react_jsx_runtime.jsx)(DisclosureChevron, { open })
++							]
++						})
+ 					]
+ 				}), open && (0, react_jsx_runtime.jsxs)("form", {
+ 					id: bodyId,
+@@ -1581,7 +1468,7 @@ window.__ModuleLoader__.load({
+ 						(0, react_jsx_runtime.jsxs)("fieldset", {
+ 							disabled: busy,
+ 							children: [
+-								(0, react_jsx_runtime.jsxs)("label", { children: [t("plan.task.subject"), (0, react_jsx_runtime.jsx)("input", {
++								(0, react_jsx_runtime.jsxs)("label", { children: [t("plan.task.subject"), (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Input, { className: "crewon-plan-input",
+ 									name: "subject",
+ 									required: true,
+ 									value: subject,
+@@ -1615,18 +1502,7 @@ window.__ModuleLoader__.load({
+ 											value: member.name,
+ 											children: member.name
+ 										}, member.name))]
+-									})] }), (0, react_jsx_runtime.jsxs)("label", { children: [
+-										t("plan.task.dependencies"),
+-										(0, react_jsx_runtime.jsx)("input", {
+-											name: "dependencies",
+-											value: dependencies,
+-											onChange: (event) => {
+-												setDependencies(event.currentTarget.value);
+-												markEdited();
+-											}
+-										}),
+-										(0, react_jsx_runtime.jsx)("small", { children: t("plan.task.dependenciesHint") })
+-									] })]
++									})] }), (0, react_jsx_runtime.jsx)(PlanDependencies, {team, task, value: dependencies, onChange: (value) => { setDependencies(value); markEdited(); }, t})]
+ 								})
+ 							]
+ 						}),
+@@ -1678,7 +1554,121 @@ window.__ModuleLoader__.load({
+ 				})]
+ 			});
+ 		}
+-		function StagingPlanEditor({ team, modelDirectory, onContinuePlanning, onDiscarded, t }) {
++function NewPlanMember({ team, onPendingChange, renderExpertPicker, t }) {
++    const [name, setName] = react.useState('');
++    const [role, setRole] = react.useState('');
++    const [instructions, setInstructions] = react.useState('');
++    const [agentPreset, setAgentPreset] = react.useState('');
++    const [provider, setProvider] = react.useState('');
++    const [model, setModel] = react.useState('');
++    const [selectingExpert, setSelectingExpert] = react.useState(false);
++    const [busy, setBusy] = react.useState(false);
++    const [feedback, setFeedback] = react.useState();
++    const autofill = react.useRef({ name: '', role: '', instructions: '' });
++    react.useEffect(() => {
++        onPendingChange('new-member', busy || selectingExpert || !!agentPreset || !!name.trim() || !!role.trim() || !!instructions.trim());
++        return () => onPendingChange('new-member', false);
++    }, [name, role, instructions, agentPreset, busy, selectingExpert, onPendingChange]);
++    const add = async event => {
++        event.preventDefault();
++        if (busy || selectingExpert) return;
++        if (team.members.some(member => member.name === name.trim())) {
++            setFeedback({ tone: 'error', message: t('plan.member.duplicate') });
++            return;
++        }
++        setBusy(true); setFeedback(undefined);
++        try {
++            await mutatePlan({ sessionId: team.captainSessionId, teamId: team.teamId, action: 'add_member',
++                name: name.trim(), role: role.trim(), executionPrompt: instructions.trim(),
++                ...(agentPreset ? { agentPreset } : {}), ...(provider && model ? { provider, model } : {}) });
++            setName(''); setRole(''); setInstructions(''); setAgentPreset(''); setProvider(''); setModel('');
++            autofill.current = { name: '', role: '', instructions: '' };
++            setFeedback({ tone: 'success', message: t('plan.member.added') });
++        } catch (error) {
++            setFeedback({ tone: 'error', message: t('plan.failed', { message: errorMessage(error) }) });
++        } finally { setBusy(false); }
++    };
++    return react_jsx_runtime.jsxs('details', { className: 'crewon-plan-add', children: [
++        react_jsx_runtime.jsx('summary', { children: t('plan.member.add') }),
++        react_jsx_runtime.jsxs('form', { className: ActivityPanel_module_css_default.planCardBody, onSubmit: add, children: [
++            react_jsx_runtime.jsxs('fieldset', { disabled: busy || selectingExpert, children: [
++                renderExpertPicker?.({ value: agentPreset, disabled: busy, onPendingChange: setSelectingExpert,
++                    onSelect: selection => {
++                        setAgentPreset(selection.agentPreset);
++                        const previous = autofill.current;
++                        const next = { name: selection.name ?? '', role: selection.role ?? '', instructions: selection.executionPrompt ?? '' };
++                        setName(value => !value.trim() || value === previous.name ? next.name : value);
++                        setRole(value => !value.trim() || value === previous.role ? next.role : value);
++                        setInstructions(value => !value.trim() || value === previous.instructions ? next.instructions : value);
++                        autofill.current = next;
++                        setProvider(selection.provider ?? ''); setModel(selection.model ?? ''); setFeedback(undefined);
++                    } }),
++                react_jsx_runtime.jsxs('div', { className: 'crewon-plan-add-fields', children: [
++                    react_jsx_runtime.jsxs('label', { children: [t('plan.member.name'),
++                        react_jsx_runtime.jsx(_deepseek_ai_dsh_client_ui_primitives.Input, { className: 'crewon-plan-input',
++                            value: name, onChange: event => setName(event.currentTarget.value), required: true })] }),
++                    react_jsx_runtime.jsxs('label', { children: [t('plan.member.role'),
++                        react_jsx_runtime.jsx(_deepseek_ai_dsh_client_ui_primitives.Input, { className: 'crewon-plan-input',
++                            value: role, onChange: event => setRole(event.currentTarget.value), required: true })] })] }),
++                react_jsx_runtime.jsxs('label', { children: [t('plan.member.instructions'),
++                    react_jsx_runtime.jsx('textarea', { rows: 2, value: instructions,
++                        onChange: event => setInstructions(event.currentTarget.value), required: true })] })] }),
++            react_jsx_runtime.jsxs('div', { className: ActivityPanel_module_css_default.planActions,
++                children: [react_jsx_runtime.jsx(Feedback, { value: feedback }), react_jsx_runtime.jsx('button', {
++                    type: 'submit', disabled: busy || selectingExpert || !name.trim() || !role.trim() || !instructions.trim(),
++                    children: busy ? t('plan.saving') : t('plan.member.add') })] })] })] });
++}
++function PlanDependencies({ team, task, value, onChange, t }) {
++    const selected = value.split(',').map(id => id.trim()).filter(Boolean);
++    const blocked = new Set([task.id]);
++    const remaining = [...team.tasks];
++    let changed = true;
++    while (changed) {
++        changed = false;
++        for (const candidate of remaining) {
++            if (!blocked.has(candidate.id) && candidate.dependencies.some(id => blocked.has(id))) {
++                blocked.add(candidate.id);
++                changed = true;
++            }
++        }
++    }
++    const [open, setOpen] = react.useState(false);
++    const items = team.tasks.filter(candidate => !blocked.has(candidate.id)).map(candidate => ({
++        id: candidate.id,
++        label: react_jsx_runtime.jsx("span", {
++            className: "crewon-plan-option-label",
++            title: candidate.subject,
++            children: candidate.id + " · " + candidate.subject
++        })
++    }));
++    return react_jsx_runtime.jsxs("div", {
++        className: "crewon-plan-dependencies",
++        children: [
++            react_jsx_runtime.jsx("span", { children: t("plan.task.dependencies") }),
++            react_jsx_runtime.jsx(_deepseek_ai_dsh_client_ui_primitives.Menu, {
++                open, portal: true, dense: true, compact: true, autoFocus: true,
++                listClassName: "crewon-plan-dependency-menu",
++                items, selectedIds: selected,
++                onClose: () => setOpen(false),
++                onSelect: id => onChange((selected.includes(id) ? selected.filter(value => value !== id) : [...selected, id]).join(", ")),
++                anchor: react_jsx_runtime.jsxs("button", {
++                    type: "button",
++                    className: "crewon-plan-dependency-trigger",
++                    "aria-haspopup": "menu",
++                    "aria-expanded": open,
++                    disabled: items.length === 0,
++                    onClick: () => setOpen(value => !value),
++                    children: [t("plan.dependencies.selected", { count: selected.length }), react_jsx_runtime.jsx(DisclosureChevron, { open })]
++                })
++            })
++        ]
++    });
++}
++
++		function StagingPlanEditor({ team, modelDirectory, profileForm, onContinuePlanning, onDiscarded, renderExpertPicker, t }) {
++			const [retainProfile, setRetainProfile] = (0, react.useState)(false);
++			const [profileName, setProfileName] = (0, react.useState)(team.name);
++
+ 			const membersId = (0, react.useId)();
+ 			const tasksId = (0, react.useId)();
+ 			const [membersOpen, setMembersOpen] = (0, react.useState)(true);
+@@ -1736,10 +1726,32 @@ window.__ModuleLoader__.load({
+ 				setBusy(true);
+ 				setFeedback(void 0);
+ 				try {
++					if (retainProfile) {
++						const snapshot = profileForm.getSnapshot();
++						const key = profileName.trim();
++						if (!key) throw new Error(t("plan.reuseNameRequired"));
++						if (snapshot.status !== "ready" || !snapshot.writable) throw new Error(t("plan.reuseUnavailable"));
++						const profile = {
++							description: team.description || team.name, taskPlanning: "captain",
++							members: team.members.map((member) => ({name:member.name, role:member.role,
++								executionPrompt:member.executionPrompt || member.role,
++                                ...(member.agentPreset ? {agentPreset:member.agentPreset} : {}),
++								...(member.provider ? {provider:member.provider} : {}),
++								...(member.model ? {model:member.model} : {}),
++								...(member.reasoningEffort ? {reasoning_effort:member.reasoningEffort} : {})})),
++						};
++						const existing = snapshot.value.profiles[key];
++						if (existing && JSON.stringify(existing) !== JSON.stringify(profile)) throw new Error(t("plan.reuseDuplicate"));
++						if (!existing && !await profileForm.mutate([{op:"set",path:["profiles",key],value:profile}], snapshot.revision)) {
++							throw new Error(t("plan.reuseConflict"));
++						}
++					}
++
+ 					await mutatePlan({
+ 						sessionId: team.captainSessionId,
+ 						teamId: team.teamId,
+-						action: "approve"
++						action: "approve",
++                        ...(retainProfile ? { savedProfileName: profileName.trim() } : {})
+ 					});
+ 				} catch (error) {
+ 					setFeedback({
+@@ -1796,24 +1808,12 @@ window.__ModuleLoader__.load({
+ 				children: [
+ 					(0, react_jsx_runtime.jsxs)("header", {
+ 						className: ActivityPanel_module_css_default.planHeader,
+-						children: [(0, react_jsx_runtime.jsxs)("span", { children: [(0, react_jsx_runtime.jsxs)("span", { children: [(0, react_jsx_runtime.jsx)("strong", { children: t("plan.title") }), (0, react_jsx_runtime.jsx)("small", { children: t("plan.readySummary", {
++						children: [(0, react_jsx_runtime.jsxs)("span", { children: [(0, react_jsx_runtime.jsxs)("span", { children: [(0, react_jsx_runtime.jsx)("strong", { children: team.name }), (0, react_jsx_runtime.jsx)("small", { children: t("plan.readySummary", {
+ 							members: team.members.length,
+ 							tasks: team.tasks.length,
+ 							links: dependencyLinks
+ 						}) })] }), (0, react_jsx_runtime.jsx)("em", { children: t("plan.badge") })] }), (0, react_jsx_runtime.jsx)("p", { children: t("plan.description") })]
+ 					}),
+-					(0, react_jsx_runtime.jsxs)("ol", {
+-						className: ActivityPanel_module_css_default.planFlow,
+-						"aria-label": t("plan.flow.aria"),
+-						children: [
+-							(0, react_jsx_runtime.jsxs)("li", {
+-								"data-active": true,
+-								children: [(0, react_jsx_runtime.jsx)("span", { children: "1" }), t("plan.flow.review")]
+-							}),
+-							(0, react_jsx_runtime.jsxs)("li", { children: [(0, react_jsx_runtime.jsx)("span", { children: "2" }), t("plan.flow.spawn")] }),
+-							(0, react_jsx_runtime.jsxs)("li", { children: [(0, react_jsx_runtime.jsx)("span", { children: "3" }), t("plan.flow.run")] })
+-						]
+-					}),
+ 					(0, react_jsx_runtime.jsxs)("section", {
+ 						className: ActivityPanel_module_css_default.planSection,
+ 						children: [(0, react_jsx_runtime.jsxs)("button", {
+@@ -1836,9 +1836,10 @@ window.__ModuleLoader__.load({
+ 								member,
+ 								modelDirectory,
+ 								onPendingChange,
++                                renderExpertPicker,
+ 								t
+ 							}, member.name))
+-						})]
++						}), membersOpen && (0, react_jsx_runtime.jsx)(NewPlanMember, {team, onPendingChange, renderExpertPicker, t})]
+ 					}),
+ 					(0, react_jsx_runtime.jsxs)("section", {
+ 						className: ActivityPanel_module_css_default.planSection,
+@@ -1866,14 +1867,12 @@ window.__ModuleLoader__.load({
+ 								onPendingChange,
+ 								t
+ 							}, task.id))
+-						})]
+-					}),
+-					(0, react_jsx_runtime.jsxs)("form", {
++						}), tasksOpen && (0, react_jsx_runtime.jsxs)("details", {className:"crewon-plan-add", children:[(0, react_jsx_runtime.jsx)("summary", {children:t("plan.addTask")}), (0, react_jsx_runtime.jsxs)("form", {
+ 						className: ActivityPanel_module_css_default.planNewTask,
+ 						onSubmit: (event) => {
+ 							addTask(event);
+ 						},
+-						children: [(0, react_jsx_runtime.jsxs)("label", { children: [(0, react_jsx_runtime.jsx)("span", { children: t("plan.newTaskLabel") }), (0, react_jsx_runtime.jsx)("input", {
++						children: [(0, react_jsx_runtime.jsxs)("label", { children: [(0, react_jsx_runtime.jsx)("span", { children: t("plan.newTaskLabel") }), (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.Input, { className: "crewon-plan-input",
+ 							name: "newTask",
+ 							value: newTask,
+ 							onChange: (event) => {
+@@ -1887,7 +1886,13 @@ window.__ModuleLoader__.load({
+ 							disabled: busy || newTask.trim() === "",
+ 							children: busy ? t("plan.adding") : t("plan.addTask")
+ 						})]
++					})]})]
+ 					}),
++					profileForm && (0, react_jsx_runtime.jsxs)("div", {className:"crewon-plan-reuse",children:[
++						(0, react_jsx_runtime.jsxs)("label",{children:[(0, react_jsx_runtime.jsx)("input",{type:"checkbox",checked:retainProfile,disabled:busy,onChange:(event)=>setRetainProfile(event.currentTarget.checked)}),t("plan.reuse")]}),
++						retainProfile && (0, react_jsx_runtime.jsxs)("label",{className:"crewon-plan-reuse-name",children:[t("plan.reuseName"),(0, react_jsx_runtime.jsx)("input",{value:profileName,disabled:busy,onChange:(event)=>setProfileName(event.currentTarget.value)})]})
++					]}),
++
+ 					(0, react_jsx_runtime.jsxs)("div", {
+ 						className: ActivityPanel_module_css_default.planApproveRow,
+ 						"data-armed": discardArmed || void 0,
+@@ -2484,17 +2489,7 @@ window.__ModuleLoader__.load({
+ 						tabIndex: 0,
+ 						"aria-label": t("workspace.inbox"),
+ 						children: team.captainInbox.map((message, index) => {
+-							const member = team.members.find((candidate) => candidate.name === message.from);
+-							const art = message.from === CAPTAIN_ASSIGNEE ? LEAD_ART : memberArtUrl(message.from, member?.role ?? "");
+-							return (0, react_jsx_runtime.jsxs)("li", { children: [art === null ? (0, react_jsx_runtime.jsx)("span", {
+-								className: ActivityPanel_module_css_default.inboxInitial,
+-								"aria-hidden": true,
+-								children: memberInitial(message.from)
+-							}) : (0, react_jsx_runtime.jsx)("img", {
+-								src: art,
+-								alt: "",
+-								"aria-hidden": true
+-							}), (0, react_jsx_runtime.jsxs)("div", { children: [(0, react_jsx_runtime.jsx)("strong", { children: message.from }), (0, react_jsx_runtime.jsx)("p", { children: message.content })] })] }, `${index}:${message.from}`);
++							return (0, react_jsx_runtime.jsx)("li", { children: (0, react_jsx_runtime.jsxs)("div", { children: [(0, react_jsx_runtime.jsx)("strong", { children: message.from }), (0, react_jsx_runtime.jsx)("p", { children: message.content })] }) }, `${index}:${message.from}`);
+ 						})
+ 					})]
+ 				})]
+@@ -2724,7 +2719,7 @@ window.__ModuleLoader__.load({
+ 			const allCompleted = team.tasks.length > 0 && completedCount === team.tasks.length;
+ 			const allSettled = team.tasks.length > 0 && team.tasks.every((task) => task.status === "completed" || task.status === "failed" || task.status === "cancelled");
+ 			const unfinishedCount = team.tasks.filter((task) => task.status !== "completed" && task.status !== "failed" && task.status !== "cancelled").length;
+-			const canStop = !historic && team.phase === "running" && team.halted !== true && teamIsActive(team);
++			const canStop = !workspace && !historic && team.phase === "running" && team.halted !== true && teamIsActive(team);
+ 			const stopTeam = async () => {
+ 				if (stopping) return;
+ 				setStopping(true);
+@@ -2762,7 +2757,7 @@ window.__ModuleLoader__.load({
+ 					(0, react_jsx_runtime.jsxs)("header", {
+ 						className: ActivityPanel_module_css_default.teamHead,
+ 						children: [
+-							(0, react_jsx_runtime.jsx)("span", {
++							(0, react_jsx_runtime.jsx)(workspace ? "h3" : "span", {
+ 								className: ActivityPanel_module_css_default.teamName,
+ 								title: team.name,
+ 								children: team.name
+@@ -2823,7 +2818,7 @@ window.__ModuleLoader__.load({
+ 							(0, react_jsx_runtime.jsxs)("div", {
+ 								className: ActivityPanel_module_css_default.captainNode,
+ 								children: [
+-									(0, react_jsx_runtime.jsx)("span", {
++									!workspace && (0, react_jsx_runtime.jsx)("span", {
+ 										className: ActivityPanel_module_css_default.captainAvatar,
+ 										children: (0, react_jsx_runtime.jsx)("img", {
+ 											className: ActivityPanel_module_css_default.leadAvatar,
+@@ -2863,7 +2858,7 @@ window.__ModuleLoader__.load({
+ 									(0, react_jsx_runtime.jsxs)("span", {
+ 										className: ActivityPanel_module_css_default.captainState,
+ 										"data-busy": captainBusy || busyCount > 0,
+-										children: [(0, react_jsx_runtime.jsx)(WorkGlyph, { active: captainBusy || busyCount > 0 }), discarded ? t("captain.state.discarded") : captainBusy ? t("captain.state.takeover", { tasks: captainTaskIds }) : team.phase === "staged" ? t(team.planReviewState === "awaiting_feedback" ? "captain.state.awaitingFeedback" : "captain.state.staged") : busyCount > 0 ? t("captain.state.working", { count: busyCount }) : t(allCompleted ? "captain.state.collected" : allSettled ? "captain.state.settled" : "captain.state.waiting")]
++										children: [!workspace && (0, react_jsx_runtime.jsx)(WorkGlyph, { active: captainBusy || busyCount > 0 }), discarded ? t("captain.state.discarded") : captainBusy ? t("captain.state.takeover", { tasks: captainTaskIds }) : team.phase === "staged" ? t(team.planReviewState === "awaiting_feedback" ? "captain.state.awaitingFeedback" : "captain.state.staged") : busyCount > 0 ? t("captain.state.working", { count: busyCount }) : t(allCompleted ? "captain.state.collected" : allSettled ? "captain.state.settled" : "captain.state.waiting")]
+ 									})
+ 								]
+ 							}),
+@@ -2916,7 +2911,7 @@ window.__ModuleLoader__.load({
+ 														(0, react_jsx_runtime.jsxs)("span", {
+ 															className: ActivityPanel_module_css_default.memberAvatar,
+ 															"data-unread": member.unread > 0,
+-															children: [memberArtUrl(member.name, member.role) !== null ? (0, react_jsx_runtime.jsx)("img", {
++															children: workspace ? (0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconUserOutlineRegular, { size: 16 }) : [memberArtUrl(member.name, member.role) !== null ? (0, react_jsx_runtime.jsx)("img", {
+ 																className: ActivityPanel_module_css_default.memberArt,
+ 																src: memberArtUrl(member.name, member.role) ?? "",
+ 																alt: "",
+@@ -2957,7 +2952,7 @@ window.__ModuleLoader__.load({
+ 																	(0, react_jsx_runtime.jsxs)("span", {
+ 																		className: ActivityPanel_module_css_default.memberState,
+ 																		"data-activity": member.activity,
+-																		children: [(0, react_jsx_runtime.jsx)(WorkGlyph, { active: member.activity === "working" }), discarded ? t("member.state.notCreated") : stopped ? t("member.state.stopped") : team.phase === "staged" ? t("member.state.staged") : memberStateLabel(member, team.tasks, historic, t)]
++																		children: [!workspace && (0, react_jsx_runtime.jsx)(WorkGlyph, { active: member.activity === "working" }), discarded ? t("member.state.notCreated") : stopped ? t("member.state.stopped") : team.phase === "staged" ? t("member.state.staged") : memberStateLabel(member, team.tasks, historic, t)]
+ 																	})
+ 																]
+ 															}), (0, react_jsx_runtime.jsx)("span", {
+@@ -3598,7 +3593,32 @@ window.__ModuleLoader__.load({
+ 			const tag = document.createElement("style");
+ 			tag.dataset.plugin = "@nanmicoder/dsh-agent-teams";
+ 			tag.dataset.pluginCss = tagId;
+-			tag.textContent = css;
++			const panel = ActivityPanel_module_css_default;
++			tag.textContent = css + `
++.eDfHrq_root { background: transparent; }
++.eDfHrq_root .eDfHrq_content { padding: 20px; }
++[data-workspace-team].${panel.team} .${panel.teamName} { margin: 0; font-size: 16px; font-weight: 500; }
++[data-workspace-team].${panel.team} .${panel.delegationSection} {
++	border: 0;
++	background: transparent;
++	box-shadow: none;
++	padding: 0;
++}
++[data-workspace-team].${panel.team} .${panel.captainNode} {
++	grid-template-columns: minmax(0, 1fr);
++	background: var(--dsw-alias-bg-module-platform);
++}
++[data-workspace-team].${panel.team} .${panel.captainState} { grid-column: 1; }
++[data-workspace-team].${panel.team} .${panel.memberRow} { grid-template-columns: 28px minmax(0, 1fr) auto; }
++[data-workspace-team].${panel.team} .${panel.memberAvatar} {
++	width: 28px;
++	height: 28px;
++	border-radius: var(--dsw-radius-sm);
++	color: var(--dsw-alias-label-secondary);
++	background: var(--dsw-alias-interactive-bg-hover);
++}
++[data-workspace-team].${panel.team} .${panel.assignmentLine} { padding-left: 42px; }
++`;
+ 			document.head.appendChild(tag);
+ 		}
+ 		var WorkspaceActivity_module_css_default = {
+@@ -3663,7 +3683,6 @@ window.__ModuleLoader__.load({
+ 						const added = discover(update.teams.filter((team) => team.captainSessionId === current));
+ 						if (added !== void 0 && sidebar.mounted.getSnapshot() === current && !sidebar.isExpanded()) {
+ 							state.select(current, added);
+-							sidebar.openTab(TEAM_TAB_KIND);
+ 						}
+ 					}
+ 				});
+@@ -3741,18 +3760,6 @@ window.__ModuleLoader__.load({
+ 				children: (0, react_jsx_runtime.jsxs)("div", {
+ 					className: WorkspaceActivity_module_css_default.content,
+ 					children: [
+-						(0, react_jsx_runtime.jsxs)("header", {
+-							className: WorkspaceActivity_module_css_default.heading,
+-							children: [
+-								(0, react_jsx_runtime.jsx)("img", {
+-									src: LEAD_ART,
+-									alt: "",
+-									"aria-hidden": true
+-								}),
+-								(0, react_jsx_runtime.jsx)("h2", { children: "AgentTeams" }),
+-								(0, react_jsx_runtime.jsx)("span", { children: t("workspace.title") })
+-							]
+-						}),
+ 						status === "error" && (0, react_jsx_runtime.jsxs)("div", {
+ 							className: WorkspaceActivity_module_css_default.error,
+ 							role: "alert",
+@@ -3782,11 +3789,6 @@ window.__ModuleLoader__.load({
+ 						}) : (0, react_jsx_runtime.jsxs)("section", {
+ 							className: WorkspaceActivity_module_css_default.empty,
+ 							children: [
+-								(0, react_jsx_runtime.jsx)("span", {
+-									className: WorkspaceActivity_module_css_default.emptyMark,
+-									"aria-hidden": true,
+-									children: "↳"
+-								}),
+ 								(0, react_jsx_runtime.jsx)("h3", { children: t("workspace.emptyTitle") }),
+ 								(0, react_jsx_runtime.jsx)("p", { children: t("workspace.emptyBody") }),
+ 								(0, react_jsx_runtime.jsx)("button", {
+@@ -3798,7 +3800,7 @@ window.__ModuleLoader__.load({
+ 							team: selected,
+ 							workspace: true,
+ 							historic: history,
+-							modelDirectory: selected.phase === "staged" ? modelDirectories.directoryFor(sessionId) : void 0,
++							modelDirectory: void 0,
+ 							onContinuePlanning: backToChat,
+ 							onDiscarded: backToChat,
+ 							onNavigate: openMember,
+@@ -3981,15 +3983,15 @@ window.__ModuleLoader__.load({
+ 		}
+ 		//#endregion
+ 		//#region lib/client/TeamChatEntry.js
+-		/** Session-owned entry points: a persistent title action and a durable turn card. */
++		/** Session-owned entry points: a persistent header utility and a durable turn card. */
+ 		function TeamChatEntry({ sessionId, t }) {
+ 			const { teams, archivedTeams } = (0, react.useSyncExternalStore)(subscribeActivitySnapshots, getActivitySnapshotsSnapshot);
+ 			const team = [...teams, ...archivedTeams].find((team) => team.captainSessionId === sessionId);
+ 			if (!team) return null;
+-			return (0, react_jsx_runtime.jsxs)("button", {
+-				className: AgentTeamsCard_module_css_default.chatEntry,
++			return (0, react_jsx_runtime.jsxs)(_deepseek_ai_dsh_client_ui_primitives.Button, {
++				size: "sm",
++				style: { flex: "none", whiteSpace: "nowrap" },
+ 				"data-team-chat-entry": true,
+-				type: "button",
+ 				title: t("workspace.focus"),
+ 				onClick: () => openActivityPanel({
+ 					teamId: team.teamId,
+@@ -3997,25 +3999,28 @@ window.__ModuleLoader__.load({
+ 					teamName: team.name,
+ 					members: team.members
+ 				}),
+-				children: [(0, react_jsx_runtime.jsx)("img", {
+-					src: LEAD_ART,
+-					alt: "",
+-					"aria-hidden": true
+-				}), t("workspace.focus")]
++				children: [(0, react_jsx_runtime.jsx)(_deepseek_ai_dsh_client_ui_primitives.IconUsersOutlineRegular, { size: 14 }), (0, react_jsx_runtime.jsx)("span", { children: t("workspace.focus") })]
+ 			});
+ 		}
+-		function TeamTurnCard({ sessionId, turn, useChat, t, openMember }) {
+-			const cards = teamCardsForTurn(useChat((snapshot) => snapshot.nodes).values(), turn.turn);
+-			if (turn.status !== "closed" || cards.length === 0) return null;
+-			return (0, react_jsx_runtime.jsx)("div", {
++		/** Staged plans follow the latest settled turn; completed runs retain their creation seat. */
++		function TeamTurnCard({ sessionId, turn, useChat, t, openMember, modelDirectories, profileForm, renderSlot }) {
++			const nodes = useChat((snapshot) => snapshot.nodes);
++			const latestTurn = useChat((snapshot) => snapshot.timeline.turnOrder.at(-1));
++			const { teams } = (0, react.useSyncExternalStore)(subscribeActivitySnapshots, getActivitySnapshotsSnapshot);
++			const cards = teamCardsForTurn(nodes.values(), turn.turn);
++			const staged = turn.turn === latestTurn ? teams.filter((team) => team.captainSessionId === sessionId && team.phase === "staged") : [];
++			if (turn.status !== "closed" || cards.length === 0 && staged.length === 0) return null;
++			const returnToComposer = () => { document.querySelector('[data-composer-card] [contenteditable="true"][role="textbox"], [data-composer-card] textarea')?.focus(); };
++			return (0, react_jsx_runtime.jsxs)("div", {
+ 				className: AgentTeamsCard_module_css_default.turnCards,
+ 				"data-team-turn-cards": true,
+-				children: cards.map((node) => (0, react_jsx_runtime.jsx)(AgentTeamsSummary, {
+-					data: node.data,
+-					sessionId,
+-					t,
+-					openMember
+-				}, node.key))
++				children: [cards.map((node) => (0, react_jsx_runtime.jsx)(AgentTeamsSummary, {
++					data: node.data, sessionId, t, openMember
++				}, node.key)), staged.map((team) => (0, react_jsx_runtime.jsx)(StagingPlanEditor, {
++					team, modelDirectory: modelDirectories.directoryFor(sessionId), profileForm,
++                    renderExpertPicker: renderSlot ? owner => renderSlot("agent-teams.staged-expert", owner, {fallback:null}) : undefined,
++					onContinuePlanning: returnToComposer, onDiscarded: returnToComposer, t
++				}, team.teamId))]
+ 			});
+ 		}
+ 		//#endregion
+@@ -4025,8 +4030,31 @@ window.__ModuleLoader__.load({
+ 		const AGENT_TEAMS_LOCALE_NAMESPACE = "agentTeams";
+ 		/** Simplified Chinese dictionary (the key-set source of truth). */
+ 		const zh = {
++            "plan.dependencies.selected": "已选 {count} 项",
++"plan.reuse":"保留为可复用团队",
++"plan.reuseName":"团队名称",
++"plan.reuseNameRequired":"请填写团队名称",
++"plan.reuseUnavailable":"暂时无法保存团队，请稍后重试",
++"plan.reuseDuplicate":"已有同名团队，请换一个名称",
++"plan.reuseConflict":"团队配置已更新，请重试保存",
++
++"plan.member.duplicate":"成员名称已存在，请换一个名称",
++"plan.member.column":"成员与职责",
++"plan.model.column":"模型",
++"plan.task.column":"任务",
++"plan.assignment.column":"负责人 · 前置任务",
++
++			"plan.member.add": "新增成员",
++			"plan.member.name": "成员名称",
++			"plan.member.added": "成员已添加",
++			"plan.member.instructions": "职责与工作指令",
++			"plan.dependencies.choose": "选择前置任务",
++			"plan.dependencies.help": "勾选需要先完成的任务，已排除自身和循环依赖",
++			"plan.member.columns": "成员与职责 · 模型",
++			"plan.task.columns": "任务 · 负责人及依赖",
++
+ 			"workspace.dependencies": "从左到右：完成前置后解锁 · 点击查看详情",
+-			"workspace.title": "团队协作",
++			"workspace.title": "专家团",
+ 			"workspace.guide": "查看成员分工、任务依赖与执行进度",
+ 			"workspace.eyebrow": "AGENT TEAMS",
+ 			"workspace.description": "队长统筹分工，成员按任务依赖并行协作。",
+@@ -4140,8 +4168,8 @@ window.__ModuleLoader__.load({
+ 			"task.detail.unlocks": "完成后解锁 {tasks}",
+ 			"team.ended": "已结束",
+ 			"plan.badge": "待确认",
+-			"plan.title": "执行前计划审查",
+-			"plan.description": "成员尚未创建、任务尚未调度。可直接调整计划，也可返回对话告诉队长哪里需要修改。",
++			"plan.title": "待确认计划",
++			"plan.description": "核对成员分工与任务，确认后开始协作。",
+ 			"plan.member.role": "角色",
+ 			"plan.member.provider": "Provider",
+ 			"plan.member.model": "模型",
+@@ -4164,8 +4192,8 @@ window.__ModuleLoader__.load({
+ 			"plan.task.subject": "任务名称",
+ 			"plan.task.description": "任务说明",
+ 			"plan.task.assignee": "负责人",
+-			"plan.task.dependencies": "依赖任务 ID（逗号分隔）",
+-			"plan.task.dependenciesHint": "例如 task-1, task-2；不得形成循环依赖",
++			"plan.task.dependencies": "前置任务",
++			"plan.task.dependenciesHint": "选择现有前置任务，不得形成循环依赖",
+ 			"plan.task.unassigned": "共享任务池",
+ 			"plan.unsaved": "未保存",
+ 			"plan.save": "保存",
+@@ -4180,12 +4208,12 @@ window.__ModuleLoader__.load({
+ 			"plan.taskAdded": "任务已添加",
+ 			"plan.newTask": "新任务名称",
+ 			"plan.newTaskLabel": "新增计划任务",
+-			"plan.readySummary": "{members} 名成员 · {tasks} 项任务 · {links} 条依赖",
++			"plan.readySummary": "专家团任务 · {members} 名成员 · {tasks} 项任务 · {links} 条依赖",
+ 			"plan.flow.aria": "团队启动流程",
+ 			"plan.flow.review": "审查计划",
+ 			"plan.flow.spawn": "创建成员",
+ 			"plan.flow.run": "开始执行",
+-			"plan.members.title": "成员与模型路由",
++			"plan.members.title": "团队成员",
+ 			"plan.members.count": "{count} 名成员",
+ 			"plan.members.empty": "尚未规划成员",
+ 			"plan.tasks.title": "任务与依赖",
+@@ -4193,18 +4221,18 @@ window.__ModuleLoader__.load({
+ 			"plan.tasks.empty": "尚未规划任务",
+ 			"plan.dependencies.none": "无依赖",
+ 			"plan.dependencies.count": "{count} 条依赖",
+-			"plan.approve": "确认并启动团队",
++			"plan.approve": "确认启动",
+ 			"plan.approving": "正在创建成员…",
+ 			"plan.approveTitle": "计划检查完毕？",
+ 			"plan.approveHint": "确认后将创建 {members} 名成员并调度 {tasks} 项任务。",
+ 			"plan.approveConfirmTitle": "确认启动此团队",
+ 			"plan.approveWarning": "启动后不能再在此处编辑成员和依赖。",
+ 			"plan.approveConfirm": "确认启动",
+-			"plan.continue": "返回对话修改",
++			"plan.continue": "修改计划",
+ 			"plan.returnToChat": "回到对话",
+ 			"plan.feedbackTitle": "正在等你说明修改方向",
+ 			"plan.feedbackHint": "队长会在对话中追问；收到你的回复后，只修改这份草案并再次等待确认。",
+-			"plan.discard": "放弃本次计划",
++			"plan.discard": "放弃计划",
+ 			"plan.discardConfirmTitle": "放弃本次计划？",
+ 			"plan.discardWarning": "该计划会结束并归档；尚未创建任何成员，也不会执行任务。",
+ 			"plan.discardConfirm": "确认放弃",
+@@ -4245,8 +4273,31 @@ window.__ModuleLoader__.load({
+ 		};
+ 		/** English dictionary, checked complete against the Chinese source key set. */
+ 		const en = {
++            "plan.dependencies.selected": "{count} selected",
++"plan.reuse":"Keep as a reusable team",
++"plan.reuseName":"Team name",
++"plan.reuseNameRequired":"Enter a team name",
++"plan.reuseUnavailable":"Team settings are unavailable. Try again shortly.",
++"plan.reuseDuplicate":"A different team uses this name. Choose another name.",
++"plan.reuseConflict":"Team settings changed. Try saving again.",
++
++"plan.member.duplicate":"This member name already exists. Choose another name.",
++"plan.member.column":"Member and responsibilities",
++"plan.model.column":"Model",
++"plan.task.column":"Task",
++"plan.assignment.column":"Assignee · Prerequisites",
++
++			"plan.member.add": "Add member",
++			"plan.member.name": "Member name",
++			"plan.member.added": "Member added",
++			"plan.member.instructions": "Responsibilities and instructions",
++			"plan.dependencies.choose": "Select prerequisites",
++			"plan.dependencies.help": "Choose tasks to complete first. Self and circular dependencies are excluded.",
++			"plan.member.columns": "Member and responsibilities · Model",
++			"plan.task.columns": "Task · Assignee and dependencies",
++
+ 			"workspace.dependencies": "Left to right: prerequisites unlock tasks · Select for details",
+-			"workspace.title": "Team workspace",
++			"workspace.title": "Expert team",
+ 			"workspace.guide": "Members, task dependencies, and execution progress",
+ 			"workspace.eyebrow": "AGENT TEAMS",
+ 			"workspace.description": "The captain coordinates. Members work in parallel as dependencies clear.",
+@@ -4384,8 +4435,8 @@ window.__ModuleLoader__.load({
+ 			"plan.task.subject": "Task subject",
+ 			"plan.task.description": "Task description",
+ 			"plan.task.assignee": "Assignee",
+-			"plan.task.dependencies": "Dependency task IDs (comma-separated)",
+-			"plan.task.dependenciesHint": "For example task-1, task-2; cycles are rejected",
++			"plan.task.dependencies": "Prerequisite tasks",
++			"plan.task.dependenciesHint": "Select existing prerequisite tasks; cycles are rejected",
+ 			"plan.task.unassigned": "Shared task pool",
+ 			"plan.unsaved": "Unsaved",
+ 			"plan.save": "Save",
+@@ -4400,7 +4451,7 @@ window.__ModuleLoader__.load({
+ 			"plan.taskAdded": "Task added",
+ 			"plan.newTask": "New task subject",
+ 			"plan.newTaskLabel": "Add a planned task",
+-			"plan.readySummary": "{members} members · {tasks} tasks · {links} dependencies",
++			"plan.readySummary": "Expert team task · {members} members · {tasks} tasks · {links} dependencies",
+ 			"plan.flow.aria": "Team launch flow",
+ 			"plan.flow.review": "Review plan",
+ 			"plan.flow.spawn": "Create members",
+@@ -4472,6 +4523,7 @@ window.__ModuleLoader__.load({
+ 			"sessions",
+ 			"locale",
+ 			"modelDirectories",
++			"configForms",
+ 			"layout"
+ 		];
+ 		const useLegacyPanelInfo = (select) => select({ activePanelId: null });
+@@ -4515,8 +4567,8 @@ window.__ModuleLoader__.load({
+ 					kind: TEAM_TAB_KIND,
+ 					title: () => t("workspace.title")
+ 				}));
+-				native.slots.inject("conversation.session.header.actions", () => native.slots.register({
+-					name: "conversation.session.header.actions",
++				native.slots.inject("conversation.session.header.utilities", () => native.slots.register({
++					name: "conversation.session.header.utilities",
+ 					id: "agent-teams-entry",
+ 					order: 50,
+ 					locale: AGENT_TEAMS_LOCALE_NAMESPACE
+@@ -4524,10 +4576,16 @@ window.__ModuleLoader__.load({
+ 				native.slots.inject("conversation.chat.turnTail", () => native.slots.register({
+ 					name: "conversation.chat.turnTail",
+ 					id: "agent-teams-summary",
++                    children: { "agent-teams.staged-expert": { kind: "single", scope: "session" } },
+ 					order: 50,
+ 					locale: AGENT_TEAMS_LOCALE_NAMESPACE,
+-					inject: () => ({ openMember })
++					inject: () => ({ openMember, modelDirectories: native.modelDirectories, profileForm: native.configForms.get("agent-teams") })
+ 				}, TeamTurnCard));
++				native.slots.inject("sidebar.right.pane.tab.title", () => native.slots.register({
++					name: "sidebar.right.pane.tab.title",
++					key: TEAM_TAB_ID,
++					locale: AGENT_TEAMS_LOCALE_NAMESPACE
++				}, ({ t }) => t("workspace.title")));
+ 				native.slots.inject("sidebar.right.pane.tab", () => {
+ 					const dispose = native.slots.register({
+ 						name: "sidebar.right.pane.tab",
+@@ -4557,6 +4615,9 @@ window.__ModuleLoader__.load({
+ 				name: "conversation.chat.commandview",
+ 				key: "agent-teams"
+ 			}, HiddenAgentTeamsCommand));
++			ctx.slots.inject("conversation.chat.commandview", () => ctx.slots.register({
++				name: "conversation.chat.commandview", key: "create-expert-panel"
++			}, HiddenAgentTeamsCommand));
+ 			ctx.uiConversation.events.register(agentTeamsCardDefinition);
+ 			ctx.slots.inject("conversation.chat.node", () => ctx.slots.register({
+ 				name: "conversation.chat.node",
+@@ -4564,7 +4625,8 @@ window.__ModuleLoader__.load({
+ 				locale: AGENT_TEAMS_LOCALE_NAMESPACE,
+ 				inject: () => ({
+ 					openMember,
+-					workspaceBridge: bridge
++					workspaceBridge: bridge,
++					modelDirectories: ctx.modelDirectories
+ 				})
+ 			}, AgentTeamsCard));
+ 		}
+diff --git a/lib/command.js b/lib/command.js
+index 49bf31e08f1f4e438e3c10878f9415ec0946481a..961f770e36f407516cefd98df745cbf8eeb0c5a0 100644
+--- a/lib/command.js
++++ b/lib/command.js
+@@ -1,6 +1,6 @@
+ import { createUserMessage } from '@deepseek-ai/dsh-llm';
+ import { agentTeamsSource, observedSessionFormatVersion } from "./harness-compat.js";
+-import { parseProfileInvocation, resolveProfileTaskPlanning } from "./profiles.js";
++import { parseProfileInvocation, resolveProfileTaskPlanning, formatTeamGuidance } from "./profiles.js";
+ export const AGENT_TEAMS_COMMAND = 'agent-teams';
+ const PROFILE_COMMAND_PREFIX = `${AGENT_TEAMS_COMMAND}-`;
+ const GESTURE = /^\/agent-teams(?=$|[\t\n\r ])/u;
+@@ -53,10 +53,11 @@ export function invokedAgentTeamsInvocation(messages, getProfiles = () => ({}))
+ export function invokedAgentTeamsGoal(messages) {
+     return invokedAgentTeamsInvocation(messages)?.goal;
+ }
+-export function buildActivationDirective(goal, profile, taskPlanning = 'seed') {
++export function buildActivationDirective(goal, profile, taskPlanning = 'seed', guidance = '') {
+     const lines = [
+         'The user invoked an AgentTeams slash command. Follow the AgentTeams protocol already in your system instructions. Inspect existing team state with agent_teams_status when needed.',
+         'Respect the current team state. Continue an existing plan or team without recreating it. Only when no current team exists, call agent_teams_create with approval="required". Build the complete staged roster and DAG, then stop and ask the user to review the Web plan. Do not approve or start it in this same turn.',
++        'Preserve every specialist responsibility in the member executionPrompt, not only its role label. After staging, reply with one short sentence pointing to the review card. Do not repeat the roster, task table, model routes, internal tool names, or button labels. Reuse is selected in the review card; do not save a reusable definition separately.',
+     ];
+     if (profile !== undefined) {
+         lines.push(`Use profile="${profile}" when creating a new team.`);
+@@ -67,6 +68,7 @@ export function buildActivationDirective(goal, profile, taskPlanning = 'seed') {
+             lines.push('Do not recreate the same members or seed tasks manually.');
+         }
+     }
++    if (guidance) lines.push(guidance);
+     lines.push(goal === '' ? 'The goal was not given — ask the user what the team should accomplish.' : `Goal: ${goal}`);
+     return lines.join('\n');
+ }
+@@ -141,7 +143,7 @@ export function installAgentTeamsGestureBoundary(ctx, getProfiles = () => ({}))
+         const known = invocation.profile === undefined || matched !== undefined;
+         const text = !known
+             ? `AgentTeams profile "${invocation.profile}" does not exist. Available profiles: ${Object.keys(profiles).join(', ') || '(none)'}. Do not create a team.`
+-            : buildActivationDirective(invocation.goal, invocation.profile, resolveProfileTaskPlanning(matched?.[1]));
++            : buildActivationDirective(invocation.goal, invocation.profile, resolveProfileTaskPlanning(matched?.[1]), formatTeamGuidance(matched?.[1]));
+         return { kind: 'enter', messages: [...decision.messages, createUserMessage({ content: [{ type: 'text', text }], source: agentTeamsSource({ kind: 'agent-teams-command', ...invocation.goal === '' ? {} : { goal: invocation.goal }, ...invocation.profile === undefined ? {} : { profile: invocation.profile } }, observed) })] };
+     });
+ }
+diff --git a/lib/harness-compat.js b/lib/harness-compat.js
+index 0ffb173b4b8348dd795378f39b5f22e060ba9457..25b86acce0b2fa80f53e93af972b931e35ab61c0 100644
+--- a/lib/harness-compat.js
++++ b/lib/harness-compat.js
+@@ -20,7 +20,7 @@ export async function startMember(runtime, spec) {
+     const host = runtime;
+     if (typeof host.startActivation === 'function') {
+         const { persona: _persona, toolFilter: _filter, ...request } = spec.request;
+-        const activation = await host.startActivation.call(runtime, { ...spec, request, delivery: 'parent' });
++        const activation = await host.startActivation.call(runtime, { provider: spec.provider, label: spec.label, ...request, signal: spec.signal, delivery: 'parent' });
+         // Preserve native settlement as the missing-report/error fallback on both
+         // fresh and resumed activations. mailbox.ts deduplicates successful reports.
+         void activation.result.catch(() => undefined);
+@@ -41,7 +41,7 @@ export function guardSubagentCreation(ctx, check) {
+                 continue;
+             const descriptor = Object.getOwnPropertyDescriptor(runtime, key);
+             const guarded = async (...args) => {
+-                const request = key === 'start' ? args[1] : args[0].request;
++                const request = key === 'start' ? args[1] : key === 'startActivation' ? args[0] : args[0].request;
+                 check(request.parent);
+                 return Reflect.apply(original, ctx.subagents, args);
+             };
+@@ -167,7 +167,7 @@ export function installContinuableMemberSetup(ctx, setup) {
+         });
+         return;
+     }
+-    if ((typeof runtime[hostPromptQueue] !== 'function' && typeof runtime[hostPromptDeliver] !== 'function') || typeof runtime.sendMessage !== 'function') {
++    if ((typeof runtime.followup !== 'function' && typeof runtime[hostPromptQueue] !== 'function' && typeof runtime[hostPromptDeliver] !== 'function') || typeof runtime.sendMessage !== 'function') {
+         return unsupported('missing continuable setup and modern host queue');
+     }
+     const installed = new WeakSet();
+diff --git a/lib/index.js b/lib/index.js
+index c8c50480b66e7c0951abfd46f46e2eec1aee2ce9..4d1fd4f64cbc4e1585f03dc9ca9591615d73738e 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -65,11 +65,17 @@ export const Config = z.object({
+     fallback: fallbackRouteConfig,
+     profiles: z.dict(z.object({
+         description: z.string(),
++        goal: z.string(),
++        constraints: z.string(),
++        deliverables: z.string(),
++        examples: z.array(z.string()),
+         protocol: z.string(),
+         executionPrompt: z.string(),
+         fallback: fallbackRouteConfig,
+         members: z.array(z.object({
+             name: z.string().required(),
++            agentPreset: z.string(),
++            expertId: z.string(),
+             role: z.string(),
+             provider: z.string(),
+             model: z.string(),
+@@ -94,10 +100,10 @@ export const Config = z.object({
+             assignee: z.string(),
+             dependencies: z.array(z.string()),
+         })),
+-    })).default({}),
++    })).default({}).volatile(),
+     toolPolicies: z.dict(toolPolicyConfig).default({}),
+     memberMaxDepth: z.natural().default(0),
+-    maxMembers: z.natural().min(1).default(8),
++    maxMembers: z.natural().min(1).default(8).volatile(),
+     promptSectionOrder: z.natural().default(117),
+     slashCommand: z.boolean().default(true),
+ });
+@@ -114,6 +120,7 @@ export function usageSectionText(toolNames, profilesText = '') {
+ 8. When full quality mode is requested: requirements → implementation → verification → review → integration. Plan the entire DAG while staged, including implementation before requirements finishes and integration depending on review round 1. Failed review automatically adds repair + next review and rewires pending downstream gates. Do not recreate this loop, omit integration or depend on a failed task. Review acceptance judges the latest implementation. Do not put smoke-test scripts into task instructions.
+ 9. Halted means the user stopped work (including the captain turn). Resume only on a later explicit user request with a reason, via agent_teams_resume or create_task({resume:true,resumeReason}); creating tasks alone never resumes. Escalated means the review loop hit its limit, not a halt. Deployment requires explicit user confirmation.
+ 10. Wait for all required tasks to be terminal and members idle/ready, present results, then delete/archive unless the user wants to continue. Never discard unfinished work without authorization.
++
+ Tools: ${toolNames}${profilesText === '' ? '' : `\n\n${profilesText}`}`;
+ }
+ export function apply(ctx, config) {
+@@ -125,8 +132,8 @@ export function apply(ctx, config) {
+         executionPrompt: config.executionPrompt,
+         fallback: config.fallback,
+         memberMaxDepth: config.memberMaxDepth ?? 0,
+-        maxMembers: config.maxMembers ?? 8,
+-        profiles: config.profiles ?? {},
++        get maxMembers() { return config.maxMembers.get(); },
++        get profiles() { return config.profiles.get(); },
+         // Owner configuration is validated once, at mount: an empty or malformed
+         // policy must never reach a member creation path.
+         toolPolicies: parseToolPolicies(config.toolPolicies),
+@@ -143,7 +150,7 @@ export function apply(ctx, config) {
+         order: config.promptSectionOrder,
+         // Keep the bounded profile directory available without extra tool calls.
+         // installTeamCapabilities snapshots this once; no business state rewrites it.
+-        captainPrompt: () => usageSectionText(TEAM_TOOL_NAMES.join(', '), formatProfilesForPrompt(config.profiles)),
++        captainPrompt: () => usageSectionText(TEAM_TOOL_NAMES.join(', '), formatProfilesForPrompt(config.profiles.get())),
+     });
+     // Deterministic activation surfaces: the closed-namespace `/agent-teams`
+     // host command (surfaces in the Web GUI slash menu via the Harness
+@@ -157,9 +164,9 @@ export function apply(ctx, config) {
+     // never pends on it and simply never gains the slash command.
+     if (config.slashCommand ?? true) {
+         ctx.inject(['commands'], (commandCtx) => {
+-            registerAgentTeamsCommand(commandCtx, () => config.profiles ?? {});
++            registerAgentTeamsCommand(commandCtx, () => config.profiles.get());
+         });
+-        installAgentTeamsGestureBoundary(ctx, () => config.profiles ?? {});
++        installAgentTeamsGestureBoundary(ctx, () => config.profiles.get());
+     }
+     // The activity panel data/artwork routes need the Web server and the
+     // workspace registry, which headless profiles do not mount; under
+@@ -307,7 +314,10 @@ export function apply(ctx, config) {
+                         // step; the tool approve path already returns to the model itself.
+                         try {
+                             captain.steer(createUserMessage({
+-                                content: [{ type: 'text', text: stagedPlanApprovedContext(team.name) }],
++                                content: [{ type: 'text', text: stagedPlanApprovedContext(team.name)
++                                    + (typeof payload['savedProfileName'] === 'string'
++                                        ? `\nThe user saved this roster from the review card as reusable expert-team profile ${JSON.stringify(payload['savedProfileName'])}. It is available in the Teams page and @ menu; the save did not require a model tool call.`
++                                        : '') }],
+                                 source: agentTeamsSource({ kind: 'agent-teams' }, observedSessionFormatVersion(captain)),
+                             }));
+                         }
+@@ -335,8 +345,19 @@ export function apply(ctx, config) {
+                     const dependencies = Array.isArray(payload['dependencies'])
+                         ? payload['dependencies'].filter((item) => typeof item === 'string')
+                         : [];
++                    if (payload['agentPreset'] !== undefined && typeof payload['agentPreset'] !== 'string') {
++                        throw new Error('agentPreset must be a string');
++                    }
++                    const presetFields = typeof payload['agentPreset'] === 'string' ? { agentPreset: payload['agentPreset'] } : {};
+                     let mutation;
+-                    if (action === 'update_member') {
++                    if (action === 'add_member') {
++                        if (typeof payload['name'] !== 'string' || typeof payload['role'] !== 'string'
++                            || typeof payload['executionPrompt'] !== 'string' || payload['role'].trim() === '' || payload['executionPrompt'].trim() === '') throw new Error('name, role and executionPrompt are required');
++                        mutation = { action, name: payload['name'], role: payload['role'], executionPrompt: payload['executionPrompt'], ...presetFields,
++                            ...typeof payload['provider'] === 'string' ? { provider: payload['provider'] } : {},
++                            ...typeof payload['model'] === 'string' ? { model: payload['model'] } : {} };
++                    }
++                    else if (action === 'update_member') {
+                         if (typeof payload['memberName'] !== 'string'
+                             || typeof payload['provider'] !== 'string'
+                             || typeof payload['model'] !== 'string')
+@@ -344,6 +365,7 @@ export function apply(ctx, config) {
+                         mutation = {
+                             action,
+                             memberName: payload['memberName'],
++                            ...presetFields,
+                             provider: payload['provider'],
+                             model: payload['model'],
+                             ...typeof payload['role'] === 'string' || payload['role'] === null ? { role: payload['role'] } : {},
+diff --git a/lib/members.js b/lib/members.js
+index d82a1877d2215e3e24caa357fceb688de19e7efd..811e49518db66b252cb1779bf0eea240512c0098 100644
+--- a/lib/members.js
++++ b/lib/members.js
+@@ -22,6 +22,7 @@ import { mailboxPrompt } from "./mailbox.js";
+ import { nearestLiveLead } from "./lineage.js";
+ import { appendTeamEvent, captainSessionOf } from "./events.js";
+ import { TERMINAL_TASK_STATUSES } from "./types.js";
++import { MEMBER_TOOL_NAMES } from "./tool-names.js";
+ /** Persona snapshot of a profile protocol; the full text lives on team.json. */
+ export const PERSONA_PROTOCOL_MAX_CHARS = 400;
+ /**
+@@ -546,7 +547,23 @@ export function installMemberSelectionRuntime(ctx, stateDir, onFailureSettled) {
+                 throw error;
+             }
+         }
+-        const cleanupAdmission = () => { disposeSetup(); disposeAdmission(); };
++        // Fresh setup binds this exact child through the pending spawn; after
++        // publication, only its durable member id can retain the role defaults.
++        // A descriptor label alone never authorizes an unrelated child.
++        const disposeRequiredTools = childCtx.on('toolbox/required-tools', (agent, next) => {
++            const inherited = next();
++            if (agent !== child)
++                return inherited;
++            const team = readTeamSync(stateRoot, teamId);
++            if (team?.captainSessionId !== parentSessionId || team.phase === 'staged' || team.halted === true
++                || !team.members.some(member => (member.id === child.id || (member.id === '' && pending.has(key))) && member.name === memberName
++                    && member.status !== 'removed' && member.stopping !== true)
++                || team.tasks.some(task => task.reassigning === true && task.assignee === memberName))
++                return inherited;
++            return [...new Set([...inherited, ...MEMBER_TOOL_NAMES])];
++        });
++        childCtx.emit('tools/change');
++        const cleanupAdmission = () => { disposeRequiredTools(); disposeSetup(); disposeAdmission(); };
+         let selection = pending.get(key);
+         if (selection === undefined) {
+             const team = readTeamSync(stateRoot, teamId);
+@@ -790,6 +807,7 @@ export async function spawnMember(ctx, config, selections, llmSelection, captain
+             provider: config.provider,
+             label,
+             request: {
++                ...(member.agentPreset ? { agentPreset: member.agentPreset } : {}),
+                 prompt: [{ type: 'text', text: initialPrompt ?? memberWelcome(team, member.name) }],
+                 parent: captain,
+                 persona: memberPersona(team, member, stateDir, config.executionPrompt),
+diff --git a/lib/profiles.js b/lib/profiles.js
+index 417b8ff232f8858a0f7650572601b8dc308e6d6b..42f418f00ce7d70ff53bc54bafbed1f824cba2f9 100644
+--- a/lib/profiles.js
++++ b/lib/profiles.js
+@@ -15,9 +15,9 @@ export const MAX_TEAM_PROFILES = 16;
+ export const MAX_PROFILE_TASKS = 32;
+ /** Protocol excerpt length in the usage / prompt listing. */
+ export const PROFILE_PROTOCOL_PROMPT_LIMIT = 240;
+-const PROFILE_KEYS = ['description', 'protocol', 'executionPrompt', 'fallback', 'members', 'tasks', 'taskPlanning', 'reviewPolicy'];
++const PROFILE_KEYS = ['description', 'goal', 'constraints', 'deliverables', 'examples', 'protocol', 'executionPrompt', 'fallback', 'members', 'tasks', 'taskPlanning', 'reviewPolicy'];
+ const REVIEW_POLICY_KEYS = ['requirementsMinRounds', 'requirementsMaxRounds', 'codeMaxRounds', 'maxRepairAttempts', 'requiredReviewers'];
+-const MEMBER_KEYS = ['name', 'role', 'provider', 'model', 'reasoning_effort', 'executionPrompt', 'fallback', 'tool_policy'];
++const MEMBER_KEYS = ['expertId', 'agentPreset', 'name', 'role', 'provider', 'model', 'reasoning_effort', 'executionPrompt', 'fallback', 'tool_policy'];
+ const FALLBACK_KEYS = ['provider', 'model'];
+ const TASK_KEYS = ['id', 'subject', 'description', 'assignee', 'dependencies'];
+ /**
+@@ -121,6 +121,15 @@ function formatProfileListingLine(entry) {
+         ? `- ${entry.name} ${counts}`
+         : `- ${entry.name} ${counts}: ${summary}`;
+ }
++/** Explicit team guidance is shared by activation and the frozen runtime profile. */
++export function formatTeamGuidance(config) {
++    if (config === undefined) return '';
++    return [['goal', 'Team goal'], ['constraints', 'Constraints'], ['deliverables', 'Deliverables']]
++        .map(([key, label]) => {
++            const value = optionalProfileText(config[key], `profile.${key}`);
++            return value === undefined ? '' : `${label}\n${value}`;
++        }).filter(Boolean).join('\n\n');
++}
+ /** Public lookup used by activation text and status rendering. */
+ export function resolveProfileTaskPlanning(config) {
+     return config?.taskPlanning === 'captain' ? 'captain' : 'seed';
+@@ -142,7 +151,7 @@ function tokenize(rawInput) {
+     const trimmed = rawInput.trim();
+     if (trimmed === '')
+         return [];
+-    return trimmed.split(/\s+/u);
++    return trimmed.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/gu) ?? [];
+ }
+ function parseLeadingProfileFlag(token, nextToken) {
+     if (token === '--profile') {
+@@ -181,9 +190,13 @@ function normalizeListedProfile(listed, maxMembers) {
+     const path = `profiles.${listed.name}`;
+     const raw = asRecord(listed.config, path);
+     assertAllowedKeys(raw, PROFILE_KEYS, path);
+-    const description = optionalNonEmptyString(raw['description'], `${path}.description`);
+-    const protocol = optionalNonEmptyString(raw['protocol'], `${path}.protocol`);
+-    const executionPrompt = optionalNonEmptyString(raw['executionPrompt'], `${path}.executionPrompt`);
++    const description = optionalProfileText(raw['description'], `${path}.description`);
++    const guidance = formatTeamGuidance(raw);
++    if (raw['examples'] !== undefined && (!Array.isArray(raw['examples']) || raw['examples'].some(value => typeof value !== 'string'))) {
++        throw new Error(`${path}.examples must be an array of strings`);
++    }
++    const protocol = [guidance, optionalProfileText(raw['protocol'], `${path}.protocol`)].filter(Boolean).join('\n\n') || undefined;
++    const executionPrompt = optionalProfileText(raw['executionPrompt'], `${path}.executionPrompt`);
+     const fallback = normalizeFallback(raw['fallback'], `${path}.fallback`);
+     const taskPlanning = normalizeTaskPlanning(raw['taskPlanning'], `${path}.taskPlanning`);
+     const reviewPolicy = normalizeReviewPolicy(raw['reviewPolicy'], `${path}.reviewPolicy`);
+@@ -326,7 +339,7 @@ function normalizeMember(value, path, profileName) {
+     if (provider !== undefined && model === undefined) {
+         throw new Error(`profile member "${name}" sets provider without model`);
+     }
+-    return omitUndefined({ name, role, provider, model, reasoningEffort, executionPrompt, fallback, toolPolicy });
++    return omitUndefined({ name, role, provider, model, reasoningEffort, executionPrompt, fallback, toolPolicy, agentPreset: optionalNonEmptyString(raw['agentPreset'], `${path}.agentPreset`) });
+ }
+ function normalizeFallback(value, path) {
+     if (value === undefined)
+@@ -552,6 +565,11 @@ function requiredNonEmptyString(value, path, emptyMessage) {
+         throw new Error(emptyMessage);
+     return trimmed;
+ }
++/** Optional editor guidance can be cleared without invalidating a saved profile. */
++function optionalProfileText(value, path) {
++    if (typeof value === 'string' && value.trim() === '') return undefined;
++    return optionalNonEmptyString(value, path);
++}
+ function optionalNonEmptyString(value, path) {
+     if (value === undefined)
+         return undefined;
+diff --git a/lib/snapshot.js b/lib/snapshot.js
+index 85e25997e0fde9c81cc2794e25bca522c8b741d9..bf45328fff186583e1a83c05bfb77ff0a7bf7995 100644
+--- a/lib/snapshot.js
++++ b/lib/snapshot.js
+@@ -69,6 +69,7 @@ export async function assembleTeamSnapshot(ctx, stateRoot, workspace, state, opt
+             model: member.model?.trim() ?? '',
+             reasoningEffort: member.reasoningEffort?.trim() ?? '',
+             executionPrompt: member.executionPrompt ?? '',
++            ...(member.agentPreset ? { agentPreset: member.agentPreset } : {}),
+             status: member.status,
+             activity: options.historic === true
+                 ? 'idle'
+diff --git a/lib/state.js b/lib/state.js
+index 98e685b465ab6e94de6bcf7f6e8e9b286c512018..a691eb6003fdb2335b86288e3cd3b8e4886a3054 100644
+--- a/lib/state.js
++++ b/lib/state.js
+@@ -652,6 +652,7 @@ function isTeamMember(value) {
+         && typeof value['name'] === 'string'
+         && value['name'].trim() !== ''
+         && isOptionalString(value['role'])
++        && isOptionalNonBlankString(value['agentPreset'])
+         && (value['stopping'] === undefined || typeof value['stopping'] === 'boolean')
+         && isOptionalString(value['provider'])
+         && isOptionalString(value['model'])
+diff --git a/lib/tools.js b/lib/tools.js
+index 52492b2e93cdf1034959115590a92b84d9740dec..971b7bb0053d6f9bf50c4902ed74af91f6fc1bf0 100644
+--- a/lib/tools.js
++++ b/lib/tools.js
+@@ -554,6 +554,58 @@ export function registerAgentTeamsTools(ctx, config) {
+             return false;
+         }
+     }
++    async function resolveSelectedPreset(value) {
++        const preset = trimmedOptional(value);
++        if (!preset) return undefined;
++        const registry = ctx.get('agentPresets');
++        if (!registry) throw new Error('Agent preset registry is unavailable');
++        const selected = await registry.resolve(preset);
++        if (selected.broken) throw new Error(`Agent preset is unavailable: ${preset}`);
++        return preset;
++    }
++    // Both browser plan editing and model tools share roster validation and route resolution.
++    const addRosterMember = async (fresh, captain, input, signal) => {
++    const memberName = input.name.trim();
++    if (memberName === '')
++        throw new Error('member name must not be empty');
++    const memberKey = sanitizeKey(memberName);
++    if (memberKey === CAPTAIN_KEY) {
++        throw new Error(`member name "${input.name}" is reserved for the captain`);
++    }
++    if (fresh.members.some((candidate) => sanitizeKey(candidate.name) === memberKey)) {
++        throw new Error(`member name "${input.name}" has already been used in team "${fresh.name}"`);
++    }
++    if (fresh.members.filter((candidate) => candidate.status !== 'removed').length >= config.maxMembers) {
++        throw new Error(`team "${fresh.name}" is at its member cap (${config.maxMembers})`);
++    }
++    const selection = await resolveMemberLlmSelection(ctx, captain, {
++        provider: trimmedOptional(input.provider),
++        model: trimmedOptional(input.model),
++        defaultModel: config.memberModel,
++        defaultProvider: config.memberLlmProvider,
++        reasoningEffort: trimmedOptional(input.reasoning_effort),
++        fallback: config.fallback,
++    }, signal);
++    const toolSelection = memberToolSelection(config, captain, trimmedOptional(input.tool_policy));
++    const agentPreset = await resolveSelectedPreset(input.agentPreset);
++    const member = {
++        id: '',
++        name: memberName,
++        role: input.role,
++        provider: selection.provider,
++        model: selection.model,
++        reasoningEffort: selection.reasoningEffort,
++        ...selection.fallback === undefined ? {} : { fallback: selection.fallback },
++        executionPrompt: trimmedOptional(input.executionPrompt),
++        ...(agentPreset ? { agentPreset } : {}),
++        ...toolSelection,
++        joinedAt: Date.now(),
++        status: 'idle',
++    };
++    await validateMemberLlmSelections(ctx, [selection], signal);
++    fresh.members.push(member);
++        return member;
++    };
+     const updatePlanBatch = async (captain, teamId, mutations, signal, allowPendingEdits = false) => {
+         if (mutations.length === 0)
+             throw new Error('at least one staged plan operation is required');
+@@ -569,8 +621,12 @@ export function registerAgentTeamsTools(ctx, config) {
+             if (!staged && mutations.some(mutation => mutation.action !== 'update_task')) {
+                 throw new Error('a running team only permits update_task edits to pending, never-started tasks; roster and removal edits require a staged plan');
+             }
++            const addedMembers = [];
+             for (const mutation of mutations) {
+-                if (mutation.action === 'update_member') {
++                if (mutation.action === 'add_member') {
++                    addedMembers.push(await addRosterMember(fresh, captain, mutation, signal));
++                }
++                else if (mutation.action === 'update_member') {
+                     const member = requireMember(fresh, mutation.memberName);
+                     if (member.id !== '')
+                         throw new Error(`staged member "${member.name}" was already spawned`);
+@@ -580,6 +636,11 @@ export function registerAgentTeamsTools(ctx, config) {
+                         reasoningEffort: trimmedOptional(mutation.reasoningEffort),
+                         fallback: member.fallback,
+                     }, signal);
++                    if (mutation.agentPreset !== undefined) {
++                        const preset = await resolveSelectedPreset(mutation.agentPreset);
++                        if (preset) member.agentPreset = preset;
++                        else delete member.agentPreset;
++                    }
+                     member.role = trimmedOptional(mutation.role);
+                     member.provider = selection.provider;
+                     member.model = selection.model;
+@@ -663,6 +724,12 @@ export function registerAgentTeamsTools(ctx, config) {
+                 fresh.planReviewState = 'awaiting_review';
+             signal?.throwIfAborted();
+             await writeTeam(stateRoot, fresh);
++            for (const member of addedMembers) {
++                appendTeamEvent(ctx, captainSessionOf(ctx, fresh.captainSessionId, captain.session), 'agent-teams/member-added', {
++                    teamId: fresh.id, memberId: member.id, name: member.name,
++                    ...member.role !== undefined ? { role: member.role } : {},
++                });
++            }
+             return fresh;
+         });
+     };
+@@ -1198,43 +1265,8 @@ export function registerAgentTeamsTools(ctx, config) {
+             const team = await requireCaptainTeam(ctx, workspace, config, captain);
+             const created = await withTeamLock(teamLockKey(stateRoot, team.id), async () => {
+                 const fresh = await requireFreshCaptainTeam(ctx, stateRoot, team.id, captain.id);
+-                const memberName = args.name.trim();
+-                if (memberName === '')
+-                    throw new Error('member name must not be empty');
+-                const memberKey = sanitizeKey(memberName);
+-                if (memberKey === CAPTAIN_KEY) {
+-                    throw new Error(`member name "${args.name}" is reserved for the captain`);
+-                }
+-                if (fresh.members.some((candidate) => sanitizeKey(candidate.name) === memberKey)) {
+-                    throw new Error(`member name "${args.name}" has already been used in team "${fresh.name}"`);
+-                }
+-                if (fresh.members.filter((candidate) => candidate.status !== 'removed').length >= config.maxMembers) {
+-                    throw new Error(`team "${fresh.name}" is at its member cap (${config.maxMembers})`);
+-                }
+-                const selection = await resolveMemberLlmSelection(ctx, captain, {
+-                    provider: trimmedOptional(args.provider),
+-                    model: trimmedOptional(args.model),
+-                    defaultModel: config.memberModel,
+-                    defaultProvider: config.memberLlmProvider,
+-                    reasoningEffort: trimmedOptional(args.reasoning_effort),
+-                    fallback: config.fallback,
+-                }, exec.signal);
+-                const toolSelection = memberToolSelection(config, captain, trimmedOptional(args.tool_policy));
+-                const member = {
+-                    id: '',
+-                    name: memberName,
+-                    role: args.role,
+-                    provider: selection.provider,
+-                    model: selection.model,
+-                    reasoningEffort: selection.reasoningEffort,
+-                    ...selection.fallback === undefined ? {} : { fallback: selection.fallback },
+-                    executionPrompt: trimmedOptional(args.executionPrompt),
+-                    ...toolSelection,
+-                    joinedAt: Date.now(),
+-                    status: 'idle',
+-                };
+-                await validateMemberLlmSelections(ctx, [selection], exec.signal);
+-                fresh.members.push(member);
++                const member = await addRosterMember(fresh, captain, args, exec.signal);
++                const selection = member;
+                 await writeTeam(stateRoot, fresh);
+                 appendTeamEvent(ctx, captainSessionOf(ctx, fresh.captainSessionId, captain.session), 'agent-teams/member-added', {
+                     teamId: fresh.id,
+@@ -2470,6 +2502,7 @@ async function initializeProfileTeam(input) {
+                 model: selection.model,
+                 reasoningEffort: selection.reasoningEffort,
+                 executionPrompt: template.executionPrompt ?? profile.executionPrompt ?? input.config.executionPrompt,
++                ...(template.agentPreset ? { agentPreset: template.agentPreset } : {}),
+                 ...selection.fallback === undefined ? {} : { fallback: selection.fallback },
+                 ...toolSelection,
+                 joinedAt: now,
+diff --git a/lib/types/client/activity-monitor.d.ts b/lib/types/client/activity-monitor.d.ts
+index e8d6f92f3114c37477bef8953e4d17dd19109b3e..3a26caea9f73deb2747bb2d052d9cf8db44976a6 100644
+--- a/lib/types/client/activity-monitor.d.ts
++++ b/lib/types/client/activity-monitor.d.ts
+@@ -1,6 +1,7 @@
+ /** Shared, demand-driven state for the AgentTeams browser monitor. */
+ /** One member row of a host snapshot. */
+ export interface ActivityMember {
++    readonly agentPreset?: string;
+     readonly id: string;
+     readonly name: string;
+     readonly role: string;
+diff --git a/lib/types/command.d.ts b/lib/types/command.d.ts
+index 6989c3026b916b967a1aeca5e61790e7fa3ec2e6..76660c35b265994a4f1c82906758d1d3ffd5a095 100644
+--- a/lib/types/command.d.ts
++++ b/lib/types/command.d.ts
+@@ -20,6 +20,6 @@ declare module '@deepseek-ai/dsh-llm' {
+ export declare function profileCommandName(profileName: string): string | undefined;
+ export declare function invokedAgentTeamsInvocation(messages: readonly UserMessage[], getProfiles?: () => Record<string, TeamProfileConfig>): AgentTeamsInvocation | undefined;
+ export declare function invokedAgentTeamsGoal(messages: readonly UserMessage[]): string | undefined;
+-export declare function buildActivationDirective(goal: string, profile?: string, taskPlanning?: 'captain' | 'seed'): string;
++export declare function buildActivationDirective(goal: string, profile?: string, taskPlanning?: 'captain' | 'seed', guidance?: string): string;
+ export declare function registerAgentTeamsCommand(ctx: Context, getProfiles?: () => Record<string, TeamProfileConfig>): void;
+ export declare function installAgentTeamsGestureBoundary(ctx: Context, getProfiles?: () => Record<string, TeamProfileConfig>): void;
+diff --git a/lib/types/index.d.ts b/lib/types/index.d.ts
+index 0a56499f85e596586f2dc0e49118a1b0233354d2..0664142f1853aeebfbd7b1ce12c6c66b8e0089e6 100644
+--- a/lib/types/index.d.ts
++++ b/lib/types/index.d.ts
+@@ -18,7 +18,7 @@
+  *
+  * @module dsh-agent-teams
+  */
+-import type { Context } from '@deepseek-ai/cordis';
++import type { Volatile, Context } from '@deepseek-ai/cordis';
+ import z from '@deepseek-ai/schemastery';
+ import { type TeamProfileConfig } from './profiles.ts';
+ import { type MemberToolPolicy } from './tool-policies.ts';
+@@ -56,9 +56,9 @@ export interface Config {
+     /** Member delegation depth cap (default `0`; `0` forbids delegation entirely). */
+     memberMaxDepth?: number;
+     /** Team size cap in members (default `8`). */
+-    maxMembers?: number;
++    maxMembers: Volatile<number>;
+     /** Named multi-role team profiles. */
+-    profiles?: Record<string, TeamProfileConfig>;
++    profiles: Volatile<Record<string, TeamProfileConfig>>;
+     /**
+      * Reusable per-member tool policies declared by the deployment owner (#59),
+      * keyed by policy id. A member selects one by id (`tool_policy` on
+diff --git a/lib/types/profiles.d.ts b/lib/types/profiles.d.ts
+index eefc565a96ce77b6761395ec9520d6ddcc842380..90d7e6266f37a499aefd02688869b9c1aee58af3 100644
+--- a/lib/types/profiles.d.ts
++++ b/lib/types/profiles.d.ts
+@@ -20,6 +20,8 @@ export interface TeamModelFallbackConfig {
+     model: string;
+ }
+ export interface TeamProfileMemberConfig {
++    expertId?: string;
++    agentPreset?: string;
+     name: string;
+     role?: string;
+     provider?: string;
+@@ -43,6 +45,10 @@ export interface TeamProfileTaskConfig {
+ }
+ /** One named team-profile template from plugin config. */
+ export interface TeamProfileConfig {
++    goal?: string;
++    constraints?: string;
++    deliverables?: string;
++    examples?: string[];
+     description?: string;
+     protocol?: string;
+     executionPrompt?: string;
+@@ -128,3 +134,6 @@ export declare function parseProfileInvocation(rawInput: string): AgentTeamsInvo
+ export declare function resolveTeamProfile(profiles: Record<string, TeamProfileConfig>, profileName: string, maxMembers: number): NormalizedTeamProfile;
+ /** Public lookup used by activation text and status rendering. */
+ export declare function resolveProfileTaskPlanning(config: TeamProfileConfig | undefined): 'captain' | 'seed';
++
++/** Explicit goals and requirements passed to the captain and stored runtime profile. */
++export declare function formatTeamGuidance(config: TeamProfileConfig | undefined): string;
+diff --git a/lib/types/snapshot.d.ts b/lib/types/snapshot.d.ts
+index 6dcbc87e9301d9b918875fd98bd7af79028e61a6..9d70f9d51bfad94ee27b9bbd425d6b793e4d0495 100644
+--- a/lib/types/snapshot.d.ts
++++ b/lib/types/snapshot.d.ts
+@@ -13,6 +13,7 @@ import type { MemberStatus, TeamState } from './types.ts';
+ export type VisualTaskState = 'blocked' | 'open' | 'claimed' | 'running' | 'completed' | 'failed' | 'cancelled';
+ /** One member row of the activity snapshot. */
+ export interface TeamActivityMember {
++    readonly agentPreset?: string;
+     readonly id: string;
+     readonly name: string;
+     readonly role: string;
+diff --git a/lib/types/tools.d.ts b/lib/types/tools.d.ts
+index 33cf6f6d2bc84a116dd193e29fb6b35d887c3165..61c994f243252abc3749969f84f7e7ddd082f884 100644
+--- a/lib/types/tools.d.ts
++++ b/lib/types/tools.d.ts
+@@ -39,7 +39,17 @@ export interface ToolsConfig {
+ }
+ /** Browser/UI mutations allowed while a plan is waiting for approval. */
+ export type StagedPlanMutation = {
++    action: 'add_member';
++    agentPreset?: string;
++    provider?: string;
++    model?: string;
++    name: string;
++    role: string;
++    executionPrompt: string;
++} | {
+     action: 'update_member';
++    /** Empty clears the preset while omission preserves the existing selection. */
++    agentPreset?: string;
+     memberName: string;
+     role?: string | null;
+     provider: string;
+diff --git a/lib/types/types.d.ts b/lib/types/types.d.ts
+index 9b9f7d45b8b07a8f28d3755f4514d3ccf88b2e9e..376f519c50e00d93d5ef8377b943e8ccdb3ce6d8 100644
+--- a/lib/types/types.d.ts
++++ b/lib/types/types.d.ts
+@@ -218,6 +218,8 @@ export interface TeamTask {
+ export type MemberStatus = 'idle' | 'working' | 'removed';
+ /** One team member: a continuable subagent plus its team-side record. */
+ export interface TeamMember {
++    /** Immutable native preset selected before member creation. */
++    agentPreset?: string;
+     /** Durable continuable subagent session id (empty until spawned). */
+     id: string;
+     /** Unique display name inside the team. */

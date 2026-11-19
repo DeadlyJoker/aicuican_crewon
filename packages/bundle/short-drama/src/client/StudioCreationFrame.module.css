@@ -1,0 +1,18 @@
+/* The resident editor stays mounted for admission, attachment and draft lifecycle. */
+:global([data-conversation-content]):has(.creationFrame) { position: relative; overflow: hidden; isolation: isolate; }
+:global([data-composer-seat]):has(.creationFrame),
+:global([data-composer-seat]):has(.creationFrame) :global([data-slot]),
+:global([data-composer-card]):has(.creationFrame) { position: static; }
+:global([data-composer-card]):has(.creationFrame) { visibility: hidden; }
+:global([data-composer-seat]):has(.creationFrame) :global([data-composer-brand]),
+:global([data-composer-seat]):has(.creationFrame) :global([data-composer-workspace-options]) { display: none; }
+.creationFrame { position: absolute; inset: 0; z-index: 2; visibility: visible; background: var(--dsw-alias-bg-base); }
+.creationFrame[hidden] { display: none; }
+.creationFrame iframe { display: block; width: 100%; height: 100%; border: 0; }
+:global([data-composer-card]):has(.creationFrame) :global([data-composer-model]) { display: block; visibility: visible; position: absolute; top: 12px; right: 64px; z-index: 3; }
+.error { position: absolute; top: 48px; left: 20px; right: 20px; z-index: 4; padding: 12px; background: var(--dsw-alias-bg-base); color: var(--dsw-alias-state-error-primary); }
+
+:global([data-composer-card]):has(.creationFrame[hidden]) :global([data-composer-model]) { visibility: hidden; }
+
+/* The embedded creation page owns the blank-session headline, even with transparent glass. */
+:global([data-composer-seat]):has(.creationFrame) :global(div:has(> [data-composer-brand])) { display: none; }

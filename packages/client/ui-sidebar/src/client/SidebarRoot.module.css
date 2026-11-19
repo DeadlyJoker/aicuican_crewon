@@ -1,0 +1,313 @@
+/* One layout column contains a fixed navigation rail and the retained workspace pane. */
+.root {
+  --dsh-sidebar-inline-padding: 12px;
+  --dsh-sidebar-row-padding: 12px;
+  --dsh-sidebar-label-gap: 6px;
+  --dsh-sidebar-paint-inset: 3px;
+  --dsh-scrollbar-thumb: var(--dsw-alias-scrollbar-bg-l2);
+  --dsh-scrollbar-thumb-hover: var(--dsw-alias-scrollbar-hover-l2);
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--dsw-specific-sidebar-fill);
+  color: var(--dsw-alias-label-primary);
+  font-size: 14px;
+}
+
+.root.quietBars {
+  --dsh-scrollbar-thumb: transparent;
+  --dsh-scrollbar-thumb-hover: transparent;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 56px;
+  width: 56px;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 12px 8px 10px;
+  gap: 12px;
+}
+
+.chatHome,
+.iconButton,
+.panelRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--dsw-radius-md);
+  background: transparent;
+  color: var(--dsw-alias-label-secondary);
+  cursor: pointer;
+}
+
+.chatHome {
+  color: var(--dsw-alias-label-primary);
+}
+
+.chatHomeActive,
+.panelEntryActive .panelRow,
+.panelRow[aria-expanded='true'] {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.chatHome:focus-visible,
+.iconButton:focus-visible,
+.panelRow:focus-visible,
+.newSession:focus-visible,
+.localBuildBrand:focus-visible {
+  outline: var(--dsw-focus-ring-width) solid var(--dsw-focus-ring-color, var(--dsw-alias-state-business-primary));
+  outline-offset: -2px;
+}
+
+.panelList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  width: 40px;
+  gap: 6px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.panelList::-webkit-scrollbar {
+  display: none;
+}
+
+.panelEntry,
+.panelGlyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.panelGlyph {
+  width: 20px;
+  height: 20px;
+}
+
+.moreAnchor {
+  flex: none;
+}
+
+.moreMenu {
+  min-width: 200px;
+}
+
+.footArea,
+.footerActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: none;
+  gap: 6px;
+}
+
+.footArea {
+  margin-top: auto;
+}
+
+.settingsArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+}
+
+.workspacePane {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 12px 12px 8px;
+  background: transparent;
+}
+
+.collapsed .workspacePane {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  flex: none;
+  min-width: 0;
+  min-height: 40px;
+  padding-inline: 12px;
+  margin-bottom: 8px;
+}
+
+.brandName {
+  display: flex;
+  min-width: 0;
+  max-width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.fallbackBrandName,
+.localBuildTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.localBuildBrand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  max-width: 100%;
+  border: 0;
+  padding: 0;
+  border-radius: var(--dsw-radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: copy;
+  text-align: left;
+}
+
+.newSession {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  min-width: 0;
+  width: 100%;
+  min-height: 40px;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: var(--dsw-radius-md);
+  background: transparent;
+  color: var(--dsw-alias-label-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+.newSessionContent {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 10px;
+}
+
+.newSessionContent svg {
+  flex: none;
+}
+
+.newSessionLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.newSessionShortcut {
+  flex: none;
+  margin-left: 8px;
+  color: var(--dsw-alias-label-tertiary);
+  opacity: 0;
+}
+
+.newSession:focus-visible .newSessionShortcut {
+  opacity: 1;
+}
+
+.scrollRegion {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  container-type: size;
+}
+
+.scrollArea {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  container-type: scroll-state;
+  scrollbar-width: none;
+}
+
+.scrollArea::-webkit-scrollbar {
+  display: none;
+}
+
+.regionArea {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.topStrip {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 48px;
+}
+
+.windowActions {
+  position: absolute;
+  top: 10px;
+  left: 88px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+.windowActions[hidden] {
+  display: none;
+}
+
+.windowActions .toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--dsw-radius-sm);
+  -webkit-app-region: no-drag;
+}
+
+:global(html[data-fullscreen]) .windowActions {
+  left: 12px;
+}
+
+:global([data-platform='darwin']) .root {
+  padding-top: 48px;
+  background: transparent;
+}
+
+@media (hover: hover) {
+  .chatHome:hover,
+  .iconButton:hover,
+  .panelRow:hover,
+  .newSession:hover {
+    color: var(--dsw-alias-label-primary);
+    background: var(--dsw-alias-interactive-bg-hover);
+  }
+
+  .newSession:hover .newSessionShortcut {
+    opacity: 1;
+  }
+}

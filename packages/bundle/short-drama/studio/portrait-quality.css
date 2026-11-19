@@ -1,0 +1,29 @@
+/* Seven compact option rows measured from the reference, anchored to its inline preset tag. */
+.portrait-quality-prompt{position:relative}
+.portrait-quality-prompt #canvas-creation-prompt{text-indent:102px}
+.portrait-quality-tag{position:absolute;left:0;top:1px;display:flex;align-items:center;gap:1px;border:1px solid #8272a4;border-radius:5px;background:#544077;color:#dfd3f2;height:22px;z-index:2}
+.portrait-quality-tag .portrait-quality-menu>summary{height:20px;padding:0 3px 0 5px;display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:11px;color:#e6d9ff;list-style:none;border-radius:4px}
+.portrait-quality-tag .portrait-quality-menu>summary::-webkit-details-marker{display:none}
+.portrait-quality-tag .portrait-quality-menu>summary svg{width:12px;height:12px}
+.portrait-quality-tag>.icon-btn{flex:none;width:16px;height:20px;padding:2px;color:#e2d7f2;border-radius:3px}
+.portrait-quality-tag>.icon-btn svg{width:10px;height:10px}
+.canvas-tool-menu>.portrait-quality-popover{width:428px;max-width:calc(100vw - 24px);height:500px;padding:14px 14px 12px;border:1px solid var(--studio-chrome-border,#383b40);border-radius:16px;background:var(--studio-chrome-panel,#1d1d1d);box-shadow:0 12px 38px #0006;display:flex;flex-direction:column;gap:0;color:var(--studio-chrome-label,#fff);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;z-index:50}
+.portrait-quality-popover>header{position:relative;height:0;min-height:0;margin-bottom:8px;border:0;padding:0}
+.portrait-quality-popover>header .icon-btn{position:absolute;right:-1px;top:-1px;width:32px;height:32px;padding:6px;border-radius:6px;color:var(--studio-chrome-secondary,#a0a0a0);z-index:1}
+.portrait-quality-popover>header .icon-btn svg{width:16px;height:16px}
+.portrait-quality-groups{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto;padding:0}
+.portrait-quality-groups>section{flex:none}
+.portrait-quality-groups h3{font-size:12px;line-height:16px;font-weight:500;color:var(--studio-chrome-secondary,#a0a0a0);margin:0 0 8px}
+.portrait-quality-groups [role=group]{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.portrait-quality-menu .portrait-quality-groups button{height:32px;min-height:32px;margin:0;padding:6px 10px;border:1px solid var(--studio-chrome-border,#383b40);border-radius:8px;background:transparent;color:#ffffffd6;font:11px/14px Inter,"PingFang SC",sans-serif;white-space:nowrap;display:block;text-align:center}
+.portrait-quality-menu .portrait-quality-groups button:hover{background:#ffffff0a}
+.portrait-quality-menu .portrait-quality-groups button[aria-pressed=true]{background:var(--studio-chrome-raised,#363636);border-color:var(--studio-chrome-border,#505050);color:var(--studio-chrome-label,#fff)}
+.portrait-quality-menu button:focus-visible,.portrait-quality-menu summary:focus-visible{outline:2px solid #b7c6ed;outline-offset:1px}
+.portrait-quality-empty-toolbar{visibility:hidden!important;pointer-events:none;height:0!important;padding:0!important;border:0!important;min-height:0!important}
+.ref-canvas-body .portrait-quality-node.quality-empty .node-media{aspect-ratio:auto;height:280px;min-height:280px;border-radius:12px}
+.ref-canvas-body .portrait-quality-node .node-media{border-radius:12px}
+.ref-canvas-body .portrait-quality-node.quality-empty .pending-media{background:var(--studio-chrome-panel,#181818);color:var(--studio-chrome-secondary,#787878);gap:14px}
+.ref-canvas-body .portrait-quality-node.quality-empty .pending-media>svg{width:36px;height:36px}
+.ref-canvas-body .portrait-quality-node.quality-empty .pending-media>span{font-size:12px;line-height:18px}
+@media(max-width:500px){.portrait-quality-menu .portrait-quality-groups button{padding:6px 3px;font-size:10px}.portrait-quality-tag{top:1px}}
+.canvas-creation:has(.portrait-quality-menu[open]){z-index:40}

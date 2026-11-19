@@ -1,0 +1,7 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write dev-notes/studio-design/tools/color-picker/README.md
+/demo-tag-color-control:
+  en: 31fc8559b0e76899
+  zh: dd7653c5291e34e5

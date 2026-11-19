@@ -1,0 +1,58 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/agent-teams/README.md
+/:
+  en: 2d5e6fb89f920f0d
+  zh: 37cd87a7b4bc8a68
+/deepseek-ai-dsh-agent-teams-bundle:
+  en: 3f012b09d4e22f61
+  zh: 6e01d4a60d7d2ffb
+/deepseek-ai-dsh-agent-teams-bundle/summary:
+  en: 4662fec1e3dcea52
+  zh: 5b3192f056f30ddc
+/deepseek-ai-dsh-agent-teams-bundle/table-of-contents:
+  en: 65663b0d5dfa1600
+  zh: 55b2121ae6059425
+/deepseek-ai-dsh-agent-teams-bundle/use-this-package:
+  en: a3d136f5e0d9667b
+  zh: f22e7be443719345
+/deepseek-ai-dsh-agent-teams-bundle/understand-the-implementation:
+  en: 597528579eac185d
+  zh: 5f36098404d604b7
+/deepseek-ai-dsh-agent-teams-bundle/further-exploration:
+  en: dc3ed8ae5849f915
+  zh: fc795af14f43ff20
+/deepseek-ai-dsh-agent-teams-bundle/saved-workflows:
+  en: 9539a3ddda2611ed
+  zh: 83156b7c2a2637b9
+/deepseek-ai-dsh-agent-teams-bundle/persistent-offices:
+  en: b02067dcd680dc3b
+  zh: debafa650cd0719f
+/deepseek-ai-dsh-agent-teams-bundle/office-projects-and-inbox:
+  en: baa13356a9f41c41
+  zh: 960e35883723f246
+/deepseek-ai-dsh-agent-teams-bundle/conversation-scope-and-details:
+  en: 86bd76576f23a927
+  zh: e149a07f933f68ee
+/deepseek-ai-dsh-agent-teams-bundle/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/deepseek-ai-dsh-agent-teams-bundle/model-experience/expert-team-authoring-and-coordination:
+  en: af84b3bcb6fdd0f6
+  zh: f31bf94e46ad875f
+/deepseek-ai-dsh-agent-teams-bundle/model-experience/expert-team-authoring-and-coordination/what-the-model-sees:
+  en: d979fb1c9dc001c6
+  zh: 81a515d996b7878c
+/deepseek-ai-dsh-agent-teams-bundle/model-experience/expert-team-authoring-and-coordination/token-effect:
+  en: 10d3044fc25950e8
+  zh: eb8091bc37077566
+/deepseek-ai-dsh-agent-teams-bundle/model-experience/expert-team-authoring-and-coordination/kv-cache-effect:
+  en: eb43af70ddd76839
+  zh: d555f9bd276b3378
+/deepseek-ai-dsh-agent-teams-bundle/known-limitations-and-deferred-work:
+  en: a4d3bc10b54a7083
+  zh: 63acef3bb0055a2a
+/deepseek-ai-dsh-agent-teams-bundle/known-limitations-and-deferred-work/dev-note:
+  en: 6bfef1e4a07a455f
+  zh: 2734805efd137b7e

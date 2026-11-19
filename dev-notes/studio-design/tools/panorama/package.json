@@ -1,0 +1,7 @@
+{
+  "name": "crewon-studio-demo-panorama",
+  "private": true,
+  "type": "module",
+  "scripts": {"build": "node build.mjs"},
+  "dependencies": {"pannellum": "2.5.7"}
+}

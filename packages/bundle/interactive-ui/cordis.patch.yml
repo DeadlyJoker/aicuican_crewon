@@ -1,0 +1,3 @@
+- insert:
+    - id: interactive-ui
+      name: '@deepseek-ai/dsh-interactive-ui-bundle'

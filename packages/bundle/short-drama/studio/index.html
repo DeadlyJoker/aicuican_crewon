@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#151616"><title>CrewON Studio</title>
+<link rel="stylesheet" href="dsh-theme/base.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="candidate-ux.css?v=complete-image-20261111">
+<link rel="stylesheet" href="script-workbench.css">
+<link rel="stylesheet" href="script-canvas.css">
+<link rel="stylesheet" href="asset-reference-ui.css?v=storyboard-editor-mentions-20261110">
+<link rel="stylesheet" href="interaction-ui.css">
+<link rel="stylesheet" href="canvas-creation.css?v=return-to-video-20261111">
+<link rel="stylesheet" href="desktop-density.css">
+<link rel="stylesheet" href="node-preview.css">
+<link rel="stylesheet" href="canvas-navigation.css?v=inline-tag-fields-20261111">
+<link rel="stylesheet" href="canvas-links.css">
+<link rel="stylesheet" href="reference-layout.css?v=focused-home-20261111">
+<link rel="stylesheet" href="reference-workbench.css?v=asset-scroll-20261111-retained-asset-version-20261111">
+<link rel="stylesheet" href="reference-settings.css?v=node-style-1">
+<link rel="stylesheet" href="reference-projects.css?v=20261110-3">
+<link rel="stylesheet" href="reference-video-models.css?v=entry-video-20261111-basic-parameter-summary-20261111">
+<link rel="stylesheet" href="reference-video.css?v=entry-video-20261111-1">
+<link rel="stylesheet" href="reference-audio.css?v=audio-entry-1">
+<link rel="stylesheet" href="reference-image.css?v=batch-parameters-20261110">
+<link rel="stylesheet" href="reference-canvas.css?v=toolbar-fit-20261111">
+<link rel="stylesheet" href="face-control.css?v=choice-preview-20261111">
+<link rel="stylesheet" href="appearance-control.css?v=2">
+<link rel="stylesheet" href="makeup-control.css?v=3">
+<link rel="stylesheet" href="reference-entry.css?v=frame-roles-1-compact-audio-4-entry-video-20261111-entry-image-20261111-inspiration-search-20261111-start-policy-20261111-2">
+<link rel="stylesheet" href="reference-canvas-controls.css?v=header-clearance-20261111">
+<link rel="stylesheet" href="portrait-quality.css?v=2">
+<link rel="stylesheet" href="pose-control.css?v=2">
+<link rel="stylesheet" href="reference-groups.css?v=edge-grips-9">
+<link rel="stylesheet" href="reference-node-menu.css?v=shared-scrollbar-4">
+<link rel="stylesheet" href="reference-cut.css?v=empty-start-20261111">
+<style>
+html:not([data-studio-ready="true"]) #app{visibility:hidden}
+#studio-loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--dsw-alias-background-primary,transparent);z-index:2147483646}
+#studio-loading span{width:20px;height:20px;border:2px solid currentColor;border-right-color:transparent;color:var(--dsw-alias-label-secondary,#888);border-radius:50%;animation:studio-loading-spin .8s linear infinite}
+@keyframes studio-loading-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#studio-loading span{animation:none}}
+</style>
+<link rel="stylesheet" href="reference-character-frames.css?v=1">
+<link rel="stylesheet" href="reference-character-library.css?v=shared-theme-6">
+<link rel="stylesheet" href="reference-asset-vault.css?v=neutral-selection-20261111">
+<link rel="stylesheet" href="reference-workflow-library.css?v=neutral-selection-20261111">
+<link rel="stylesheet" href="reference-result-history.css?v=theme-5">
+<link rel="stylesheet" href="reference-storyboard-result.css?v=compact-assets-drawer-20261111">
+<link rel="stylesheet" href="reference-asset-preview.css?v=natural-pixel-zoom-4">
+<link rel="stylesheet" href="reference-board.css?v=5">
+<link rel="stylesheet" href="role-design.css?v=neutral-20261111-2">
+<link rel="stylesheet" href="image-presets.css?v=2">
+<link rel="stylesheet" href="camera-control.css?v=compact-palette-20261110">
+<link rel="stylesheet" href="reference-asset-models.css?v=audio-grouped-picker-20261110">
+<link rel="stylesheet" href="reference-collection.css?v=audio-preview-compact-20261110">
+<link rel="stylesheet" href="reference-audio-voice-library.css?v=1">
+<link rel="stylesheet" href="reference-resource-list.css?v=video-preview-20261111">
+<link rel="stylesheet" href="reference-theme.css?v=entry-kind-20261111-neutral-only-20261111">
+<link rel="stylesheet" href="reference-grid-crop.css?v=1">
+<link rel="stylesheet" href="reference-prompt-expand.css?v=reference-proportions-20261111">
+<link rel="stylesheet" href="reference-text-editor.css?v=document-import-9">
+<link rel="stylesheet" href="reference-storyboard-menu.css?v=1">
+<link rel="stylesheet" href="reference-costume.css?v=1">
+<link rel="stylesheet" href="reference-canvas-replace.css?v=1">
+<link rel="stylesheet" href="vendor/panorama/pannellum.css?v=2.5.7">
+<link rel="stylesheet" href="reference-panorama.css?v=expanded-20261111">
+<style>html[data-studio-native] .ref-assistant-launch,html[data-studio-native] .inspector{display:none!important}html[data-studio-native] .ref-canvas-header{height:44px;min-height:44px;padding:0 12px}html[data-studio-native] .ref-wordmark{font-size:14px}html[data-studio-native] .ref-header{height:44px;min-height:44px;padding:0 12px}.ref-canvas-header>.ref-header-right{gap:8px}</style></head>
+<body data-ds-dark-theme>
+<script src="native-theme.js"></script>
+<div id="studio-loading" role="status" aria-label="正在加载"><span></span></div>
+<div id="app"></div>
+<div id="modal-root"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="application/x-studio-script" data-studio-src="random-id.js"></script>
+<script type="application/x-studio-script" data-studio-src="artwork-fallback.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="icon-artwork.js?v=63"></script>
+<script type="application/x-studio-script" data-studio-src="reference-icon-artwork.js?v=asset-chrome-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="catalog.js?v=music-recipe-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="asset-reference-model.js?v=batch-recording-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="asset-reference-ui.js?v=original-media-inputs-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-cut-model.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-node-commands.js?v=confirmed-assets-5"></script>
+<script type="application/x-studio-script" data-studio-src="canvas-links.js?v=20261110-6"></script>
+<script type="application/x-studio-script" data-studio-src="candidate-ux.js?v=assistant-context-request-20261111-2-panorama-viewport-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="script-workbench.js"></script>
+<script type="application/x-studio-script" data-studio-src="script-impact.js"></script>
+<script type="application/x-studio-script" data-studio-src="script-series.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="asset-study-fixture.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="series-fixture.js?v=complete-series-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="script-canvas.js"></script>
+<script type="application/x-studio-script" data-studio-src="face-control-model.js?v=3"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-catalog.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="canvas-node-tools.js?v=storyboard-full-catalog-2-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-video-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-video-models.js?v=entry-hover-20261111-basic-parameter-summary-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-video.js?v=parameter-focus-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-audio.js?v=parameter-focus-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-image.js?v=shared-image-models-20261110-2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-image-model-catalog.js?v=20261110-2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-asset-models.js?v=entry-mode-preserve-1-entry-video-20261111-entry-image-20261111-menu-height-fit-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="canvas-creation.js?v=independent-tool-camera-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="node-preview.js"></script>
+<script type="application/x-studio-script" data-studio-src="canvas-navigation.js?v=search-shortcut-13"></script>
+<script type="application/x-studio-script" data-studio-src="app.js?v=canvas-gesture-cancel-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-entry-model.js?v=focused-home-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-entry.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="reference-inspiration-search.js?v=focused-home-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-entry-video.js?v=frame-roles-1-clear-model-20261111-entry-video-20261111-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-entry-kind.js?v=music-recipe-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-layout.js?v=focused-home-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workbench.js?v=tab-focus-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-setting-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-settings.js?v=cloud-entry-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-projects.js?v=relative-edit-time-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-canvas.js?v=10"></script>
+<script type="application/x-studio-script" data-studio-src="face-control.js?v=choice-preview-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="appearance-preview-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="appearance-control-model.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="appearance-control.js?v=7"></script>
+<script type="application/x-studio-script" data-studio-src="makeup-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="makeup-control-model.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="makeup-control.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-canvas-controls.js?v=fit-full-canvas-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="portrait-quality-model.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="portrait-quality.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="pose-control-model.js?v=branch-containment-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="pose-control.js?v=nearest-joint-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-group-model.js?v=5"></script>
+<script type="application/x-studio-script" data-studio-src="reference-groups.js?v=batch-assets-13"></script>
+<script type="application/x-studio-script" data-studio-src="reference-node-tags.js?v=tag-focus-return-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-node-batch.js?v=visible-selection-scope-3"></script>
+<script type="application/x-studio-script" data-studio-src="vendor/color-picker/picker.js?v=0.7.2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-tag-manager.js?v=tag-focus-return-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-node-menu.js?v=menu-scroll-10"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workbench-asset.js?v=variant-focus-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workbench-library.js?v=canvas-replacement-3-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workbench-upload.js?v=uncommitted-image-cleanup-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workbench-voice.js?v=scroll-dismiss-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-cut-gesture-model.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-cut.js?v=empty-start-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-cut-gestures.js?v=3"></script>
+<script type="application/x-studio-script" data-studio-src="reference-character-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-character-library.js?v=layer-focus-8"></script>
+<script type="application/x-studio-script" data-studio-src="reference-asset-vault.js?v=retained-asset-metadata-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-collection-media.js?v=audio-preview-compact-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workbench-voice-upload.js?v=4"></script>
+<script type="application/x-studio-script" data-studio-src="reference-collection.js?v=upload-rollback-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workflow-library.js?v=capture-preparation-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-state.js?v=episode-status-3"></script>
+<script type="application/x-studio-script" data-studio-src="third-party/fflate/fflate-0.8.2.js"></script>
+<script type="application/x-studio-script" data-studio-src="reference-result-history.js?v=shared-image-download-8"></script>
+<script type="application/x-studio-script" data-studio-src="reference-asset-preview.js?v=natural-pixel-zoom-9"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-assets.js?v=initial-mentions-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-result.js?v=keyboard-reading-20261111-reference-summary-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-completion.js?v=mention-follow-7"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-mentions.js?v=compact-missing-asset-4"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-canvas.js?v=distinct-prompt-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="third-party/fabric/fabric-6.9.0.min.js"></script>
+<script type="application/x-studio-script" data-studio-src="reference-board.js?v=9"></script>
+<script type="application/x-studio-script" data-studio-src="reference-board-projects.js?v=7"></script>
+<script type="application/x-studio-script" data-studio-src="role-design-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="role-design.js?v=key-isolation-3"></script>
+<script type="application/x-studio-script" data-studio-src="image-preset-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="image-presets.js?v=key-isolation-4"></script>
+<script type="application/x-studio-script" data-studio-src="camera-control-catalog.js?v=asset-study-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="camera-control.js?v=compact-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-theme.js?v=neutral-dark-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-entry-media.js?v=frame-roles-2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-entry-image.js?v=music-handoff-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-workbench-navigation.js?v=pending-departure-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-start-policy.js?v=entry-image-20261111-kind-snapshot-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-interactive-entry.js?v=3"></script>
+<script type="application/x-studio-script" data-studio-src="reference-story-playback.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-audio-voice-catalog.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="reference-audio-voice-library.js?v=model-directories-3"></script>
+<script type="application/x-studio-script" data-studio-src="reference-audio-model-catalog.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="reference-audio-models.js?v=normalized-9"></script>
+<script type="application/x-studio-script" data-studio-src="reference-entry-audio.js?v=compact-4"></script>
+<script type="application/x-studio-script" data-studio-src="reference-resource-list.js?v=project-identity-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-saved-inputs.js?v=original-media-inputs-20261110"></script>
+<script type="application/x-studio-script" data-studio-src="reference-grid-crop.js?v=failure-state-3"></script>
+<script type="application/x-studio-script" data-studio-src="reference-prompt-expand.js?v=candidate-review-layer-6"></script>
+<script type="application/x-studio-script" data-studio-src="vendor/text-editor/editor.js?v=plain-import-lines-4"></script>
+<script type="application/x-studio-script" data-studio-src="reference-text-editor.js?v=preview-keyboard-12"></script>
+<script type="application/x-studio-script" data-studio-src="reference-prompt-shortcuts.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="reference-text-import.js?v=line-mapping-2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-storyboard-menu.js?v=2"></script>
+<script type="application/x-studio-script" data-studio-src="reference-costume.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="reference-canvas-replace.js?v=1"></script>
+<script type="application/x-studio-script" data-studio-src="vendor/panorama/pannellum.js?v=2.5.7"></script>
+<script type="application/x-studio-script" data-studio-src="reference-panorama.js?v=fov15-20261111"></script>
+<script type="application/x-studio-script" data-studio-src="reference-panorama-capture.js?v=capture-mode-20261111"></script>
+<link rel="stylesheet" href="reference-node-create-menu.css?v=2">
+<script type="application/x-studio-script" data-studio-src="reference-node-create-menu.js?v=4"></script>
+<link rel="stylesheet" href="reference-works-import.css?v=2">
+<script type="application/x-studio-script" data-studio-src="reference-works-import.js?v=3"></script>
+<script type="application/x-studio-script" data-studio-src="reference-inspiration-ready.js?v=20261111"></script>
+<link rel="stylesheet" href="reference-assistant.css?v=inline-9">
+<script type="application/x-studio-script" data-studio-src="reference-assistant.js?v=inline-5"></script>
+<script type="application/x-studio-script" data-studio-src="reference-assistant-context.js?v=skills-handoff-20261111"></script>
+<link rel="stylesheet" href="reference-skills.css?v=2">
+<script type="application/x-studio-script" data-studio-src="reference-skills.js?v=3"></script>
+<link rel="stylesheet" href="reference-skill-library.css?v=2">
+<script type="application/x-studio-script" data-studio-src="reference-skill-library.js?v=3"></script>
+<link rel="stylesheet" href="reference-tool-panel-position.css?v=4">
+<script type="application/x-studio-script" data-studio-src="reference-tool-panel-position.js?v=2"></script>
+<script src="native-bridge.js"></script>
+<link rel="stylesheet" href="native-theme.css">
+<script type="application/x-studio-script" data-studio-src="native-layout.js"></script>
+<script type="application/x-studio-script" data-studio-src="native-adapter.js"></script>
+<script type="application/x-studio-script" data-studio-src="native-creative.js"></script>
+<script type="application/x-studio-script" data-studio-src="native-assets.js"></script>
+<script type="application/x-studio-script" data-studio-src="native-cut.js"></script>
+<link rel="stylesheet" href="native-multitrack.css">
+<script type="application/x-studio-script" data-studio-src="native-playback.js"></script>
+<script type="application/x-studio-script" data-studio-src="native-multitrack.js"></script>
+<link rel="stylesheet" href="native-analysis.css">
+<script type="application/x-studio-script" data-studio-src="native-analysis.js"></script>
+<script type="application/x-studio-script" data-studio-src="native-entry.js"></script>
+<script src="bootstrap.js?v=1"></script>
+</body>
+</html>

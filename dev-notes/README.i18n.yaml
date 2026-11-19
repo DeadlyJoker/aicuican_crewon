@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write dev-notes/README.md
+/crewon-development-preparation-index:
+  en: fea4af3068cdc487
+  zh: b72d09809b54a4a7
+/crewon-development-preparation-index/current-requirements:
+  en: 43b0524e5931ce37
+  zh: bad64bc15c5a26d4
+/crewon-development-preparation-index/reading-order:
+  en: 6feb39b406a51dc2
+  zh: a90910e154b588a2
+/crewon-development-preparation-index/usage:
+  en: 9a9e87fedc3fa19b
+  zh: 1476eda39ca72478
+/crewon-development-preparation-index/refreshing-the-notes:
+  en: 05269532f727265b
+  zh: 45ee695a88d49d5d

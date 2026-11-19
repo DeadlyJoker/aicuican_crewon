@@ -1,0 +1,35 @@
+- main:
+  - heading "Toolbox" [level=1]
+  - button "Agent access"
+  - button "Import skills"
+  - button "New skill"
+  - tablist "Source":
+    - tab "Skills" [selected]
+    - tab "Connectors (MCP)"
+    - tab "Local tools"
+  - paragraph: Reusable methods, instructions and scripts. Browse global skills, or choose a workspace to include its project skills.
+  - tabpanel "Skills":
+    - button "All purposes" [pressed]
+    - button "Writing"
+    - button "Research"
+    - button "Data analysis"
+    - button "Development"
+    - button "Media"
+    - button "General"
+    - searchbox "Search by name or purpose"
+    - combobox "Workspace":
+      - option "Global skills" [selected]
+    - button "Refresh"
+    - article:
+      - heading "create-expert-team" [level=3]
+      - paragraph: Design and save a reusable specialist team from a user goal, with clear roles and deliverables.
+      - text: Skills · Built-in skills Enabled
+      - button "Settings create-expert-team"
+      - button "Preview"
+    - article:
+      - heading "review-checklist" [level=3]
+      - switch "Enabled review-checklist" [checked]
+      - paragraph: Review a document against a checklist
+      - text: Skills · Personal skills Enabled
+      - button "Settings review-checklist"
+      - button "Preview"

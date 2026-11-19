@@ -1,0 +1,740 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`sidebar shell snapshots > renders the expanded column in the default locale (zh, no setLocale) 1`] = `
+<div
+  data-slot="sidebar"
+  style="display: contents;"
+>
+  <div
+    class="root quietBars"
+  >
+    <div
+      class="rail"
+      data-sidebar-rail=""
+    >
+      <button
+        aria-current="page"
+        aria-label="对话"
+        class="chatHome chatHomeActive"
+        type="button"
+      >
+        <div
+          data-slot="sidebar.brand.mark"
+          style="display: contents;"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="be386ae5"
+            fill="none"
+            height="20"
+            stroke-width="1"
+            viewBox="0 0 16 16"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </div>
+      </button>
+      <div
+        class="footArea"
+      >
+        <button
+          aria-label="收起侧边栏"
+          class="iconButton toggle"
+          data-sidebar-toggle="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="d95b7908"
+            data-icon="dsw-icon-panel-left-outline-regular"
+            height="18"
+            width="18"
+          />
+          <div
+            data-slot="sidebar.toggle.badge"
+            style="display: contents;"
+          />
+        </button>
+        <div
+          class="footerActions"
+        >
+          <div
+            data-slot="sidebar.footer.action"
+            style="display: contents;"
+          />
+        </div>
+        <div
+          class="settingsArea"
+        >
+          <div
+            data-slot="sidebar.settings"
+            style="display: contents;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="workspacePane"
+      data-sidebar-workspace-pane=""
+      style="width: 244px;"
+    >
+      <div
+        class="logoRow"
+        data-window-drag="true"
+      >
+        <div
+          class="brandName"
+        >
+          <div
+            data-slot="sidebar.brand.name"
+            style="display: contents;"
+          >
+            <button
+              aria-label="CrewON 1.2.3-rc.4-abc1234-dirty"
+              class="localBuildBrand"
+              type="button"
+            >
+              <span
+                class="localBuildTitle"
+              >
+                CrewON
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-label="新建会话"
+        class="newSession"
+        type="button"
+      >
+        <span
+          class="newSessionContent"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="532cf99a"
+            data-icon="dsw-icon-new-chat-outline-medium"
+            height="16"
+            width="16"
+          />
+          <span
+            class="newSessionLabel"
+          >
+            新会话
+          </span>
+        </span>
+      </button>
+      <div
+        class="scrollRegion"
+      >
+        <div
+          class="scrollArea"
+          data-sidebar-scrollport=""
+        >
+          <div
+            class="regionArea"
+          >
+            <div
+              data-slot="sidebar.workspaces"
+              style="display: contents;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`sidebar shell snapshots > renders the expanded rail and workspace pane 1`] = `
+<div
+  data-slot="sidebar"
+  style="display: contents;"
+>
+  <div
+    class="root quietBars"
+  >
+    <div
+      class="rail"
+      data-sidebar-rail=""
+    >
+      <button
+        aria-current="page"
+        aria-label="Conversation"
+        class="chatHome chatHomeActive"
+        type="button"
+      >
+        <div
+          data-slot="sidebar.brand.mark"
+          style="display: contents;"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="be386ae5"
+            fill="none"
+            height="20"
+            stroke-width="1"
+            viewBox="0 0 16 16"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </div>
+      </button>
+      <div
+        class="footArea"
+      >
+        <button
+          aria-label="Collapse sidebar"
+          class="iconButton toggle"
+          data-sidebar-toggle="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="d95b7908"
+            data-icon="dsw-icon-panel-left-outline-regular"
+            height="18"
+            width="18"
+          />
+          <div
+            data-slot="sidebar.toggle.badge"
+            style="display: contents;"
+          />
+        </button>
+        <div
+          class="footerActions"
+        >
+          <div
+            data-slot="sidebar.footer.action"
+            style="display: contents;"
+          />
+        </div>
+        <div
+          class="settingsArea"
+        >
+          <div
+            data-slot="sidebar.settings"
+            style="display: contents;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="workspacePane"
+      data-sidebar-workspace-pane=""
+      style="width: 244px;"
+    >
+      <div
+        class="logoRow"
+        data-window-drag="true"
+      >
+        <div
+          class="brandName"
+        >
+          <div
+            data-slot="sidebar.brand.name"
+            style="display: contents;"
+          >
+            <button
+              aria-label="CrewON 1.2.3-rc.4-abc1234-dirty"
+              class="localBuildBrand"
+              type="button"
+            >
+              <span
+                class="localBuildTitle"
+              >
+                CrewON
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-label="New session"
+        class="newSession"
+        type="button"
+      >
+        <span
+          class="newSessionContent"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="532cf99a"
+            data-icon="dsw-icon-new-chat-outline-medium"
+            height="16"
+            width="16"
+          />
+          <span
+            class="newSessionLabel"
+          >
+            New Session
+          </span>
+        </span>
+      </button>
+      <div
+        class="scrollRegion"
+      >
+        <div
+          class="scrollArea"
+          data-sidebar-scrollport=""
+        >
+          <div
+            class="regionArea"
+          >
+            <div
+              data-slot="sidebar.workspaces"
+              style="display: contents;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`sidebar shell snapshots > renders the permanent Windows rail and collapsible workspace pane > windows collapsed 1`] = `
+<div
+  data-slot="sidebar"
+  style="display: contents;"
+>
+  <div
+    class="root collapsed quietBars"
+  >
+    <div
+      class="rail"
+      data-sidebar-rail=""
+    >
+      <button
+        aria-current="page"
+        aria-label="Conversation"
+        class="chatHome chatHomeActive"
+        type="button"
+      >
+        <div
+          data-slot="sidebar.brand.mark"
+          style="display: contents;"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="be386ae5"
+            fill="none"
+            height="20"
+            stroke-width="1"
+            viewBox="0 0 16 16"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </div>
+      </button>
+      <div
+        class="footArea"
+      >
+        <button
+          aria-label="Open sidebar"
+          class="iconButton toggle"
+          data-sidebar-toggle="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="d95b7908"
+            data-icon="dsw-icon-panel-left-outline-regular"
+            height="18"
+            width="18"
+          />
+          <div
+            data-slot="sidebar.toggle.badge"
+            style="display: contents;"
+          />
+        </button>
+        <div
+          class="footerActions"
+        >
+          <div
+            data-slot="sidebar.footer.action"
+            style="display: contents;"
+          />
+        </div>
+        <div
+          class="settingsArea"
+        >
+          <div
+            data-slot="sidebar.settings"
+            style="display: contents;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="workspacePane"
+      data-sidebar-workspace-pane=""
+      inert=""
+      style="width: 244px;"
+    >
+      <div
+        class="logoRow"
+        data-window-drag="true"
+      >
+        <div
+          class="brandName"
+        >
+          <div
+            data-slot="sidebar.brand.name"
+            style="display: contents;"
+          >
+            <button
+              aria-label="CrewON 1.2.3-rc.4-abc1234-dirty"
+              class="localBuildBrand"
+              type="button"
+            >
+              <span
+                class="localBuildTitle"
+              >
+                CrewON
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-label="New session"
+        class="newSession"
+        type="button"
+      >
+        <span
+          class="newSessionContent"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="532cf99a"
+            data-icon="dsw-icon-new-chat-outline-medium"
+            height="16"
+            width="16"
+          />
+          <span
+            class="newSessionLabel"
+          >
+            New Session
+          </span>
+        </span>
+      </button>
+      <div
+        class="scrollRegion"
+      >
+        <div
+          class="scrollArea"
+          data-sidebar-scrollport=""
+        >
+          <div
+            class="regionArea"
+          >
+            <div
+              data-slot="sidebar.workspaces"
+              style="display: contents;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`sidebar shell snapshots > renders the permanent Windows rail and collapsible workspace pane > windows expanded 1`] = `
+<div
+  data-slot="sidebar"
+  style="display: contents;"
+>
+  <div
+    class="root quietBars"
+  >
+    <div
+      class="rail"
+      data-sidebar-rail=""
+    >
+      <button
+        aria-current="page"
+        aria-label="Conversation"
+        class="chatHome chatHomeActive"
+        type="button"
+      >
+        <div
+          data-slot="sidebar.brand.mark"
+          style="display: contents;"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="be386ae5"
+            fill="none"
+            height="20"
+            stroke-width="1"
+            viewBox="0 0 16 16"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </div>
+      </button>
+      <div
+        class="footArea"
+      >
+        <button
+          aria-label="Collapse sidebar"
+          class="iconButton toggle"
+          data-sidebar-toggle="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="d95b7908"
+            data-icon="dsw-icon-panel-left-outline-regular"
+            height="18"
+            width="18"
+          />
+          <div
+            data-slot="sidebar.toggle.badge"
+            style="display: contents;"
+          />
+        </button>
+        <div
+          class="footerActions"
+        >
+          <div
+            data-slot="sidebar.footer.action"
+            style="display: contents;"
+          />
+        </div>
+        <div
+          class="settingsArea"
+        >
+          <div
+            data-slot="sidebar.settings"
+            style="display: contents;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="workspacePane"
+      data-sidebar-workspace-pane=""
+      style="width: 244px;"
+    >
+      <div
+        class="logoRow"
+        data-window-drag="true"
+      >
+        <div
+          class="brandName"
+        >
+          <div
+            data-slot="sidebar.brand.name"
+            style="display: contents;"
+          >
+            <button
+              aria-label="CrewON 1.2.3-rc.4-abc1234-dirty"
+              class="localBuildBrand"
+              type="button"
+            >
+              <span
+                class="localBuildTitle"
+              >
+                CrewON
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-label="New session"
+        class="newSession"
+        type="button"
+      >
+        <span
+          class="newSessionContent"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="532cf99a"
+            data-icon="dsw-icon-new-chat-outline-medium"
+            height="16"
+            width="16"
+          />
+          <span
+            class="newSessionLabel"
+          >
+            New Session
+          </span>
+        </span>
+      </button>
+      <div
+        class="scrollRegion"
+      >
+        <div
+          class="scrollArea"
+          data-sidebar-scrollport=""
+        >
+          <div
+            class="regionArea"
+          >
+            <div
+              data-slot="sidebar.workspaces"
+              style="display: contents;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`sidebar shell snapshots > retains the workspace pane behind the collapsed rail, in place 1`] = `
+<div
+  data-slot="sidebar"
+  style="display: contents;"
+>
+  <div
+    class="root collapsed quietBars"
+  >
+    <div
+      class="rail"
+      data-sidebar-rail=""
+    >
+      <button
+        aria-current="page"
+        aria-label="Conversation"
+        class="chatHome chatHomeActive"
+        type="button"
+      >
+        <div
+          data-slot="sidebar.brand.mark"
+          style="display: contents;"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="be386ae5"
+            fill="none"
+            height="20"
+            stroke-width="1"
+            viewBox="0 0 16 16"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          />
+        </div>
+      </button>
+      <div
+        class="footArea"
+      >
+        <button
+          aria-label="Open sidebar"
+          class="iconButton toggle"
+          data-sidebar-toggle="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="d95b7908"
+            data-icon="dsw-icon-panel-left-outline-regular"
+            height="18"
+            width="18"
+          />
+          <div
+            data-slot="sidebar.toggle.badge"
+            style="display: contents;"
+          />
+        </button>
+        <div
+          class="footerActions"
+        >
+          <div
+            data-slot="sidebar.footer.action"
+            style="display: contents;"
+          />
+        </div>
+        <div
+          class="settingsArea"
+        >
+          <div
+            data-slot="sidebar.settings"
+            style="display: contents;"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="workspacePane"
+      data-sidebar-workspace-pane=""
+      inert=""
+      style="width: 244px;"
+    >
+      <div
+        class="logoRow"
+        data-window-drag="true"
+      >
+        <div
+          class="brandName"
+        >
+          <div
+            data-slot="sidebar.brand.name"
+            style="display: contents;"
+          >
+            <button
+              aria-label="CrewON 1.2.3-rc.4-abc1234-dirty"
+              class="localBuildBrand"
+              type="button"
+            >
+              <span
+                class="localBuildTitle"
+              >
+                CrewON
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        aria-label="New session"
+        class="newSession"
+        type="button"
+      >
+        <span
+          class="newSessionContent"
+        >
+          <svg
+            aria-hidden="true"
+            data-content="532cf99a"
+            data-icon="dsw-icon-new-chat-outline-medium"
+            height="16"
+            width="16"
+          />
+          <span
+            class="newSessionLabel"
+          >
+            New Session
+          </span>
+        </span>
+      </button>
+      <div
+        class="scrollRegion"
+      >
+        <div
+          class="scrollArea"
+          data-sidebar-scrollport=""
+        >
+          <div
+            class="regionArea"
+          >
+            <div
+              data-slot="sidebar.workspaces"
+              style="display: contents;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

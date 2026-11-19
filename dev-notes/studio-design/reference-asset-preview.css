@@ -1,0 +1,27 @@
+.ref-asset-lightbox{position:fixed;inset:0;z-index:2400;background:#000b;color:#ddd;overflow:hidden}
+.ref-asset-lightbox-stage{position:absolute;inset:56px 32px 80px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ref-asset-lightbox-stage img{flex:none;max-width:none;max-height:none;object-fit:contain;user-select:none;touch-action:none;cursor:grab}
+.ref-asset-lightbox-stage img:active{cursor:grabbing}
+.ref-asset-lightbox-close{position:absolute;right:24px;top:20px;display:grid;place-items:center;width:32px;height:32px;padding:6px;border:0;border-radius:6px;color:#aaa;background:transparent}
+.ref-asset-lightbox-close svg{width:20px;height:20px}
+.ref-asset-lightbox-tools{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px;background:#242424e8;border:1px solid #444;border-radius:10px}
+.ref-asset-lightbox-tools button{display:grid;place-items:center;width:36px;height:32px;padding:0;border:0;border-radius:5px;background:none;color:#ccc;font-size:23px;font-weight:400;line-height:1}
+.ref-asset-lightbox-tools [data-preview-command=reset]{width:48px;font-size:12px}
+.ref-asset-lightbox button:hover{background:#393939;color:#fff}
+.ref-asset-lightbox button:focus-visible{outline:2px solid #aaa;outline-offset:2px}
+@media(max-width:600px){.ref-asset-lightbox-stage{inset:54px 12px 80px}.ref-asset-lightbox-tools{bottom:20px;gap:2px}}
+
+.ref-asset-lightbox-tools button svg{width:18px;height:18px;flex:none}
+
+.ref-asset-lightbox-header{height:52px;display:flex;align-items:center;gap:20px;padding:0 80px 0 24px;background:#1d1d1d;border-bottom:1px solid #343434;color:#bbb;font-size:12px}.ref-wb-asset-image[data-sb-preview]{width:100%;padding:0;cursor:zoom-in}.ref-wb-asset-image[data-sb-preview]:focus-visible{outline:2px solid #aaa;outline-offset:3px}
+
+.ref-asset-info{background:#101010;backdrop-filter:blur(8px)}
+.ref-asset-info .ref-asset-lightbox-header{gap:12px;padding:0 60px 0 16px}
+.ref-asset-metadata{display:flex;align-items:center;gap:14px;flex:1;min-width:0;overflow:auto;white-space:nowrap;font-size:11px;scrollbar-width:thin}
+.ref-asset-info-name{max-width:240px;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.ref-asset-metadata strong{font-weight:500;color:#eee}
+.ref-asset-info [data-preview-zoom]{width:82px;flex:none;padding:6px;border:1px solid #393939;border-radius:6px;background:#252525;color:#ddd;font-size:12px}
+.ref-asset-info .ref-asset-lightbox-close{top:10px;right:12px}
+.ref-asset-info .ref-asset-lightbox-stage{inset:52px 12px 12px}
+.ref-asset-info .ref-asset-lightbox-stage img{max-width:none;max-height:none;flex:none}
+.ref-asset-info .ref-asset-lightbox-tools{display:none}

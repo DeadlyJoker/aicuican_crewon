@@ -1,0 +1,10 @@
+- insert:
+    - id: agent-teams
+      name: '@nanmicoder/dsh-agent-teams'
+      config:
+        stateDir: .agent-teams
+        memberProvider: spawn
+        memberMaxDepth: 0
+        maxMembers: 8
+    - id: expert-team-templates
+      name: '@deepseek-ai/dsh-agent-teams-bundle'

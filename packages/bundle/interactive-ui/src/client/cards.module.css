@@ -1,0 +1,42 @@
+.body { min-width: 0; }
+.form { --card-solid: var(--dsw-static-neutral-bluish-00); margin: 12px 0; border: 1px solid var(--dsw-alias-border-l2); border-radius: 12px; background: linear-gradient(var(--dsw-alias-bg-layer-1), var(--dsw-alias-bg-layer-1)), var(--card-solid); overflow: hidden; color: var(--dsw-alias-label-primary); font-size: 14px; }
+.header { padding: 14px 18px 10px; display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.header h3 { margin: 0; font-size: 14px; font-weight: 500; line-height: 24px; }
+.header p { margin: 4px 0 0; color: var(--dsw-alias-label-secondary); font-size: 13px; line-height: 20px; }
+.status { flex: none; font-size: 12px; line-height: 24px; color: var(--dsw-alias-label-tertiary); white-space: nowrap; }
+.fields { border: 0; margin: 0; padding: 0 18px; display: grid; gap: 0; min-width: 0; }
+.field { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: start; padding: 10px 0; }
+.field > label { flex: 1 0 120px; line-height: 32px; color: var(--dsw-alias-label-secondary); font-size: 14px; overflow-wrap: anywhere; }
+.field label span { color: var(--dsw-alias-label-tertiary); }
+.control { flex: 3 1 240px; min-width: 0; }
+.control textarea, .control select { box-sizing: border-box; width: 100%; min-height: 32px; padding: 5px 10px; font: inherit; line-height: 20px; color: var(--dsw-alias-label-primary); background: color-mix(in srgb, var(--card-solid) 95%, var(--dsw-alias-label-primary)); border: 1px solid transparent; border-radius: 8px; }
+.control textarea { resize: vertical; min-height: 72px; }
+.control :is(input, textarea, select):focus-visible { outline: 2px solid var(--dsw-alias-brand-primary); outline-offset: 2px; }
+.control input[type=checkbox] { width: 16px; height: 16px; margin: 8px 0; accent-color: var(--dsw-alias-brand-primary); }
+.fields:disabled { opacity: .75; }
+.footer { padding: 10px 18px 14px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+.footer p { margin: 0; color: var(--dsw-alias-label-secondary); font-size: 12px; }
+.footer button { flex: none; min-width: 88px; }
+.chart { margin: 12px 0; min-width: 0; overflow: hidden; border-radius: 12px; }
+.chart dsh-genui-card { display: block; min-width: 0; }
+.notice { padding: 20px; font-size: 13px; color: var(--dsw-alias-label-secondary); }
+@media (max-width: 600px) { .header, .footer { padding: 16px; } .fields { padding: 0 16px; } .field { grid-template-columns: 1fr; gap: 4px; } .field > label { flex: 1 0 120px; line-height: 24px; } .status { max-width: 40%; white-space: normal; } }
+
+.textInput { display: flex; box-sizing: border-box; width: 100%; height: 32px; border: 1px solid transparent; border-radius: 8px; background: color-mix(in srgb, var(--card-solid) 95%, var(--dsw-alias-label-primary)); padding: 0 10px; }
+.textInput:focus-within { border-color: var(--dsw-alias-state-business-primary); }
+
+:global(body[data-ds-dark-theme]) .form { --card-solid: var(--dsw-static-neutral-bluish-950); }
+
+.chart { --card-solid: var(--dsw-static-neutral-bluish-00); padding: 12px; background: linear-gradient(var(--dsw-alias-bg-layer-1), var(--dsw-alias-bg-layer-1)), var(--card-solid); color: var(--dsw-alias-label-primary); }
+:global(body[data-ds-dark-theme]) .chart { --card-solid: var(--dsw-static-neutral-bluish-950); }
+.control select option { background: var(--card-solid); color: var(--dsw-alias-label-primary); }
+
+.form, .chart { width: 100%; max-width: 640px; box-sizing: border-box; }
+.footer button { min-height: 32px; padding-block: 5px; font-size: 13px; }
+
+.result .header { align-items: center; padding-bottom: 8px; }
+.results { margin: 0; padding: 0 18px 14px; display: grid; gap: 8px; }
+.resultRow { display: grid; grid-template-columns: minmax(96px, 28%) minmax(0, 1fr); gap: 16px; line-height: 20px; }
+.resultRow dt { color: var(--dsw-alias-label-secondary); overflow-wrap: anywhere; }
+.resultRow dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 420px) { .resultRow { grid-template-columns: 1fr; gap: 2px; } }

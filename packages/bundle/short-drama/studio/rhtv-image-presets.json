@@ -1,0 +1,100 @@
+{
+  "source": "https://rhtv.runninghub.ai/project/canvas/2119975870931091458",
+  "observedAt": "2026-11-10",
+  "filters": [
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-12/1781237104761_yhmiv6gn_%E6%97%A0.png",
+      "name": "无"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170214680_ik7cap21_%E6%9F%AF%E8%BE%BE.png",
+      "name": "柯达"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170229173_iuec2g4n_%E5%AF%8C%E5%A3%AB.png",
+      "name": "富士"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170241612_c2n1g45u_%E4%BC%8A%E5%B0%94%E7%A6%8F.png",
+      "name": "伊尔福"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170263448_efmpocgn_%E7%94%B5%E5%BD%B1%E8%83%B6%E7%89%87.png",
+      "name": "电影胶片"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170277599_2lp6k45h_%E5%AE%9D%E4%B8%BD%E6%9D%A5.png",
+      "name": "宝丽来"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170301381_s5e7fhgt_%E7%94%B5%E5%BD%B1%E5%85%89%E6%95%88.png",
+      "name": "电影光效"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170312676_j79kkv5u_HDR.png",
+      "name": "HDR"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170329279_ayzonqgp_%E6%9F%94%E7%84%A6%E6%95%88%E6%9E%9C.png",
+      "name": "柔焦效果"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170345774_vxust17r_%E8%83%B6%E7%89%87%E9%A2%97%E7%B2%92.png",
+      "name": "胶片颗粒"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170358874_z73n34l8_%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B.png",
+      "name": "赛博朋克"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170376873_wb0ffzcz_%E5%A4%8D%E5%8F%A4%E8%89%B2%E8%B0%83.png",
+      "name": "复古色调"
+    }
+  ],
+  "functions": [
+    {
+      "image": "https://rhtv.runninghub.ai/project/assets/panorama-preset-DzIjB02s.webp",
+      "name": "全景图"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170404226_rvggybff_%E5%A4%9A%E6%9C%BA%E4%BD%8D%E4%B9%9D%E5%AE%AB%E6%A0%BC.png",
+      "name": "多机位九宫格"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170417871_3mjaumog_%E7%94%B5%E5%BD%B1%E7%BA%A7%E5%85%89%E5%BD%B1%E6%A0%A1%E6%AD%A3.png",
+      "name": "电影级光影校正"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-10-22/1792656786584_dwux5g8x_%E5%9B%BE%E7%89%87%20(10).webp",
+      "name": "三视图（正面去头）"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170431832_wunonjyv_3%E8%A7%86%E5%9B%BE.png",
+      "name": "人物三视图"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170440810_d7kove3c_4%E8%A7%86%E5%9B%BE.png",
+      "name": "4视图"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170453195_nqt1cqum_%E4%BA%BA%E7%89%A9%E8%AE%BE%E8%AE%A1%E5%9B%BE.png",
+      "name": "人物设计图"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170470957_o4q40z6v_%E5%9C%BA%E6%99%AF%E8%AE%BE%E8%AE%A1%E5%9B%BE.png",
+      "name": "场景设计图"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170485122_fu1hn64p_%E9%81%93%E5%85%B7%E8%AE%BE%E8%AE%A1%E5%9B%BE.png",
+      "name": "道具设计图"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170503484_dkbq4m8q_3%E7%A7%92%E5%90%8E.png",
+      "name": "3秒后"
+    },
+    {
+      "image": "https://rh-canvas-files.xiaoyaoyou.com/default/2026-06-11/1781170515202_mlyswrc2_5%E7%A7%92%E5%89%8D.png",
+      "name": "5秒前"
+    }
+  ]
+}

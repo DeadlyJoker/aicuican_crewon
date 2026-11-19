@@ -1,0 +1,717 @@
+{
+  "initial": [
+    {
+      "name": "ask_user_question",
+      "description": "Ask the user a concise question when you need confirmation, a choice, or missing information before proceeding. An answer item with empty selected and no custom means the user skipped that question: continue without it, do not ask it again, and do not treat the skip as permission.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "questions": {
+            "type": "array",
+            "description": "Questions to ask the user before continuing.",
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Stable id for this question; echoed in the answer."
+                },
+                "question": {
+                  "type": "string",
+                  "description": "The specific question to ask the user."
+                },
+                "header": {
+                  "type": "string",
+                  "description": "Optional short heading for the question, such as \"Confirm\" or \"Choose Mode\"."
+                },
+                "options": {
+                  "type": "array",
+                  "description": "Optional choices to show the user. If you recommend one, put it first and append \"(Recommended)\" to that label.",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "description": "Short user-facing option label."
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "One sentence explaining the tradeoff or impact."
+                      }
+                    },
+                    "required": [
+                      "label"
+                    ]
+                  }
+                },
+                "multi_select": {
+                  "type": "boolean",
+                  "description": "Whether the user may select more than one option. Defaults to false."
+                }
+              },
+              "required": [
+                "id",
+                "question"
+              ]
+            }
+          }
+        },
+        "required": [
+          "questions"
+        ]
+      }
+    },
+    {
+      "name": "bash",
+      "description": "Execute a bash command (`bash -c`) and return its stdout/stderr. Each call runs in a fresh shell; pass `workdir` instead of using `cd`. Managed `$DSH_*` variables expose current harness environment facts. Long output is truncated to its tail; the full output is saved to a file whose path is reported when available. Provide `description` before `command` in the arguments. Before any delete or move, verify that the resolved absolute target path is the intended one; never run it against a computed path you have not checked. An unset variable expands to an empty string, so guard variables in such paths with `${VAR:?}`. Commands may run under a file sandbox; a blocked file operation is reported as `[sandbox: file access denied under <mode> mode]`, a policy denial: do not retry another way.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Clear, concise description of what this command does in active voice, 5-10 words (shown in the UI). Examples: \"ls\" → \"List files in current directory\"; \"git status\" → \"Show working tree status\"; \"npm install\" → \"Install package dependencies\"."
+          },
+          "command": {
+            "type": "string",
+            "description": "The bash command to execute."
+          },
+          "timeoutMs": {
+            "type": "number",
+            "description": "Timeout in milliseconds. The executor applies its configured default and cap; on expiry the command moves to the background as a job instead of being killed."
+          },
+          "workdir": {
+            "type": "string",
+            "description": "Working directory for this command. Defaults to the session workspace; a relative path is resolved against it."
+          },
+          "run_in_background": {
+            "type": "boolean",
+            "description": "Run in the background and return a job id immediately (collect with job_output, stop with job_kill). No timeout applies."
+          },
+          "sandbox_permissions": {
+            "type": "string",
+            "description": "The narrowest wider sandbox mode for a one-shot retry of the exact command the sandbox just denied; the retry asks the user for approval.",
+            "enum": [
+              "workspace-write",
+              "danger-full-access"
+            ]
+          },
+          "justification": {
+            "type": "string",
+            "description": "Required with sandbox_permissions: one sentence for the user explaining why this exact command needs the wider access. Use the language of the user’s current request."
+          }
+        },
+        "required": [
+          "description",
+          "command"
+        ]
+      }
+    },
+    {
+      "name": "read",
+      "description": "Read a UTF-8 text file and return line-numbered content.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Path to read, resolved by the filesystem backend."
+          },
+          "offset": {
+            "type": "number",
+            "description": "1-based first line to return. Defaults to 1."
+          },
+          "limit": {
+            "type": "number",
+            "description": "Maximum number of lines to return. Defaults to 2000."
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      }
+    },
+    {
+      "name": "read_image",
+      "description": "Read a PNG/JPEG/WebP/GIF file and return the image itself. Large images are downscaled automatically; do not install image libraries or create thumbnails to inspect an image.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "Path to the image file, resolved by the filesystem backend."
+          }
+        },
+        "required": [
+          "file_path"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_analyze_media",
+      "description": "Inspect archived project audio/video, detect candidate scene cuts, or transcribe using the configured local speech model. Reuse requestId for duplicate requests; the result is retained without changing media, dialogue or the timeline. Cuts and recognized words require review and are not proof of artistic quality. A missing transcription model is reported without downloading anything.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "mediaId": {
+            "type": "string",
+            "description": "Archived media UUID from production, never a path or URL."
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "inspect",
+              "scenes",
+              "transcript"
+            ]
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Stable UUID for this analysis. Reuse it after a lost response; use a new UUID only for an intentional retry."
+          }
+        },
+        "required": [
+          "mediaId",
+          "mode",
+          "requestId"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_compile_shot",
+      "description": "Validate a saved director plan against the actual shot duration, verbatim screenplay dialogue and adopted asset versions. Return the exact H3 prompt and ordered references; no generation is submitted. Fix all returned errors before execution.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "shotId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "shotId"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_export_episode",
+      "description": "Render the saved timeline to a real MP4 and optional subtitle sidecar. Reuse exportId for duplicate requests; each export freezes its input clips and preserves older exports. Never claim success before this returns.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "exportId": {
+            "type": "string",
+            "description": "Stable UUID reused for this same export attempt."
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "exportId"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_generate_media",
+      "description": "Execute the saved creative inputs through the project’s configured image, video or voice API. Use one jobId UUID per attempt and reuse it for retries. A structured video uses its validated director plan and references; legacy video requires an adopted shot image. Human adoption remains separate. Never replace an unresolved attempt with a new request.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "jobId": {
+            "type": "string",
+            "description": "Stable UUID for this attempt, reused if this same operation is repeated."
+          },
+          "targetType": {
+            "type": "string",
+            "enum": [
+              "asset",
+              "shot"
+            ]
+          },
+          "targetId": {
+            "type": "string",
+            "description": "Existing asset or shot UUID from the project catalogue."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "image",
+              "video",
+              "voice"
+            ]
+          },
+          "referenceMediaIds": {
+            "type": "array",
+            "description": "For an asset image edit, archived image UUIDs in this project, including a rejected candidate whose identity must be retained. Uses the configured reference-image model. Omit for other output paths.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "jobId",
+          "targetType",
+          "targetId",
+          "kind"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_observe_media",
+      "description": "Query an existing generation attempt through its original API and archive completed media. This never submits a replacement generation. Retain an unknown attempt for later reconciliation.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "description": "UUID of the existing generation attempt."
+          }
+        },
+        "required": [
+          "jobId"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_read_direction",
+      "description": "Read the current creative brief, directionRevision and next project handoff. The directionRevision is separate from script and production revisions. Read this before saving a creative brief.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "short_drama_read_media_analysis",
+      "description": "Read retained inspections and transcripts for an exact archived media UUID. Does not start a new analysis or change the edit. Running tasks interrupted by a restart remain interrupted until an explicit new attempt.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "mediaId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "mediaId"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_read_production",
+      "description": "Load native skill studio-director for Studio creative work. Read this project’s asset and shot catalogue, frame rate, execution availability and unresolved media attempts. Use its revision before saving changes. Adopted media remains selected until the human reviews another candidate.",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "short_drama_read_script",
+      "description": "Read this project’s synopsis and adopted script. Set latestDraft to read the latest candidate instead. Use the returned revision when saving a candidate.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "latestDraft": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "name": "short_drama_save_asset",
+      "description": "Write a character, scene, prop or voice definition. Supply the complete creative prompt. Omit assetId for a new asset; provide its existing identity to revise it. This does not generate or adopt media.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "assetId": {
+            "type": "string",
+            "description": "Existing asset UUID. Omit when creating an asset."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "character",
+              "scene",
+              "prop",
+              "voice"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "kind",
+          "name",
+          "prompt"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_save_creative",
+      "description": "Save a structured diagnosis, source-linked asset brief, timed shot plan or evidence-based media review. Load the matching native studio skill for the record fields. Exact script, asset, shot and job identities are validated by the Host. Records append without overwriting history.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "diagnosis",
+              "asset",
+              "shot",
+              "review"
+            ]
+          },
+          "document": {
+            "type": "string",
+            "description": "Complete JSON record using the matching studio skill schema and a new id UUID."
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "kind",
+          "document"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_save_direction",
+      "description": "Save the project creative brief and visible assumptions. Call short_drama_read_direction and use its directionRevision, never the script/production revision. Supply the typed brief fields. Characters, background and outline are plain text. Human confirmation stays separate.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer",
+            "description": "directionRevision from short_drama_read_direction."
+          },
+          "brief": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "idea": {
+                "type": "string"
+              },
+              "audience": {
+                "type": "string"
+              },
+              "durationSeconds": {
+                "type": "integer"
+              },
+              "style": {
+                "type": "string"
+              },
+              "background": {
+                "type": "string"
+              },
+              "characters": {
+                "type": "string"
+              },
+              "conflict": {
+                "type": "string"
+              },
+              "outline": {
+                "type": "string"
+              },
+              "storyPositioning": {
+                "type": "string"
+              },
+              "logline": {
+                "type": "string"
+              },
+              "synopsis": {
+                "type": "string"
+              },
+              "characterBios": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "background": {
+                      "type": "string"
+                    },
+                    "motivation": {
+                      "type": "string"
+                    },
+                    "arc": {
+                      "type": "string"
+                    },
+                    "relationships": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "background",
+                    "motivation",
+                    "arc",
+                    "relationships"
+                  ]
+                }
+              },
+              "episodeOutlines": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "number": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "summary": {
+                      "type": "string"
+                    },
+                    "conflict": {
+                      "type": "string"
+                    },
+                    "turningPoint": {
+                      "type": "string"
+                    },
+                    "ending": {
+                      "type": "string"
+                    },
+                    "durationSeconds": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "number",
+                    "title",
+                    "summary",
+                    "conflict",
+                    "turningPoint",
+                    "ending",
+                    "durationSeconds"
+                  ]
+                }
+              },
+              "constraints": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "assumptions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "idea",
+              "audience",
+              "durationSeconds",
+              "style",
+              "background",
+              "characters",
+              "conflict",
+              "outline",
+              "storyPositioning",
+              "logline",
+              "synopsis",
+              "characterBios",
+              "episodeOutlines",
+              "constraints",
+              "assumptions"
+            ]
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "brief"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_save_edit",
+      "description": "Save a multitrack edit using archived project media. Read production first. document is JSON {version:1,tracks:[{id,kind,name,muted,clips}]}. Track kind is video, audio or subtitle; track order is bottom to top. Every clip has id UUID, startFrame (timeline position) and frames. Video/audio clips also have mediaId, sourceStartFrame and volume (0–2). Video clips require opacity (0–1) and transform {x,y,width,height}, where {0,0,1,1} fills the frame. Subtitle clips have text. Clips within a track cannot overlap. Preserve unmodified tracks, original media and existing history. Transcription is a candidate; only add subtitles after the user confirms the edited words and timing.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "document": {
+            "type": "string",
+            "description": "Complete multitrack edit JSON, using immutable media UUIDs and distinct track/clip UUIDs."
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "document"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_save_script",
+      "description": "Save a new script candidate for this project. Use the revision returned by short_drama_read_script. The human can review and adopt the draft in the workbench.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "script": {
+            "type": "string",
+            "description": "Complete candidate script to save."
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "script"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_save_shot",
+      "description": "Write a storyboard shot from the adopted script. Supply its scene, visual prompt, exact dialogue, frame count and reusable asset UUIDs. Omit shotId for a new shot. Saving records the current script and asset versions for review.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "shotId": {
+            "type": "string",
+            "description": "Existing shot UUID. Omit when creating a shot."
+          },
+          "scene": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "dialogue": {
+            "type": "string"
+          },
+          "frames": {
+            "type": "integer",
+            "description": "Shot length in frames at the project frame rate."
+          },
+          "assetIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "scene",
+          "title",
+          "prompt",
+          "dialogue",
+          "frames",
+          "assetIds"
+        ]
+      }
+    },
+    {
+      "name": "short_drama_save_timeline",
+      "description": "Save frame-accurate clips in array playback order using only adopted project media. startFrame is a source-media trim offset, not a timeline position; use 0 for each untrimmed source. Does not generate or adopt anything. Read production first and retain source media identities.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "clips": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "shotId": {
+                  "type": "string"
+                },
+                "videoId": {
+                  "type": "string"
+                },
+                "voiceId": {
+                  "type": "string",
+                  "description": "Adopted voice UUID. Omit to retain native video audio."
+                },
+                "startFrame": {
+                  "type": "integer",
+                  "description": "Zero-based source-media frame offset. Independent for each clip, not cumulative timeline time."
+                },
+                "frames": {
+                  "type": "integer",
+                  "description": "Number of source frames to include from startFrame."
+                },
+                "subtitle": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "shotId",
+                "videoId",
+                "startFrame",
+                "frames",
+                "subtitle"
+              ]
+            }
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "clips"
+        ]
+      }
+    },
+    {
+      "name": "skill",
+      "description": "Load the full instructions for a skill. Call it before acting on a task that names or clearly matches a skill in the session skill catalog.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The exact skill name from the available skills list."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    {
+      "name": "working_directory",
+      "description": "Read the current working directory, or change it with cd. Relative paths use the current directory. Existing shells and running processes keep their own directories.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "cd": {
+            "type": "string",
+            "description": "Existing directory to enter. Omit to read the current directory."
+          }
+        }
+      }
+    }
+  ],
+  "changes": []
+}

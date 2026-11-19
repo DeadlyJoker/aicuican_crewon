@@ -1,0 +1,28 @@
+/* Screenplay grouping and review notices follow the shared prototype theme. */
+.script-tree-group { margin-bottom:8px; }
+.script-tree-scene { font-size:12px; color:var(--dsw-alias-label-secondary); }
+.script-tree-shot { padding-left:26px; gap:8px; }
+.script-tree-shot > span:first-child { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.script-review-dot { width:6px; height:6px; border-radius:50%; flex:none; background:var(--dsw-alias-state-warn-label); }
+.script-review-notice { padding:14px; margin-bottom:20px; border-radius:var(--dsw-radius-md,12px); background:var(--dsw-alias-state-warn-tertiary); color:var(--text); }
+.script-review-notice strong { font-size:13px; line-height:21px; font-weight:500; }
+.script-review-notice p { font-size:12px; line-height:20px; margin-top:4px; color:var(--dsw-alias-label-secondary); }
+.script-review-notice > div { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.script-review-notice .button { height:36px; min-height:36px; }
+.script-export-notice { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:20px; padding:12px 14px; background:var(--dsw-alias-state-warn-tertiary); border-radius:var(--dsw-radius-md,12px); font-size:13px; line-height:21px; }
+.script-pending-list { display:grid; gap:12px; }
+.script-pending-list article { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:14px; border:0.5px solid var(--line); border-radius:var(--dsw-radius-md,12px); }
+.script-pending-list h3 { font-size:14px; line-height:22px; font-weight:500; }
+.script-pending-list p { margin-top:4px; font-size:12px; line-height:20px; color:var(--dsw-alias-label-secondary); }
+.script-pending-list article > div:last-child { display:flex; gap:8px; flex:none; }
+.script-review-empty { padding:32px 12px; text-align:center; font-size:14px; color:var(--dsw-alias-label-secondary); }
+.scene-tabs { min-width:0; overflow:auto; scrollbar-width:none; }
+.scene-tabs button { flex:none; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+@media(max-width:720px) { .script-pending-list article { align-items:flex-start; flex-direction:column; } }
+.pending-media { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:12px; background:var(--dsw-alias-bg-module-platform); color:var(--dsw-alias-label-secondary); font-size:13px; line-height:22px; }
+.pending-media > svg { width:28px; height:28px; }
+.node .pending-media { min-height:160px; }
+.inspector-preview.pending-media { min-height:150px; }
+.list-type-icon.pending-media svg { margin:0; }
+.pending-clip { background:var(--dsw-alias-bg-module-platform); border-style:dashed; }
+.project-nav .tree-item > span { min-width:0; overflow:hidden; text-overflow:ellipsis; }

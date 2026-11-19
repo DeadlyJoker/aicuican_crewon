@@ -1,0 +1,33 @@
+diff --git a/lib/index.js b/lib/index.js
+index 04bd541695d3e5aa92ee65a504510e6b2082ed96..0ef8daadb0e34b77773a27fee576c70aca31c2ad 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -73,7 +73,7 @@ export const name = 'dsh-plugin-wallpaper-engine-media-bridge';
+  * 子包行走 patch 行加载时，Loader 靠这两句保证「服务就绪才激活」，`ctx.webServer` /
+  * `ctx.wallpaperEngineHost` 才读得到。
+  */
+-export const inject = ['webServer', 'wallpaperEngineHost'];
++export const inject = ['webServer', 'wallpaperEngineHost', 'connection'];
+ 
+ /** 独立 plugin 入口：宿主按 patch 行加载本子包时走这里，转调本模块的实现（不经门面）。 */
+ export function apply(ctx, config) {
+@@ -108,7 +108,18 @@ export function applyImpl(root, _rawConfig, c) {
+   // 两条装载路径都能这么读：① 子包行自己声明了 `inject = ['webServer', 'wallpaperEngineHost']`；
+   // ② 门面路径的 `root` 就是门面的 ctx，而门面同样声明了 `inject = ['webServer']`（主行
+   // `lib/index.js` 的 `inject` 声明）。
+-  const webServer = keys.tolerantWebServer(root && root.webServer);
++  const guardedServer = new Proxy(root.webServer, {
++    get(target, key) {
++      if (key === 'register') return (route) => target.register({ ...route, handler(req, res) {
++        const rejection = root.connection.requestRejection(req);
++        if (rejection) { res.writeHead(rejection); res.end(); return; }
++        return route.handler(req, res);
++      } });
++      const value = Reflect.get(target, key, target);
++      return typeof value === 'function' ? value.bind(target) : value;
++    },
++  });
++  const webServer = keys.tolerantWebServer(guardedServer);
+   // 与门面 `apply()` 同款早退：服务在、但 register 面还没挂上（或换成了别的 webServer 实现）。
+   if (!webServer || typeof webServer.register !== 'function') return () => {};
+ 

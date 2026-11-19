@@ -1,0 +1,22 @@
+/* Compact contextual actions retain the existing theme and controls. */
+.studio-body { position:relative; }
+.studio-body > .inspector { position:absolute; right:0; top:0; bottom:0; z-index:25; width:340px; max-width:100%; box-shadow:var(--dsw-elevation-panel); }
+.studio-body:has(> .inspector) .project-nav { display:flex; }
+.selection-toolbar { flex-wrap:nowrap; max-width:calc(100% - 24px); }
+.selection-toolbar .button { height:36px; min-height:36px; padding-inline:10px; flex:none; }
+.node-more { position:relative; }
+.node-more > summary { display:grid; place-items:center; width:36px; height:36px; cursor:pointer; list-style:none; border-radius:var(--dsw-radius-md,12px); }
+.node-more > summary::-webkit-details-marker { display:none; }
+.node-more > summary svg { width:18px; height:18px; }
+.node-more > div { position:absolute; right:0; top:44px; min-width:160px; padding:6px; background:var(--dsw-alias-bg-layer-1); border-radius:var(--dsw-radius-lg,16px); box-shadow:var(--dsw-elevation-prominent); }
+.node-more > div .button { display:flex; width:100%; justify-content:flex-start; }
+.editor-disclosure { border-top:.5px solid var(--dsw-alias-border-l3); padding-block:16px; font-size:13px; line-height:22px; }
+.editor-disclosure > summary { cursor:pointer; color:var(--dsw-alias-label-secondary); }
+.editor-disclosure .candidate-section, .editor-disclosure .context-tools { margin-top:14px; }
+.editor-disclosure .studio-asset-section { border:0; padding:0; }
+.inspector-title { margin-top:0; }
+@media(max-width:720px) { .studio-body > .inspector { width:min(340px,100%); } .studio-body:has(> .inspector) .project-nav { display:none; } .selection-toolbar .button { padding-inline:8px; gap:5px; } }
+
+.studio-body:has(> .inspector) .selection-toolbar { display:none; }
+.toolbar-menu-up .node-more > div { top:auto; bottom:44px; }
+.node-more > summary { font-size:13px; line-height:20px; }

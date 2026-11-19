@@ -1,0 +1,21 @@
+{
+  "version": "0.9.30",
+  "packages": {
+    "player": {
+      "tarball": "https://registry.npmjs.org/@hyperframes/player/-/player-0.9.30.tgz",
+      "integrity": "sha512-BKcUxZZFT7MDWkMvj/+i+rX2QLQqW2kMmZkONOQCaC+4nmz++mjdwIb/qyext6v5JNXPxigj1ODXilzCl87HxQ==",
+      "entry": "hyperframes-player.global.js"
+    },
+    "core": {
+      "tarball": "https://registry.npmjs.org/@hyperframes/core/-/core-0.9.30.tgz",
+      "integrity": "sha512-4U24NEPkOrtYvGnTHOxizP8Deyt4s3Y0m7cOLNyxHud7dQ811I3kcKp8ozNepKLUzl1lSotxXdVVUB5yVeAJVA==",
+      "entry": "hyperframe.runtime.iife.js"
+    }
+  },
+  "artifacts": {
+    "hyperframes-player.global.js": "d6173676e99ffdd53d1551a7a65fe1a743438b257dbd0bfb05481ef0227f58f5",
+    "hyperframe.runtime.iife.js": "4219dc246b9277eea209b849aff15c3fd5ca7e104c7e61f8a7ffb553bde31c8a",
+    "player-LICENSE": "4259155fb06f127687ee7b0a8a3682d45132db0f2da26cbc0b7a2d1e796436b8",
+    "core-LICENSE": "4259155fb06f127687ee7b0a8a3682d45132db0f2da26cbc0b7a2d1e796436b8"
+  }
+}

@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/skill-explorer/README.md
+/:
+  en: 33082d3e671640cd
+  zh: 3a6dce5d530577d5
+/deepseek-ai-dsh-skill-explorer-bundle:
+  en: 565aab235c8a48be
+  zh: 0ef67842a3294808
+/deepseek-ai-dsh-skill-explorer-bundle/summary:
+  en: 9dfaf62389f479fa
+  zh: 3b61cea1266872b3
+/deepseek-ai-dsh-skill-explorer-bundle/table-of-contents:
+  en: 23386452a66b2fbd
+  zh: 55b2121ae6059425
+/deepseek-ai-dsh-skill-explorer-bundle/use-this-package:
+  en: 13836e79ae0e8360
+  zh: 86926056809b9cd9
+/deepseek-ai-dsh-skill-explorer-bundle/use-this-package/skills:
+  en: 9f1af729eb91e273
+  zh: 95c95043f7a498fa
+/deepseek-ai-dsh-skill-explorer-bundle/use-this-package/service-connections:
+  en: 73359c4d7e5dc145
+  zh: 9f86363dd09795cf
+/deepseek-ai-dsh-skill-explorer-bundle/use-this-package/local-tools:
+  en: 11235c2aaa591fd5
+  zh: f9cdb244d750acef
+/deepseek-ai-dsh-skill-explorer-bundle/use-this-package/agent-permissions:
+  en: e5da76c1cfd43fe3
+  zh: a5872954411e6a0c
+/deepseek-ai-dsh-skill-explorer-bundle/use-this-package/configuration:
+  en: 1d15aada37819116
+  zh: c4e81b330ab6d01c
+/deepseek-ai-dsh-skill-explorer-bundle/understand-the-implementation:
+  en: 9e6142a4ae948348
+  zh: cf99ab454cb4259d
+/deepseek-ai-dsh-skill-explorer-bundle/further-exploration:
+  en: 6bf8ce7eb0172b0e
+  zh: efda509bc5ff22cb
+/deepseek-ai-dsh-skill-explorer-bundle/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/deepseek-ai-dsh-skill-explorer-bundle/model-experience/toolbox-capabilities:
+  en: f1726f0456f4060a
+  zh: d44b1c451430cd4c
+/deepseek-ai-dsh-skill-explorer-bundle/model-experience/toolbox-capabilities/what-the-model-sees:
+  en: a32257d700fe6a3d
+  zh: 5cb1c22fe64662ab
+/deepseek-ai-dsh-skill-explorer-bundle/model-experience/toolbox-capabilities/token-effect:
+  en: 28974e15cd200e67
+  zh: d1ecf45a5cd0747a
+/deepseek-ai-dsh-skill-explorer-bundle/model-experience/toolbox-capabilities/kv-cache-effect:
+  en: d745e1cda03b4ba7
+  zh: ee1e9f5ac3bb30a1
+/deepseek-ai-dsh-skill-explorer-bundle/known-limitations-and-deferred-work:
+  en: 4df535761bcd574a
+  zh: f09b50da9120d688
+/deepseek-ai-dsh-skill-explorer-bundle/known-limitations-and-deferred-work/dev-note:
+  en: b98ab0975c8f09f4
+  zh: 5d776fd835040bd7

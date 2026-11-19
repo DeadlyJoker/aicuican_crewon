@@ -1,0 +1,1871 @@
+{
+  "source": "https://rhtv.runninghub.ai/project/canvas/2119975870931091458",
+  "observedAt": "2026-11-10",
+  "tabs": [
+    {
+      "groups": [
+        {
+          "id": "role-design-section-basic:gender",
+          "label": "性别表达",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/gender_expression/male.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "男性"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/gender_expression/female.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "女性"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/gender_expression/neutral.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "中性"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/gender_expression/non_binary.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "非二元"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-basic:age",
+          "label": "年龄段",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/age_group/children_6_12.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "儿童(6-12)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/age_group/teenagers_13_17.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "少年(13-17)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/age_group/youth_18_25.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "青年(18-25)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/age_group/young_adults_26_35.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "轻熟(26-35)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/age_group/middle_aged_adults_36_50.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "中年(36-50)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/age_group/older_adults_51_65.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "熟龄(51-65)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/age_group/elderly_65.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "老年(65+)"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-basic:ethnicity",
+          "label": "种族 / 族裔",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/EastAsia.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "东亚"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/SoutheastAsia.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "东南亚"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/SouthAsia.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "南亚"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/CentralAsia.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "中亚"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/WestAsia_NorthAfrica.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "西亚/北非"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/Sub-SaharanAfrica.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "撒哈拉以南非洲"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/Europe.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "欧洲"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/NativeAmericans.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "北美原住民"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/LatinAmerica.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "拉丁美洲"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/Oceania.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "大洋洲"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/Race/Mixedrace.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "混血"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-basic:era",
+          "label": "时代背景",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/Pre-Qin-Period.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "先秦"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/The-Middle-Ages.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "中世纪"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/Modern-times.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "近现代"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/Modern.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "现代"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/Near-future-Cyber.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "近未来赛博"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/Future-Science-Fiction.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "远未来科幻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/Apocalyptic-wasteland.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "末日废土"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/historical-context/the-Age-of-Fantasy.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "架空时代"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-basic:occupation",
+          "label": "职业身份",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/student.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "学生"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/teacher.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "教师"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/white_collar_worker.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "白领"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/entrepreneur_or_boss.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "企业家/老板"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/doctor.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "医生"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/nurse.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "护士"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/chef.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "厨师"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/waiter_waitress_or_shop_assistant.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "服务员/店员"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/painter_or_artist.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "画家/艺术家"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/musician.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "音乐家"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/dancer.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "舞者"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/idol_or_star.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "偶像明星"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/athlete.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "运动员"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/police_officer.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "警察"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/soldier.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "军人"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/detective.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "侦探"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/wanderer_or_beggar.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "流浪者/乞丐"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/pirate.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "海盗"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/Knight-errant.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "侠客"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/ninja_or_assassin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "忍者/刺客"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/magician.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "魔法师"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/elf_or_fairy.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "精灵/妖精"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/cyber_hacker.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "赛博黑客"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/basic_attributes/occupations/abstract/robot_or_bionic_person.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "机器人/仿生人"
+            }
+          ]
+        }
+      ],
+      "name": "基础"
+    },
+    {
+      "groups": [
+        {
+          "id": "role-design-section-outfit:dressStyle",
+          "label": "服装风格",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/everyday_casual_wear.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "日常休闲"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/pajamas_and_homewear.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "睡衣/居家"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/sporty_casual_wear.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "运动休闲"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/swimwear_and_beachwear.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "泳装/沙滩"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/collegiate_style.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "学院风"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/business_formal_wear.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "商务正装"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/cool_gentleman_style.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "雅痞绅士"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/formal_attire.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "礼服盛装"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/work_uniform.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "工装/劳工"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/military_uniform.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "军装/军事"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/streetwear.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "街头潮牌"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/punk_rock.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "朋克/摇滚"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/dark_gothic.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "哥特暗黑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/lolita_fashion.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "洛丽塔"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/cottagecore_style.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "田园/森女"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/traditional_hanfu.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "古风汉服"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/japanese_kimono.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "日式和服"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/western_cowboy.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "西部牛仔"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/armored_warrior.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "铠甲战士"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/magical_robes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "魔法长袍"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/cyber_technology.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "赛博机能"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/clothing_style/futuristic_science_fiction.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "未来科幻"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-outfit:top",
+          "label": "上装",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/strapless_top.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "抹胸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/camisole.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "吊带"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/short_sleeved_top.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "无袖"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/vest_with_shirt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "背心/马甲"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/sheer_clothing.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "露脐装"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/t_shirt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "T恤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/shirt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "衬衫"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/vest.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "卫衣"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/knitted_sweater.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "针织衫"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/sweater.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "毛衣"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/jacket.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "夹克"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/leather_jacket.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "皮衣"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/suit_jacket.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "西装外套"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/trench_coat.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "风衣"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/tops/overcoat_or_shawl.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "斗篷/披肩"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-outfit:bottom",
+          "label": "下装",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/shorts.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "短裤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/jeans.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "牛仔裤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/Dress_pants.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "西裤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/work_pants.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "工装裤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/pinafore_skirt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "背带裤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/wide_leg_pants.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "阔腿裤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/harem_pants.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "哈伦裤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/leggings.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "打底裤/leggings"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/short_skirt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "短裙"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/separate_skirt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "半身裙"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/long_dress.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "长裙"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bottoms/tutu_skirt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "蓬蓬裙"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-outfit:color",
+          "label": "配色",
+          "options": [
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%22160%22%20height%3D%22120%22%20fill%3D%22%23FAFAF7%22%2F%3E%3C%2Fsvg%3E",
+              "name": "单色全白"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23171717%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23606060%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23A6A6A6%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23F3F3F0%22%2F%3E%3C%2Fsvg%3E",
+              "name": "黑白灰"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%22160%22%20height%3D%22120%22%20fill%3D%22%23171717%22%2F%3E%3C%2Fsvg%3E",
+              "name": "单色全黑"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23685042%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%238C6D50%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23B79976%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23D6C3A5%22%2F%3E%3C%2Fsvg%3E",
+              "name": "大地色"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23343C2E%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23596247%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23858967%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23B0A582%22%2F%3E%3C%2Fsvg%3E",
+              "name": "迷彩/军绿"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%239E4136%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23D2643F%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23EDA45D%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23F4D28A%22%2F%3E%3C%2Fsvg%3E",
+              "name": "暖色调"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23344D83%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%235689B2%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%2381B8C4%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23A7ACD6%22%2F%3E%3C%2Fsvg%3E",
+              "name": "冷色调"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23F4BFCB%22%2F%3E%3Crect%20x%3D%2232%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23F5DBA7%22%2F%3E%3Crect%20x%3D%2264%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23B8DCD0%22%2F%3E%3Crect%20x%3D%2296%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23BBD4EF%22%2F%3E%3Crect%20x%3D%22128%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23D5C4E9%22%2F%3E%3C%2Fsvg%3E",
+              "name": "马卡龙色"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23A98F8F%22%2F%3E%3Crect%20x%3D%2232%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23A7A494%22%2F%3E%3Crect%20x%3D%2264%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%238EAAA3%22%2F%3E%3Crect%20x%3D%2296%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%239AA5B4%22%2F%3E%3Crect%20x%3D%22128%22%20width%3D%2232%22%20height%3D%22120%22%20fill%3D%22%23B8A7B6%22%2F%3E%3C%2Fsvg%3E",
+              "name": "莫兰迪低饱和"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23E83A44%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23FFB923%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23287BE0%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23AC3ACB%22%2F%3E%3C%2Fsvg%3E",
+              "name": "明亮高饱和"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23FF3FB4%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%239C5CFF%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%2331D9F5%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23CCFF00%22%2F%3E%3C%2Fsvg%3E",
+              "name": "霓虹色"
+            },
+            {
+              "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22120%22%20viewBox%3D%220%200%20160%20120%22%20shape-rendering%3D%22crispEdges%22%3E%3Crect%20x%3D%220%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23E84A3F%22%2F%3E%3Crect%20x%3D%2240%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%232C70AF%22%2F%3E%3Crect%20x%3D%2280%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%23F2BB37%22%2F%3E%3Crect%20x%3D%22120%22%20width%3D%2240%22%20height%3D%22120%22%20fill%3D%22%238050AB%22%2F%3E%3C%2Fsvg%3E",
+              "name": "撞色对比"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-outfit:accessory",
+          "label": "配饰（多选）",
+          "options": [
+            {
+              "name": "无"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/hat.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "帽子"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/hair_ornament.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "发饰"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/glasses.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "眼镜"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/sunglasses.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "墨镜"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/mask.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "面具"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/earrings.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "耳饰"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/choker.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "choker"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/necklace.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "项链"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/scarf.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "围巾"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/gloves.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "手套"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/watch.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "手表"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/bracelet.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "手环/手链"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/ring.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "戒指"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/belt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "腰带"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/bag.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "包袋"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/weapon.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "武器"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/accessories/wings_or_tail.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "翅膀/尾巴"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-outfit:makeup",
+          "label": "妆容",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/bare_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "无妆素颜"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/no_makeup_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "伪素颜"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/sheer_dewy_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "清透水光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/cool_matte_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "冷感哑光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/japanese_soft_girl_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "日系软妹"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/bright_red_lipstick.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "明艳红唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/western_dramatic_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "欧美浓妆"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/bare_face_variant_2.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "烟熏妆"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/classical_floral_forehead_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "古典花钿"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/sickly_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "病弱妆"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/battle_damaged_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "战损妆"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/makeup/cyber_neon_makeup.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "赛博霓虹妆"
+            }
+          ]
+        }
+      ],
+      "name": "妆容与穿搭"
+    },
+    {
+      "groups": [
+        {
+          "id": "role-design-section-face:faceShape",
+          "label": "脸型",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/round_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "圆脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/soft_square_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "方圆脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/square_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "方脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/oval_face.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "鹅蛋脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/long_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "长脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/heart_shaped_face_variant_2.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "瓜子脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/heart_shaped_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "心形脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/pear_shaped_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "梨形脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/diamond_shaped_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "菱形脸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/face_shape/diamond_shaped_face_variant_2.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "钻石脸"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-face:eyeShape",
+          "label": "眼型",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/round_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "圆眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/apricot_eyes.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "杏眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/large_bell_shaped_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "铜铃眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/peach_blossom_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "桃花眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/willow_leaf_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "柳叶眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/slender_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "细长眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/phoenix_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "丹凤眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/sleepy_phoenix_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "睡凤眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/fox_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "狐狸眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/upturned_cat_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "上扬猫眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/downturned_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "下垂眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eye_shape/deep_set_eyes.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "深邃眼窝"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-face:browShape",
+          "label": "眉型",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/naturalflatbrow.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然平眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/straightbrow.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "一字眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/distantmountainbrow.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "远山眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/crescentbrow.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "新月眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/willowcurvedbrow.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "柳叶弯眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/swordbrow.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "剑眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/europeanarchedbrow.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "欧式挑眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/thickarchedbrow.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "粗挑眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/wildbrow.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "野生眉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/eyebrow-shape/slitbrow.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "断眉/缺眉"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-face:noseShape",
+          "label": "鼻型",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/delicate_small_upturned_nose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "精致小翘鼻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/soft_round_nose_tip.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "柔和圆鼻头"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/bulbous_nose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "蒜头鼻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/natural_high_nose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然直鼻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/strong_straight_nose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "英气直鼻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/narrow_straight_high_nose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "窄直高鼻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/sculpted_high_nose_bridge.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "立体高鼻梁"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/nose_shape/aquiline_nose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "鹰钩鼻"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-face:lipShape",
+          "label": "唇型",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/thin_lips.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "薄唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/natural_lips.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/full_plump_lips.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "饱满唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/thick_lips.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "厚唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/pouty_lips.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "嘟嘟唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/m_shaped_lips.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "M唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/smiling_lips.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "微笑唇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lip_shape/downturned_lips.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "下垂唇"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-face:skinTone",
+          "label": "肤色",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/pale_skin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "苍白肤色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/cool_fair_skin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "冷白皮"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/warm_fair_skin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "暖白皮"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/natural_skin_tone.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/wheat_toned_skin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "小麦色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/bronze_skin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "古铜色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/dark_skin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "深肤色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/skin_tone/freckled_skin.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "雀斑肌肤"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-face:temperament",
+          "label": "面部气质",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/cute_baby_face.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "可爱幼态"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/youthful_aesthetic.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "少年感"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/sweet_cheerful_aesthetic.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "甜美元气"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/soft_and_natural.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "柔和自然"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/scholarly_elegance.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "书卷文雅"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/classical_elegance.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "古典温婉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/mature_gentleman.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "成熟绅士"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/refined_bone_structure.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "高级骨相"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/rich_sculpted_features.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "浓颜立体"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/cold_and_aloof.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "清冷疏离"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/world_weary_refined_aesthetic.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "厌世高级"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/ethereal_and_otherworldly.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "仙气出尘"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/spirited_and_sharp.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "英气利落"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/androgynous_and_dashing.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "中性飒爽"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/wild_and_rugged.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "野性粗犷"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/facial_aesthetic/seductive_and_charming.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "妖媚魅惑"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-face:marks",
+          "label": "标志特征（多选）",
+          "options": [
+            {
+              "name": "无"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/widow_s_peak.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "美人尖"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/glabellar_floral_ornament.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "眉间花钿"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/tear_mole.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "泪痣"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/freckles.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "雀斑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/under_eye_bags.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "卧蚕"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/dimples.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "酒窝"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/smile_dimples.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "梨涡"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/prominent_canine_teeth.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "虎牙"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/beard.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "胡须"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/scar.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "疤痕"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/distinctive_features/facial_tattoo.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "面部纹身"
+            }
+          ]
+        }
+      ],
+      "name": "五官"
+    },
+    {
+      "groups": [
+        {
+          "id": "role-design-section-body:bodyType",
+          "label": "体型",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/petite.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "娇小玲珑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/small_boned_and_thin.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "小骨架纤薄"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/slender.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "纤细苗条"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/well_proportioned.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "匀称标准"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/tall_and_slender.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "修长挺拔"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/curvy_figure.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "丰满曲线"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/plump_and_full.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "微胖丰腴"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/athletic_and_fit.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "运动健美"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/muscular_build.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "肌肉壮汉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/body_type/big_and_burly.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "壮硕魁梧"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-body:height",
+          "label": "身高感",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/height_impression/petite.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "娇小"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/height_impression/medium_height.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "中等"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/height_impression/tall_and_slender.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "高挑"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-body:pose",
+          "label": "姿态",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/natural_standing_pose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然站立"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/hands_on_hips.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "双手叉腰"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/leaning_while_standing.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "倚靠墙"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/sideways_looking_back.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "侧身回眸"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/sitting_pose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "坐姿"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/crouching_or_kneeling.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "蹲下/跪姿"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/lying_down.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "躺卧"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/walking_pose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "行走动态"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/running.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "奔跑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/jumping_in_the_air.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "跳跃腾空"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/static_pose.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "战斗姿态"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/body_type/pose/hugging_interaction.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "拥抱/互动"
+            }
+          ]
+        }
+      ],
+      "name": "体型"
+    },
+    {
+      "groups": [
+        {
+          "id": "role-design-section-hair:hairLength",
+          "label": "长度",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/bald.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "光头"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/very_short_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "超短"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/short_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "短发"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/ear_length_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "齐耳"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/shoulder_length_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "齐肩"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/medium_long_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "中长发"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/long_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "长发"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_length/extra_long_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "超长发"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-hair:hairStyle",
+          "label": "款式",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/balding_crown.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "秃头/地中海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/crew_cut.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "寸头"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/textured_fringe.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "微分碎盖"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/mullet_variant_2.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "狼尾"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/mullet.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "鲻鱼头"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/mohawk.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "莫西干"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/straight_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "直发"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/princess_cut.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "公主切"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/pear_blossom_hairstyle.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "梨花头"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/large_waves.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "大波浪"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/egg_roll_curls.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "蛋卷头"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/tight_curls.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "小卷"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/ramen_curls.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "泡面卷"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/woolly_curls.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "羊毛卷"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/ponytail.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "马尾"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/twin_ponytails.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "双马尾"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/hair_bun.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "丸子头"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/updo.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "盘发"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/braided_hair.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "编发"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hairstyle/dreadlocks.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "脏辫"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-hair:bangs",
+          "label": "刘海",
+          "options": [
+            {
+              "name": "无刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/baby_hair_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "胎毛刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/short_above_brow_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "眉上短刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/airy_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "空气刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/straight_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "齐刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/thick_straight_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "厚齐刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/french_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "法式刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/curtain_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "八字刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/side_parted_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "侧分刘海"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/bangs/long_face_framing_bangs.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "龙须刘海"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-hair:hairColor",
+          "label": "发色",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/natural_black.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然黑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/dark_brown.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "深棕"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/chestnut_brown.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "栗棕"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/ash_blonde.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "亚麻金"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/blonde.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "金色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/gray.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "灰色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/silver_white.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "银白"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/red.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "红色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/orange.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "橙色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/pink.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "粉色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/purple.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "紫色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/blue.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "蓝色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/green.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "绿色"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/ombre_highlights.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "渐变挑染"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/hair_color/rainbow_colors.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "彩虹色"
+            }
+          ]
+        }
+      ],
+      "name": "发型"
+    },
+    {
+      "groups": [
+        {
+          "id": "role-design-section-style:personality",
+          "label": "核心性格",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/sunny_and_cheerful.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "阳光开朗"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/cute_and_clumsy.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "呆萌可爱"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/gentle_and_healing.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "温柔治愈"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/passionate_and_righteous.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "热血正义"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/valiant_and_spirited.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "英气飒爽"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/calm_and_reserved.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "沉稳内敛"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/cold_and_aloof.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "高冷疏离"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/ethereal_and_cool.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "清冷仙气"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/melancholic_and_artistic.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "忧郁文艺"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/tsundere.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "傲娇"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/dominant_and_forceful.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "霸道强势"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/scheming.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "腹黑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/mature_and_charming.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "成熟魅惑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/lazy_and_seductive.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "慵懒性感"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/core_personality/devilishly_charming_and_wild.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "邪魅狂狷"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:atmosphere",
+          "label": "整体氛围",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/warm_and_neighborly.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "邻家亲切"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/healing_mood.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "治愈系"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/youthful_campus_mood.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "校园青春"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/workplace_elite.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "职场精英"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/royal_and_noble.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "皇室贵气"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/chivalrous.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "江湖侠气"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/epic_and_grand.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "史诗宏大"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/dreamy_fairy_tale.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "童话梦幻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/edgy_cyber_mood.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "赛博边缘"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/desolate_post_apocalyptic_mood.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "末世荒凉"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/dark_and_mysterious.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "暗黑神秘"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/overall_mood/horrifying.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "恐怖惊悚"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:renderMedium",
+          "label": "渲染媒介",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/photorealistic.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "真人写实"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/3d_rendering_pixar_style.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "3D渲染(皮克斯)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/clay_animation.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "黏土动画"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/2d_chinese_animation.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "2D动漫(国风)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/2d_japanese_anime.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "2D动漫(日系)"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/american_cartoon.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "美式卡通"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/cel_shading.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "赛璐璐"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/black_and_white_manga.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "黑白漫画"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/pixel_art.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "像素风"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/painterly_illustration.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "厚涂插画"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/hand_painted_watercolor.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "水彩手绘"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/oil_painting_texture.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "油画质感"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/chinese_ink_wash_style.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "水墨国风"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/rendering_medium/ukiyo_e.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "浮世绘"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:detail",
+          "label": "精细度",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/detail_level/sketch_and_quick_paint.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "草稿速涂"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/detail_level/standard_finish.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "标准完成"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/detail_level/finely_rendered.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "精细刻画"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/detail_level/ultra_detailed_8k.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "超精细8K"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:shotSize",
+          "label": "景别",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/shot_type/close_up_headshot.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "特写大头像"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/shot_type/id_photo_portrait.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "证件头像"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/shot_type/chest_up_portrait.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "胸像"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/shot_type/bust_shot.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "半身像"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/shot_type/three_quarter_body_shot.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "七分身"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/shot_type/full_body_shot.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "全身像"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/shot_type/long_shot.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "远景"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:angle",
+          "label": "角度",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/top_down_view.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "俯拍/上帝视角"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/slight_high_angle.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "微俯拍"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/eye_level_front_view.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "正面平视"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/slight_low_angle.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "微仰拍"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/low_angle.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "大仰拍"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/slight_15_degree_turn.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "轻转15°"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/90_degree_side_view.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "侧面90°"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera_angle/looking_back.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "回眸"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:light",
+          "label": "光线",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/natural_frontal_light.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然顺光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/window_sidelight.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "窗边侧光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/overcast_diffused_light.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "阴天散射光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/golden_hour.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "黄金时刻"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/tyndall_effect_light.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "丁达尔光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/cool_moonlight.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "冷调月光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/off_white_soft_light.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "米白柔光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/studio_hard_light.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "影棚硬光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/backlit_rim_light.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "逆光轮廓"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/stage_spotlight.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "舞台聚光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/warm_candlelight.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "烛光暖光"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/lighting/mixed_neon_light.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "霓虹混光"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:background",
+          "label": "背景",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/transparent_background.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "透明底"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/pure_white_background.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "纯白底"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/light_gray_studio_background.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "浅灰影棚"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/solid_color_background.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "纯色背景"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/gradient_background.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "渐变背景"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/abstract_texture.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "抽象纹理"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/blurred_real_scene.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "实景虚化"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/indoor_environment.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "室内场景"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/city_street_view.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "城市街景"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/background/natural_landscape.png?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自然风景"
+            }
+          ]
+        },
+        {
+          "id": "role-design-section-style:expression",
+          "label": "表情",
+          "options": [
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/calm_gaze.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "平静正视"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/quiet_blank_stare.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "恬静放空"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/pensive.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "若有所思"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/calm_thinking.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "沉静思考"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/confident_and_restrained.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自信克制"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/faint_smile.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "轻微浅笑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/confident_smile.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "自信微笑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/laughing.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "开怀大笑"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/playful_wink.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "调皮眨眼"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/shy.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "害羞"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/triumphant.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "得意"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/surprised.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "惊讶"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/sad.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "悲伤"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/crying.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "哭泣"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/fearful.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "恐惧"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/angry.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "愤怒"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/indifferent.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "冷漠"
+            },
+            {
+              "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/expression/contempt.jpg?imageMogr2/thumbnail/320x/quality/70/format/webp/strip/1",
+              "name": "鄙视"
+            }
+          ]
+        }
+      ],
+      "name": "风格"
+    }
+  ]
+}

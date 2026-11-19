@@ -1,0 +1,24 @@
+[
+  {
+    "type": "command/run",
+    "seq": 4,
+    "time": 1793878326766,
+    "data": {
+      "commandId": "cmd-48ff10eb-1",
+      "name": "team-workflow-run",
+      "args": " {\"id\":\"5bca2e15-139c-48d7-a76f-695286d9ede2\",\"input\":\"请核对 17 + 25 = 42。\"}",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 10,
+    "time": 1793878328762,
+    "data": {
+      "commandId": "cmd-48ff10eb-1",
+      "kind": "success"
+    }
+  }
+]

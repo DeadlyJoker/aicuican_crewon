@@ -1,0 +1,90 @@
+/* The creation treatment is confined to the resident composer containing Studio's entry header. */
+:global([data-conversation-content]):has(.entry) { background-image: radial-gradient(color-mix(in srgb, var(--dsw-alias-label-primary) 14%, transparent) .65px, transparent .65px); background-size: 18px 18px; }
+:global([data-composer-seat]):has(.entry) { --dsh-composer-card-max-width: 880px; }
+:global([data-composer-seat]):has(.entry) :global([data-composer-brand]),
+:global([data-composer-seat]):has(.entry) :global([data-composer-workspace-options]) { display: none; }
+.hero { position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px; width: 100%; padding-bottom: 0; }
+.hero h1 { margin: 0; font-size: 26px; line-height: 36px; font-weight: 500; }
+.categories { width: 300px; max-width: 100%; font-size: 13px; border-radius: 14px; }
+.categories > span[aria-hidden='true'] { border-radius: 11px; background: linear-gradient(color-mix(in srgb, var(--dsw-alias-label-primary) 28%, var(--dsw-alias-bg-base)), color-mix(in srgb, var(--dsw-alias-label-primary) 18%, var(--dsw-alias-bg-base))); }
+.library { position: absolute; right: 0; top: 4px; color: var(--dsw-alias-label-secondary); }
+:global([data-composer-card]):has(.entry) {
+  --studio-entry-header-height: 44px;
+  --studio-entry-bg: color-mix(in srgb, var(--dsw-specific-input-major) 60%, var(--dsw-alias-bg-base));
+  background: var(--studio-entry-bg);
+  padding-top: 0;
+  gap: 0;
+  border-radius: 20px;
+  box-shadow: none;
+}
+:global([data-composer-card]):has(.simple) { --studio-entry-header-height: 0px; }
+.entry { min-width: 0; }
+.modes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-radius: 20px 20px 0 0; background: color-mix(in srgb, var(--studio-entry-bg) 75%, var(--dsw-alias-bg-base)); }
+.modes button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 0; padding: 0 8px; border: 0; border-radius: 18px 18px 0 0; font: inherit; font-size: 13px; color: var(--dsw-alias-label-secondary); background: transparent; cursor: pointer; }
+.modes button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.modes button svg { flex: none; }
+.modes button.selectedMode { color: var(--dsw-alias-label-primary); background: var(--studio-entry-bg); }
+.modes button:hover { color: var(--dsw-alias-label-primary); }
+.modes button:focus-visible { outline: 2px solid var(--dsw-alias-state-business-primary); outline-offset: -3px; }
+:global([data-composer-card]):has(.entry) :global([data-input-scroll]) { position: relative; min-height: 132px; margin: 14px 14px 0; border: 1px solid color-mix(in srgb, var(--dsw-alias-label-primary) 24%, transparent); border-radius: 14px; }
+:global([data-composer-card]):has(.entry) :global([role='textbox']) { box-sizing: border-box; min-height: 132px; padding: 16px 18px 16px 78px; font-size: var(--dsh-content-font-size, 14px); line-height: calc(24px + var(--dsh-content-font-delta, 0px)); }
+:global([data-composer-card]):has(.entry) :global([data-composer-placeholder]) { display: none; }
+.placeholder { position: absolute; top: calc(var(--studio-entry-header-height) + 31px); left: 93px; right: 32px; pointer-events: none; font-size: var(--dsh-content-font-size, 14px); line-height: calc(24px + var(--dsh-content-font-delta, 0px)); color: var(--dsw-alias-label-secondary); }
+.styleChip { position: absolute; top: calc(var(--studio-entry-header-height) + 26px); left: 93px; display: inline-flex; align-items: center; gap: 8px; padding: 3px 8px; border: 1px solid color-mix(in srgb, var(--dsw-alias-label-primary) 20%, transparent); border-radius: 7px; font-size: 12px; line-height: 20px; z-index: 1; }
+.styleChip button { display: flex; padding: 0; border: 0; background: transparent; color: var(--dsw-alias-label-secondary); cursor: pointer; }
+:global([data-composer-card]):has(.styleChip) :global([role='textbox']) { padding-top: 52px; }
+:global([data-composer-card]):has(.styleChip) .placeholder { top: calc(var(--studio-entry-header-height) + 67px); }
+.upload { position: absolute; z-index: 1; top: calc(var(--studio-entry-header-height) + 31px); left: 30px; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; color: var(--dsw-alias-label-secondary); background: transparent; border: 1px solid color-mix(in srgb, var(--dsw-alias-label-primary) 18%, transparent); border-radius: 10px; cursor: pointer; }
+.upload:hover { color: var(--dsw-alias-label-primary); background: var(--dsw-alias-interactive-bg-hover); }
+.upload:focus-visible { outline: 2px solid var(--dsw-alias-state-business-primary); outline-offset: 2px; }
+:global([data-composer-card]):has(.entry) :global([data-composer-add]) { display: none; }
+:global([data-composer-card]):has(.entry) :global([data-composer-modes]) { display: none; }
+:global([data-composer-card]):has(.entry) :global([data-composer-toolbar]) { padding: 10px 14px; min-height: 34px; }
+.parameters { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; min-width: 0; }
+.option { display: inline-flex; align-items: center; gap: 5px; min-height: 28px; padding: 0; border: 0; font: inherit; font-size: 12px; color: var(--dsw-alias-label-secondary); background: transparent; cursor: pointer; white-space: nowrap; }
+.option:hover, .option[aria-expanded='true'] { color: var(--dsw-alias-label-primary); }
+.option:focus-visible { outline: 2px solid var(--dsw-alias-state-business-primary); outline-offset: 4px; border-radius: 4px; }
+.ratioIcon { display: inline-block; width: 14px; height: 9px; border: 1px solid currentColor; border-radius: 2px; }
+:global([data-composer-card]):has(.entry) :global([data-composer-model]) button { max-width: 148px; font-size: 12px; color: var(--dsw-alias-label-secondary); }
+:global([data-composer-card]):has(.entry) :global([data-composer-submit]) { width: auto; min-width: 86px; height: 34px; transform: none; padding: 0 13px; border-radius: 12px; background: color-mix(in srgb, var(--dsw-alias-label-primary) 12%, var(--studio-entry-bg)); border: 1px solid color-mix(in srgb, var(--dsw-alias-label-primary) 12%, transparent); color: var(--dsw-alias-label-primary); }
+:global([data-composer-card]):has(.entry) :global([data-composer-send-icon]) { display: none; }
+.submitText { font-size: 13px; white-space: nowrap; font-weight: 500; }
+/* With attachment previews present, the native rail owns its space and the add action returns to the footer. */
+:global([data-composer-card]):has(.entry):has(:global([data-composer-attachments] [role='group'])) .upload { top: auto; bottom: 13px; left: 14px; width: 28px; height: 28px; border: 0; }
+:global([data-composer-card]):has(.entry):has(:global([data-composer-attachments] [role='group'])) .parameters { padding-left: 34px; }
+:global([data-composer-card]):has(.entry):has(:global([data-composer-attachments] [role='group'])) :global([role='textbox']) { padding: 16px 18px; }
+:global([data-composer-card]):has(.entry):has(:global([data-composer-attachments] [role='group'])) .styleChip { display: none; }
+@media (max-width: 600px) {
+  .hero h1 { font-size: 23px; }
+  .modes button { flex-direction: column; gap: 4px; min-height: 54px; font-size: 11px; padding: 4px; }
+  :global([data-composer-card]):has(.entry) { --studio-entry-header-height: 54px; }
+  :global([data-composer-card]):has(.simple) { --studio-entry-header-height: 0px; }
+  .parameters { gap: 9px; }
+  :global([data-composer-card]):has(.entry) :global([data-composer-model]) button { max-width: 106px; }
+}
+
+.optionIcon { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; flex: none; }
+.textOption { padding-inline: 10px; }
+.optionMenu :global([role='menuitem']) { min-height: 28px; font-size: 12px; line-height: 20px; }
+.iconMenu :global([role='menuitem']) { padding-left: 17px; }
+
+/* Native model menus are portaled; only the Studio entry uses this compact scale. */
+:global(body):has(.entry) :global([data-composer-model-menu] [role='menuitem']),
+:global(body):has(.entry) :global([data-composer-model-menu] [role='menuitemradio']),
+:global(body):has(.entry) :global([data-composer-model-menu] [data-model-menu-option]) {
+  box-sizing: border-box;
+  min-height: 28px;
+  height: auto;
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 20px;
+}
+:global(body):has(.entry) :global([data-composer-model-menu] [data-model-menu-label]) { font-size: 12px; line-height: 20px; }
+
+.customCount { border-top: 1px solid var(--dsw-alias-border-l1); margin-top: 4px; display: flex; align-items: center; gap: 6px; padding: 4px 6px; }
+.customCount > div { min-width: 0; }
+.customCount input { width: 100%; min-width: 0; font-size: 12px; }
+.customCount button { display: grid; place-items: center; flex: none; width: 24px; height: 28px; border: 0; border-radius: 6px; color: var(--dsw-alias-label-primary); background: transparent; cursor: pointer; }
+.customCount button:disabled { color: var(--dsw-alias-label-secondary); opacity: .4; cursor: default; }
+
+.illustratedMenu :global([role='menuitem']) { padding-left: 0; }

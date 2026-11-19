@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}html,body{margin:0;width:640px;height:360px;overflow:hidden;background:#111;color:#fff;font-family:Arial,sans-serif}
+#composition{position:relative;width:640px;height:360px;overflow:hidden}.scene{position:absolute;inset:0;width:640px;height:360px;object-fit:cover}#second-scene{opacity:.5}#heading{position:absolute;left:32px;top:30px;font-size:28px;font-weight:500}.subtitle{position:absolute;left:24px;right:24px;bottom:22px;padding:12px;background:#111c;border-radius:8px;font-size:19px;text-align:center}
+</style></head><body>
+<main data-hf-id="hf-rpmk" id="composition" data-composition-id="crewon-editor-check" data-width="640" data-height="360" data-duration="7" data-fps="24">
+<audio id="source-video-audio" data-hf-id="hf-e7b29cd8-3e59-454e-ab76-b989008e57e7" class="clip" src="test-pattern.mp4" data-start="0" data-duration="3" data-track-index="3" data-link="lk-1" data-sync-origin="lk-1"></audio><video data-hf-id="hf-t3zo" id="source-video" class="clip scene" src="test-pattern.mp4" data-start="0" data-duration="3" data-track-index="0" playsinline preload="auto" muted data-link="lk-1" data-sync-origin="lk-1"></video>
+<img data-hf-id="hf-aa76" id="second-scene" class="clip scene" src="calibration.png" alt="自制校准图" data-start="3" data-duration="3" data-track-index="0">
+<h1 data-hf-id="hf-o5vg" id="heading" class="clip" data-start="4" data-duration="3" data-track-index="2">第二场景 · 图片与文字</h1>
+<div data-hf-id="hf-ot8p" id="subtitle" class="clip subtitle" data-start="0" data-duration="6" data-track-index="1">CrewON · 三轨编辑与重启恢复验证</div>
+</main>
+<script src="gsap.min.js"></script>
+<script>window.__timelines = window.__timelines || {}; const tl = gsap.timeline({paused:true}); tl.to({}, {duration:6}); window.__timelines['crewon-editor-check'] = tl;</script>
+<script src="/api/runtime.js"></script>
+</body></html>

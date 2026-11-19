@@ -1,0 +1,29 @@
+.studio { display: flex; flex-direction: column; min-height: 460px; height: 100%; min-width: 0; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 10px 16px; border-bottom: .5px solid var(--dsw-alias-border-l4); }
+.tabs, .tools { display: flex; align-items: center; gap: 6px; }
+.tabs small { color: var(--dsw-alias-label-secondary); margin-left: 4px; }
+.canvas { container-type: inline-size; position: relative; flex: 1; min-height: 400px; background: var(--dsw-alias-bg-base); }
+.canvas :global(.react-flow__node) { border-radius: var(--dsw-radius-lg); }
+.canvas :global(.react-flow__edge-path) { stroke: var(--dsw-alias-label-tertiary); stroke-width: 1.5; }
+.canvas :global(.react-flow__controls) { overflow: hidden; border-radius: var(--dsw-radius-md); box-shadow: var(--dsw-shadow-lv1); border: .5px solid var(--dsw-alias-border-l4); }
+.canvas :global(.react-flow__controls-button) { background: var(--dsw-alias-bg-layer-1); color: var(--dsw-alias-label-primary); border-color: var(--dsw-alias-border-l4); fill: currentColor; }
+.canvas :global(.react-flow__handle) { width: 8px; height: 8px; background: var(--dsw-alias-label-secondary); border-color: var(--dsw-alias-bg-base); }
+.node { width: 260px; border-radius: var(--dsw-radius-lg); overflow: hidden; background: var(--dsw-alias-bg-layer-1); border: .5px solid var(--dsw-alias-border-l4); color: var(--dsw-alias-label-primary); }
+.node[data-selected='true'] { outline: 2px solid var(--dsw-alias-state-business-primary); outline-offset: 2px; }
+.nodePreview { position: relative; height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.nodePreview img, .nodePreview video { width: 100%; height: 100%; object-fit: cover; }
+.nodePreview audio { width: 240px; }
+.nodePreview p { margin: 30px 18px 18px; font-size: 13px; line-height: 1.7; white-space: pre-wrap; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; color: var(--dsw-alias-label-secondary); }
+.kind { position: absolute; top: 10px; left: 10px; font-size: 11px; padding: 3px 7px; border-radius: var(--dsw-radius-sm); background: var(--dsw-alias-bg-layer-2); color: var(--dsw-alias-label-secondary); }
+.node footer { display: flex; align-items: center; gap: 12px; padding: 12px; border-top: .5px solid var(--dsw-alias-border-l4); }
+.node footer span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 500; }
+.node footer small { color: var(--dsw-alias-label-secondary); font-size: 11px; flex-shrink: 0; }
+.prompt { width: min(500px, calc(100cqw - 28px)); padding: 14px; display: grid; gap: 10px; background: var(--dsw-alias-bg-layer-1); border: .5px solid var(--dsw-alias-border-l4); border-radius: var(--dsw-radius-xl); box-shadow: var(--dsw-shadow-lv3); color: var(--dsw-alias-label-primary); }
+.prompt header, .prompt footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; }
+.prompt footer span { font-size: 11px; color: var(--dsw-alias-label-secondary); }
+.prompt textarea { resize: vertical; min-height: 90px; max-height: 260px; padding: 10px 12px; border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-base); color: inherit; border: .5px solid var(--dsw-alias-border-l4); font: inherit; font-size: 13px; line-height: 1.7; }
+.addTools { position: absolute; left: 16px; top: 16px; display: flex; flex-direction: column; gap: 4px; padding: 6px; border-radius: var(--dsw-radius-lg); border: .5px solid var(--dsw-alias-border-l4); background: var(--dsw-alias-bg-layer-1); }
+.guide { position: absolute; right: 20px; bottom: 20px; width: 245px; padding: 16px; display: grid; gap: 12px; border-radius: var(--dsw-radius-lg); background: var(--dsw-alias-bg-layer-1); border: .5px solid var(--dsw-alias-border-l4); font-size: 13px; color: var(--dsw-alias-label-secondary); }
+.unsaved, .jobs { color: var(--dsw-alias-label-secondary); font-size: 12px; white-space: nowrap; }
+.jobs { position: absolute; right: 16px; top: 16px; padding: 8px 12px; background: var(--dsw-alias-bg-layer-1); border-radius: var(--dsw-radius-md); }
+@media (max-width: 640px) { .toolbar { padding: 8px; } .guide { width: 195px; right: 12px; bottom: 12px; } .addTools { left: 8px; top: 8px; } }

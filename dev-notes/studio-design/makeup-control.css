@@ -1,0 +1,25 @@
+/* Reference makeup gallery: 680 x 560, six compact portrait columns. */
+.ref-canvas-body .makeup-panel{width:min(680px,calc(100% - 100px));height:560px;padding:0;background:#151515;border:1px solid #303030;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.makeup-header{height:54px;min-height:54px;display:flex;align-items:center;padding:0 18px;gap:12px}
+.makeup-header strong{font-size:16px;font-weight:500;flex:1;color:#eee}
+.makeup-header .icon-btn{width:26px;height:26px;color:#aaa}
+.makeup-tabs{height:40px;min-height:40px;display:flex;align-items:center;gap:4px;padding:0 10px;overflow:auto;scrollbar-width:none}
+.makeup-tabs button{height:28px;flex:none;border-radius:7px;padding:0 8px;font-size:13px;white-space:nowrap;color:#aaa}
+.makeup-tabs button[aria-current=page]{background:#333;color:#eee}
+.makeup-grid-wrap{min-height:0;flex:1;overflow:auto;padding:14px 16px 10px;overscroll-behavior:contain}
+.makeup-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;align-items:start}
+.makeup-card{position:relative;aspect-ratio:3/4;padding:0;border:1px solid transparent;border-radius:8px;background:#292929;overflow:hidden;min-width:0}
+.makeup-card>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.makeup-card>span{position:absolute;left:0;right:0;bottom:0;padding:14px 4px 6px;background:linear-gradient(to top,#000c,transparent);font-size:10px;line-height:13px;color:#eee;text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.makeup-upload{height:134px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px dashed #4a4a4a;border-radius:8px;background:#222;color:#aaa;font-size:12px;min-width:0;padding:5px}
+.makeup-upload>svg{width:24px;height:24px;color:#aaa;margin-bottom:3px}
+.makeup-upload small{font-size:10px;color:#777;white-space:nowrap}
+.makeup-selection{height:28px;min-height:28px;margin:0;padding:4px 16px;display:flex;align-items:center;gap:5px;font-size:11px;line-height:20px;color:#999;white-space:nowrap;overflow:hidden}
+.makeup-selection strong{font-size:11px;font-weight:500;color:#ccc;overflow:hidden;text-overflow:ellipsis}
+.makeup-selection .button{min-height:22px;padding:2px 6px;font-size:10px;margin-left:auto}
+.makeup-footer{min-height:64px;border-top:0}
+.makeup-footer>button:not(.creation-submit){height:30px;border:1px solid #393939;border-radius:18px;padding:0 9px}
+.makeup-error{grid-column:1/-1;font-size:11px;color:#d69b90;margin:0 0 4px;line-height:18px}
+.makeup-card:focus-visible,.makeup-upload:focus-visible{outline:2px solid #b7c3df;outline-offset:2px}
+@media(max-width:720px){.ref-canvas-body .makeup-panel{width:calc(100% - 24px)}.makeup-tabs button{font-size:12px}.makeup-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:480px){.makeup-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.makeup-grid-wrap{padding:10px 12px}.makeup-tabs{padding-inline:10px}.makeup-tabs button{font-size:11px;padding:0 7px}.makeup-footer>button:not(.creation-submit){padding:0 7px}.makeup-header{padding:0 14px}.makeup-selection{padding-inline:12px}.makeup-upload{height:auto;aspect-ratio:3/4}}

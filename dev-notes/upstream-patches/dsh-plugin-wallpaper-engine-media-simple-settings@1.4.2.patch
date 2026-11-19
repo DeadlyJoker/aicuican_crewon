@@ -1,0 +1,22 @@
+--- a/lib/client.media-bridge.js
++++ b/lib/client.media-bridge.js
+@@ -448,7 +448,8 @@
+ 				      // Storage location — users can point uploads at a non-system drive
+ 				      // (most people don't want wallpaper files piling up on C:). The host
+ 				      // persists the choice and migrates existing files on change.
+-				      React.createElement("div", { className: "we-picker__row" },
++				      React.createElement("details", null, React.createElement("summary", { style: { cursor: "pointer", padding: "10px 0" } }, weT("文件与兼容")),
++      React.createElement("div", { className: "we-picker__row" },
+ 				        React.createElement("span", { className: "we-picker__hint we-picker__label" }, weT("存储位置")),
+ 				        React.createElement("span", {
+ 				          className: "we-picker__uploads-path",
+@@ -534,7 +535,8 @@
+ 				      sel.weAssetsError && React.createElement("div", { className: "we-picker__error" },
+ 				        sel.weAssetsError,
+ 				      ),
+-				      React.createElement("div", { className: "we-picker__row" },
++				      ),
++      React.createElement("div", { className: "we-picker__row" },
+ 				        React.createElement("span", { className: "we-picker__hint we-picker__label" }, weT("自定义")),
+ 				        React.createElement("input", {
+ 				          className: "we-picker__file", type: "file",

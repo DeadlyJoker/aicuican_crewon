@@ -1,0 +1,117 @@
+---
+description: "Web GUI 的外壳布局：三栏 AppFrame（右栏作为贴边面板的轨道）、面板几何服务与主题呈现；供窗口外壳的使用者与维护者阅读。"
+kind: "package-reference"
+---
+
+# @deepseek-ai/dsh-client-ui-layout
+
+[English](README.md) | 中文
+
+## 概述
+
+本包提供 Web GUI 的三栏 AppFrame、左右栏宽度与 `ctx.layout` 呈现控制。右栏先让步以保护中栏空间，全屏由占用方呈现，框架保留宽屏底层轨道。主题呈现器负责配色、别名 token、字号、字体列表与 document 元数据；布局状态在刷新后重置。
+
+## 目录
+
+- [使用本包](#use-this-package)
+- [理解实现](#understand-the-implementation)
+- [进一步探索](#further-exploration)
+- [模型体验](#model-experience)
+- [已知限制与延期工作](#known-limitations-and-deferred-work)
+- [开发备注](#dev-note)
+
+-----
+
+<a id="use-this-package"></a>
+## 使用本包
+
+`setWorkspaceContext(context, panelId?, options?)` 选择原生工作区浏览器显示的可选产品命名空间。可选的已注册入口标识用于在主区域继续显示会话时高亮产品入口；省略入口标识则保留普通导航。`options.primaryActionLabel` 接受字符串或随语言切换的 getter，供侧栏和标题栏的共享操作使用；省略时保留普通新会话文案。清除上下文或移除该主面板注册会清除关联及操作文案。命名空间只改变展示，不授予资源访问权限。
+
+桌面 Mod+B 通过与控件共用的布局操作切换工作区面板。此快捷键在导航抽屉内仍可用，在其他模态弹窗打开时不可用；终端输入优先。
+
+本插件在 root slot 中组合侧边栏、主内容和右栏。导航栏和工作区面板的总宽度为 320～476px，默认为 336px。在包括 macOS 和 Windows 的桌面界面中，收起工作区面板后保留 56px 导航栏，并在重新展开时恢复上次宽度。低于 768px 且没有原生 Windows 顶栏时，采用模态抽屉，不占据列宽；标题区域保留重新打开的控件，导航后关闭抽屉。窗口宽度低于 1024px 时自动收起，打开右侧面板也会收起手动展开的侧边栏。右侧面板首次打开时使用视口宽度的 45%，之后保留用户的像素宽度偏好，上限为 70%。为给中栏保留 400px，框架先将右侧面板缩减至 300px，再报告空间不足，使占用方将其关闭，最后才进一步压缩中栏。拖动没有过渡延迟；右侧手柄在关闭或全屏时不显示。
+
+当浏览器报告设备处于横屏半折叠状态，且框架宽度不低于 768px 时，展开的侧边栏占据一半宽度。这一中点启发式面向折痕竖直且位于中央的书本姿态；它不识别铰链方向，也不为实体铰链宽度留空，因此这项调整不支持水平或偏离中央的折痕。此时隐藏拖拽手柄；完全展开后恢复保存的宽度。视口宽度不变时，折叠状态切换复用现有的列宽过渡；减少动态效果时禁用该过渡。不支持 device-posture 媒体特性的浏览器继续使用常规布局。
+
+抽屉遮罩使用与面板相同的时长和缓动，在打开与关闭时渐变透明度；减少动态效果时两者均不播放动画。从已收起的侧栏切换到抽屉布局时，抽屉立即隐藏；已展开的侧栏保留收起动画。抽屉边缘不绘制分隔线，外层框架不滚动。macOS 抽屉与普通侧栏均使用与 Web 相同的不透明主题背景。框架铺满外壳的布局视口，在键盘抬起时保留原有高度。抽屉背景和遮罩覆盖外壳完整高度，包括 `shell.bottom`，并显示在全屏和浮动右侧面板之上。浏览器管理的状态栏和地址栏位于外壳之外；布局不添加模拟安全区边距。
+
+全局面板占据 root 作用域的 `main` keyed slot；`conversation` 是为会话界面保留的 key。`ctx.layout.selectPanel(id)` 选中已注册面板，`null` 则选中会话界面，但不改变当前会话。选中全局面板时，会话树按主面板的尺寸保留挂载，保持草稿和滚动位置；隐藏的会话树不接受交互，也不进入无障碍读取范围。全局面板仅挂载当前选中项。Plugins 页面是默认组合中的一个全局面板。
+
+root 作用域的单一 `shell.bottom` slot 横跨三列下方的整行。占用方控制自身高度与显隐；三列按该高度缩短，空内容不预留空间。切换主面板时保留底部组件。列宽拖拽手柄止于底部内容上方，`shell.overlay` 仍覆盖整个框架。默认组合不占用此 slot。
+
+<a id="window-chrome-seat"></a>
+### 窗口 chrome 座
+
+root 作用域的单一 `shell.leading` 座仅在窄屏抽屉模式下提供重新打开的控件。座挂载期间，`--dsh-frame-leading-clearance` 发布从框架左边缘起算的控件宽度，供主面板内容避让。桌面控件保留在导航栏中。
+
+在 macOS 桌面（`html[data-platform='darwin']`，由桌面 preload 设置）下，框架发布 `--dsh-frame-top-clearance`（48px），为红绿灯顶带下方留出空间。主面板的入口型页面以它设置顶部内边距。每个 chrome 行通过 `data-window-drag` 标记自己的可拖区域，控件仍可点击。
+
+Windows Electron 的 `data-windows-titlebar` 标记在所有列上方预留顶栏高度，并保留收起后的导航栏。内容区仅左上角保留 16px 圆角，其余角和内部交界处保持直角。框架发布 `--dsh-windows-content-radius` 和 `--dsh-windows-sidebar-width`，供 ui-sidebar-right 的全屏圆角及侧栏避让使用。普通 Web 文档不会获得该标记。
+
+根元素通过 `--dsh-frame-top-clearance` 发布顶栏占用量（macOS 为 48px，Windows 为标题栏高度），通过 `--dsh-frame-overlay-top` 为弹窗和菜单再留出 20px。原生全屏时浮层起点降为 20px；弹窗仍保留自身 24px 的最小边距。`--dsh-frame-chrome-top` 让模态遮罩不绘制 Windows 顶栏区域，全屏时归零。覆盖整个视口的模态层仍阻挡背景点击。普通浏览器文档不发布这些值。
+
+### 主题呈现
+
+呈现器消费解析后的主题快照，并投影到 document：`html { color-scheme }` 驱动原生 UA 控件，依据当前配色方案设置 `body[data-ds-dark-theme]`，把主题的别名 token、`--dsh-content-font-size`、`--dsh-code-font-size`、`--dsh-terminal-font-size` 以及每个非空的 `--dsh-font-family-<role>` 列表设为 body 上的内联变量，并持有一个 `<meta name="theme-color">`，其内容随计算后的 body 背景色更新。对呈现器执行 dispose（资源释放）时，它会连同其他全局写入一起移除自己的元数据节点。
+
+-----
+
+<a id="understand-the-implementation"></a>
+## 理解实现
+
+<details>
+<summary>实现细节——点击展开</summary>
+
+root 注册通过注入的可观察源提供横屏折叠状态，由渲染器负责媒体查询订阅，AppFrame 只通过绑定的 hook 读取快照。在没有浏览器媒体 API 的环境中运行客户端注册时，使用常规布局。
+
+`selectPanel(id)` 在改变选中态前检查实时 `main` 注册表；缺失的 key 会抛错并保留当前面板。`beginNavigation()` 为异步 UI 导航返回 abort signal。后续调用、有效面板选择（包括重复选择）或布局释放会中止该 signal，但不取消底层会话创建。消费方在提交导航或搬移草稿前检查 signal。
+
+一次注册声明框架的子 slot，并绑定 `ctx.layout` 的 `selectPanel`、`toggleSidebar`、`openRightbar(track, fullscreen)` 与 `closeRightbar`。同一个 root 存储把 `panelInfo` 选中态与 `layoutInfo` 测量、宽度偏好、呈现报告分开。`ctx.layout.panelInfo` 与标准 `usePanelInfo` hook 共用同一个选中态来源；AppFrame 订阅引用稳定的布局对象。`rightbar` owner 提供实际 `width`、`viewportWidth`，以及表示能否以普通模式呈现的 `canShow`；占用方在空间不足时执行确定性的收起，变宽不自行重新展开。全屏隐藏宽度手柄，但不自行释放占用方要求保留的轨道。AppFrame 保持各列容器挂载。右栏的 root 控制器仅在选中会话界面时，经 `SessionProvider` 渲染 `rightbar.session`；内容卸载时的报告释放轨道。独立的标题组件仅在会话界面可见时使用所选会话标题，以构建配置的产品标题或本地化 `common.brand.localBuild` 为回退值；语言变化会更新该回退值。主题呈现器是第二个 effect：从解析后的快照做纯 DOM 写入——初始状态经 getter 读取一次，此后仅事件驱动，不经过 React。它先应用调色板、字号、字体列表与 token 变量，再把渲染出的背景测量为唯一的颜色依据。全屏呈现禁用网格和手柄过渡；占用方完全覆盖框架后才报告新的列布局。退出全屏时，框架先保持无过渡并安装目标布局：关闭移除右轨道，恢复保留右轨道。后续普通几何操作恢复正常过渡。
+
+</details>
+
+-----
+
+<a id="further-exploration"></a>
+## 进一步探索
+
+当布局面不够用时阅读以下页面。它们从框架进入它所渲染的栏与它所呈现的主题。
+
+- [ui-sidebar](../ui-sidebar/README.zh.md)——占据 `sidebar` 栏及其座位。
+- [ui-conversation](../ui-conversation/README.zh.md)——占据 `main` 中的 `conversation` key。
+- [ui-sidebar-right](../ui-sidebar-right/README.zh.md)——以每会话一个停靠面占据 `rightbar` 栏。
+- [ui-theme](../ui-theme/README.zh.md)——呈现器消费其解析快照的主题 seam。
+- [Web 客户端架构](../../../docs/subsystems/web-client.zh.md)——浏览器插件行如何加载并注册槽位。
+
+-----
+
+<a id="model-experience"></a>
+## 模型体验
+
+无。布局外壳管理浏览器查看状态；这里没有任何内容进入模型请求。
+
+#### KV Cache 影响
+
+无；该包既不组装也不发送提供方请求。
+
+## 已知限制与延期工作
+
+<a id="known-limitations-and-deferred-work"></a>
+
+
+这些限制界定了当前布局行为。它们是当前包约束，不是通用窗口管理器对比或任务积压。
+
+- **面板几何是瞬时状态**——重新加载会恢复侧栏默认值并隐藏右侧面板；收起工作区面板会保留其宽度，直到重新加载。拖动设置的宽度是整个框架共用的一份偏好，而非每个会话各自的属性。
+- **极窄窗口**——右侧面板关闭后，中栏仍可能小于 400px；低于 768px 时，浏览器抽屉不占据侧栏宽度。
+- **轨道与面板仅在动画期间沿同一条曲线运动**——离散开合时框架设置 `data-animating`，其轨道过渡和占用方的滑入读取同一组时长与缓动变量；占用方若自用一套，挤压时面板边缘就会与会话界面的边缘脱开。拖拽和即时呈现切换不带过渡，因此该曲线不覆盖它们。
+- **挤压重排期间无滚动锚定**——布局变化可能移动读者的视口。
+
+<a id="dev-note"></a>
+### 开发备注
+
+<details>
+<summary>维护者的工作上下文——点击展开</summary>
+
+无。
+
+</details>

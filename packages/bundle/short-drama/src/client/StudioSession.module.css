@@ -1,0 +1,18 @@
+.panel { height: 100%; overflow: auto; padding: 16px; color: var(--dsw-alias-label-primary); font-size: 13px; }
+.panel header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.panel h2 { font-size: 15px; font-weight: 500; margin: 0; overflow-wrap: anywhere; }
+.panel h3 { font-size: 13px; font-weight: 500; margin: 24px 0 12px; }
+.summary { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; color: var(--dsw-alias-label-secondary); }
+.summary b { color: var(--dsw-alias-label-primary); font-weight: 500; margin-left: 4px; }
+.job { margin-bottom: 12px; padding: 12px; border: .5px solid var(--dsw-alias-border-l4); border-radius: var(--dsw-radius-lg); }
+.job > div { display: flex; align-items: center; gap: 8px; }
+.job > div > span { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; flex: 1; }
+.job small, .secondary { color: var(--dsw-alias-label-secondary); }
+.job img, .job video, .job audio { display: block; margin-top: 12px; max-width: 100%; border-radius: var(--dsw-radius-md); }
+
+.section { margin-top: 20px; border-top: .5px solid var(--dsw-alias-border-l4); padding-top: 12px; }
+.section summary { cursor: pointer; font-size: 12px; color: var(--dsw-alias-label-secondary); margin-bottom: 8px; }
+.item { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+.item > span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item small { flex-shrink: 0; font-size: 11px; color: var(--dsw-alias-label-secondary); }
+.script { line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }

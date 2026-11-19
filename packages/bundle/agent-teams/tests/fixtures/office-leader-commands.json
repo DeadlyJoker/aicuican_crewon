@@ -1,0 +1,90 @@
+[
+  {
+    "type": "command/run",
+    "seq": 4,
+    "time": 1700000000000,
+    "data": {
+      "commandId": "cmd-office-leader-1",
+      "name": "team-office-open",
+      "args": " 00000000-0000-4000-8000-000000000001",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 8,
+    "time": 1700000000005,
+    "data": {
+      "commandId": "cmd-office-leader-1",
+      "kind": "success"
+    }
+  },
+  {
+    "type": "command/run",
+    "seq": 10,
+    "time": 1700000004252,
+    "data": {
+      "commandId": "cmd-office-leader-2",
+      "name": "team-office-send",
+      "args": " {\"text\":\"请让核查员核对 17 + 25，拿到他的实际结果后，由你作为组长用一句话汇总。请实际委派给已有成员。\",\"id\":\"00000000-0000-4000-8000-000000000101\"}",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 12,
+    "time": 1700000004264,
+    "data": {
+      "commandId": "cmd-office-leader-2",
+      "kind": "success"
+    }
+  },
+  {
+    "type": "command/run",
+    "seq": 13,
+    "time": 1700000006038,
+    "data": {
+      "commandId": "cmd-office-leader-3",
+      "name": "team-office-send",
+      "args": " {\"id\":\"00000000-0000-4000-8000-000000000102\",\"memberId\":\"00000000-0000-4000-8000-000000000012\",\"text\":\"请核对计算结果：17 + 25 等于多少？请给出实际计算过程和最终数值结果，并说明是否正确。\"}",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 15,
+    "time": 1700000006049,
+    "data": {
+      "commandId": "cmd-office-leader-3",
+      "kind": "success"
+    }
+  },
+  {
+    "type": "command/run",
+    "seq": 16,
+    "time": 1700000119867,
+    "data": {
+      "commandId": "cmd-office-leader-4",
+      "name": "team-office-send",
+      "args": " {\"memberId\":\"00000000-0000-4000-8000-000000000012\",\"text\":\"这条直接交给你，请只回复“定向命中”。\",\"id\":\"00000000-0000-4000-8000-000000000103\"}",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 17,
+    "time": 1700000119904,
+    "data": {
+      "commandId": "cmd-office-leader-4",
+      "kind": "success"
+    }
+  }
+]

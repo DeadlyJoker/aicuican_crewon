@@ -1,0 +1,22 @@
+.card { min-height: 152px; box-sizing: border-box; min-width: 0; padding: 18px; border: 1px solid var(--dsw-alias-border-l4); border-radius: var(--dsw-radius-md); background: var(--dsw-alias-bg-layer-1); color: var(--dsw-alias-label-primary); display: flex; flex-direction: column; gap: 12px; }
+.card:focus-within { border-color: var(--dsw-alias-label-tertiary); }
+.heading { display: flex; align-items: center; gap: 10px; min-height: 32px; min-width: 0; }
+.mark { flex: none; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 10px; color: var(--dsw-static-blue-500); background: color-mix(in srgb, var(--dsw-static-blue-500) 10%, transparent); }
+.mark[data-mode='workflows'] { color: var(--dsw-static-green-500); background: color-mix(in srgb, var(--dsw-static-green-500) 10%, transparent); }
+.title { flex: 1; min-width: 0; }
+.title h4 { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; overflow-wrap: anywhere; }
+.actions { display: flex; flex: none; align-items: center; gap: 2px; opacity: 0; pointer-events: none; }
+.card:focus-within .actions { opacity: 1; pointer-events: auto; }
+.action { flex: none; width: 28px; padding: 0 !important; }
+.description { margin: 0; color: var(--dsw-alias-label-secondary); font-size: 13px; line-height: 1.6; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--dsw-alias-label-secondary); font-size: 12px; margin-top: auto; }
+.avatar { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: var(--avatar-color, var(--dsw-static-blue-500)); background: color-mix(in srgb, var(--avatar-color, var(--dsw-static-blue-500)) 12%, var(--dsw-alias-bg-layer-1)); flex: none; }
+.avatar[data-color='1'] { --avatar-color: var(--dsw-static-green-500); }
+.avatar[data-color='2'] { --avatar-color: var(--dsw-static-violet-400); }
+.avatar[data-color='3'] { --avatar-color: var(--dsw-static-amber-500); }
+.avatar[data-color='4'] { --avatar-color: var(--dsw-static-red-400); }
+@media (hover: none), (pointer: coarse) { .actions { opacity: 1; pointer-events: auto; } .action { width: 36px; min-height: 36px; } }
+@media (hover: hover) { .card:hover { border-color: var(--dsw-alias-label-tertiary); } .card:hover .actions { opacity: 1; pointer-events: auto; } }
+@media (prefers-reduced-motion: no-preference) { .actions { transition: opacity 120ms ease; } }
+
+.mark[data-mode='offices'] { color: var(--dsw-static-amber-500); background: color-mix(in srgb, var(--dsw-static-amber-500) 10%, transparent); }

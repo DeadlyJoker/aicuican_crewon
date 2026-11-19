@@ -1,0 +1,9 @@
+/* Reuse the canvas menu palette and compact desktop row scale. */
+.reference-storyboard-menu>[role=menu]{min-width:204px;border:1px solid var(--ref-theme-border);border-radius:10px;background:var(--ref-theme-panel);color:var(--ref-theme-ink);z-index:1600;overscroll-behavior:contain}
+.ref-canvas-body .reference-storyboard-menu>[role=menu]>.button{display:flex;width:100%;min-height:32px;height:32px;gap:8px;padding:5px 8px;border-radius:5px;font-size:12px;text-align:left;white-space:nowrap}
+.reference-storyboard-menu>[role=menu]>.button>span{flex:1}
+.reference-storyboard-menu>[role=menu]>.button>svg{display:block!important;width:15px;height:15px;flex:none}
+.reference-storyboard-menu [role=menuitem]:is(:hover,:focus-visible,[aria-expanded=true]){background:var(--ref-theme-hover);color:var(--ref-theme-ink)}
+.reference-storyboard-submenu{position:fixed;z-index:1601;box-sizing:border-box;min-width:176px;max-width:calc(100vw - 24px);padding:5px;overflow:auto;overscroll-behavior:contain;border:1px solid var(--ref-theme-border);border-radius:10px;background:var(--ref-theme-panel);color:var(--ref-theme-ink);box-shadow:0 8px 24px #0003}
+.reference-storyboard-submenu>button{display:block;width:100%;min-height:30px;padding:5px 10px;border-radius:5px;font-size:12px;line-height:20px;text-align:left;white-space:nowrap}
+.reference-storyboard-submenu>button:is(:hover,:focus-visible){background:var(--ref-theme-hover);color:var(--ref-theme-ink)}

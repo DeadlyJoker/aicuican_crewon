@@ -1,0 +1,17 @@
+/* Expanded editing is a temporary view of the node's existing prompt controls. */
+.ref-expanded-prompt.ref-canvas-body{position:fixed;inset:0;z-index:950;display:grid;place-items:center;background:#0008;backdrop-filter:blur(4px)}
+.ref-expanded-prompt.ref-canvas-body>.canvas-creation:not(.node-tool-panel){position:relative!important;inset:auto!important;transform:none!important;width:min(842px,calc(100vw - 48px))!important;max-width:none!important;height:min(762px,calc(80dvh + 2px));max-height:none!important;box-sizing:border-box;display:flex;flex-direction:column;padding:16px;border-radius:16px;overflow:visible;scrollbar-gutter:auto}
+.ref-expanded-prompt .creation-reference-row{flex:none;margin-bottom:12px}
+.ref-expanded-prompt .creation-reference-row>.icon-btn{width:28px;height:28px;padding:5px;flex:none}
+.ref-expanded-prompt #canvas-creation-prompt{flex:1;min-height:100px!important;height:auto!important;max-height:none!important;resize:none;margin:0;padding-right:0}
+.ref-expanded-prompt .creation-control-row{flex:none;margin-top:14px}
+.ref-expanded-prompt :is(.creation-video-modes,.creation-reference-notice,.creation-storyboard-pending,.creation-music-label){flex:none}
+.ref-expanded-prompt #canvas-music-style{flex:0 0 80px;min-height:60px;max-height:100px}
+@media(max-width:600px){.ref-expanded-prompt.ref-canvas-body>.canvas-creation:not(.node-tool-panel){width:calc(100vw - 24px)!important;height:calc(100dvh - 40px);padding:12px;border-radius:12px}.ref-expanded-prompt .creation-control-row{margin-top:10px}.ref-expanded-prompt #canvas-creation-prompt{font-size:16px}}
+
+.ref-expanded-prompt .creation-reference-row>[data-action="canvas-creation-expand"]{position:absolute;top:12px;right:12px;color:var(--muted)}
+
+.ref-expanded-prompt [data-action="canvas-creation-expand"]>svg{width:18px;height:18px}
+
+.ref-expanded-prompt .creation-reference-row{padding-right:32px}
+.ref-expanded-prompt .creation-video-modes{max-width:calc(100% - 32px);margin-right:32px}

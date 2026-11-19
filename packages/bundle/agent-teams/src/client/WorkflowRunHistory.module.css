@@ -1,0 +1,29 @@
+.modal { width: min(680px,100%); max-height: 100%; }
+.content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.history { display: grid; gap: 16px; min-width: 0; font-size: 13px; }
+.list { margin: 0; padding: 0; list-style: none; min-width: 0; }
+.list > li + li { border-top: .5px solid var(--dsw-alias-border-l4); }
+.run { min-width: 0; }
+.run > summary { display: grid; gap: 7px; padding: 14px 0; list-style: none; cursor: pointer; }
+.run > summary::-webkit-details-marker { display: none; }
+.run > summary:focus-visible { outline: 2px solid var(--dsw-alias-state-business-primary); outline-offset: 3px; border-radius: var(--dsw-radius-md); }
+.runHeading { display: flex; gap: 8px; align-items: center; font-size: 12px; }
+.runHeading time { min-width: 0; color: var(--dsw-alias-label-secondary); }
+.badge { flex: none; border: .5px solid var(--dsw-alias-border-l4); border-radius: var(--dsw-radius-md); padding: 0 5px; color: var(--dsw-alias-label-secondary); white-space: nowrap; }
+.status { margin-left: auto; flex: none; color: var(--dsw-alias-label-secondary); white-space: nowrap; }
+.chevron { flex: none; color: var(--dsw-alias-label-tertiary); }
+.run[open] .chevron { transform: rotate(180deg); }
+.preview { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.6; }
+.details { display: grid; gap: 16px; padding: 4px 0 20px; overflow-wrap: anywhere; line-height: 1.7; }
+.details h4 { font-size: 12px; font-weight: 400; color: var(--dsw-alias-label-secondary); margin: 0 0 6px; }
+.details p { margin: 0; }
+.input { white-space: pre-wrap; }
+.empty { color: var(--dsw-alias-label-secondary); line-height: 1.6; }
+.notice { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.loading { display: grid; place-items: center; min-height: 64px; }
+.more { justify-self: center; }
+@media (max-width: 440px) {
+  .runHeading { flex-wrap: wrap; }
+  .runHeading time { flex: 1; }
+  .status { margin-left: 0; }
+}

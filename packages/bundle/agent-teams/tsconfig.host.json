@@ -1,0 +1,75 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types"
+  },
+  "include": [
+    "src/index.ts",
+    "src/catalogue.ts",
+    "src/workflow-types.ts",
+    "src/workflow-controller.ts",
+    "src/workflow-graph.ts",
+    "src/office-types.ts",
+    "src/office-controller.ts",
+    "src/contexera-domain/**/*.ts",
+    "src/office-projects.ts",
+    "src/office-project-types.ts",
+    "src/expert-controller.ts",
+    "src/expert-types.ts",
+    "src/expert-catalogue.ts",
+    "src/team-authoring-types.ts",
+    "src/team-authoring.ts",
+    "src/team-scenarios.ts"
+  ],
+  "references": [
+    {
+      "path": "../../api/session-controller/tsconfig.host.json"
+    },
+    {
+      "path": "../../../vendor/cordis"
+    },
+    {
+      "path": "../../core/tools"
+    },
+    {
+      "path": "../../settings/settings"
+    },
+    {
+      "path": "../../skill/skill"
+    },
+    {
+      "path": "../../interaction/commands"
+    },
+    {
+      "path": "../../llm/llm"
+    },
+    {
+      "path": "../../typert/protocol"
+    },
+    {
+      "path": "../../boot/app-boot"
+    },
+    {
+      "path": "../../core/session"
+    },
+    {
+      "path": "../../workspace/workspace"
+    },
+    {
+      "path": "../../session-query/session-query"
+    },
+    {
+      "path": "../../workflow/tool-workflow"
+    },
+    {
+      "path": "../../preset/agent-preset-registry"
+    },
+    {
+      "path": "../../subagent/subagent"
+    },
+    {
+      "path": "../../storage/storage-domain"
+    }
+  ]
+}

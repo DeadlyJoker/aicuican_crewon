@@ -1,0 +1,35 @@
+/* Editable tracks reuse the workbench geometry and theme. */
+.native-edit-library{display:flex;flex:1;min-width:0;flex-direction:column;overflow:auto}
+.native-edit-library .ref-cut-media-grid{grid-auto-rows:min-content}
+.native-edit-track .ref-cut-track-label{justify-content:flex-start;padding:0 12px;gap:7px}
+.native-edit-track .ref-cut-track-label>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.native-edit-track-actions{display:flex;position:absolute;right:5px;gap:2px;opacity:0;background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:2px}
+.native-edit-track-label:hover .native-edit-track-actions,.ref-cut-track-label:hover .native-edit-track-actions,.native-edit-track-actions:focus-within{opacity:1}
+.native-edit-track-actions button{display:grid;place-items:center;width:24px;height:24px;padding:4px;color:var(--text);font-size:13px}
+.native-edit-track-actions svg{width:12px;height:12px}
+.native-edit-track-actions button:hover{background:var(--line);border-radius:3px}
+.native-edit-track.is-muted>.ref-cut-clip-group{opacity:.45}
+.native-edit-original-row{height:32px!important;border-bottom:1px solid var(--line);background:var(--panel)}
+.native-edit-original-row .ref-cut-track-label{justify-content:flex-start;padding-left:24px;font-size:10px}
+.native-edit-original-group{position:absolute;top:3px;bottom:3px}
+.ref-cut-workbench .native-edit-original-group .ref-cut-clip{position:relative;inset:auto;width:100%;height:100%;padding:0 8px;border-radius:3px;display:flex;gap:7px;background:#29433e;border:1px solid #43615a;color:#bcd4cd;font-size:10px}
+.native-edit-original svg{width:12px;height:12px}.native-edit-original small{font-size:10px;margin-left:auto;white-space:nowrap}
+.ref-cut-workbench .ref-cut-clip.native-edit-audio{background:var(--studio-chrome-raised,#34413f);border-color:#50635f;color:var(--studio-chrome-label,#d3dfdc)}
+.ref-cut-workbench .ref-cut-clip.is-text{background:#51452e;border-color:#73603b;color:#e8ddc5}
+.native-edit-preview{background:#000}
+.native-edit-preview .native-edit-layer{position:absolute;object-fit:contain}
+.native-edit-captions{position:absolute;z-index:1;left:5%;right:5%;bottom:7%;text-align:center;display:flex;flex-direction:column;gap:3px;pointer-events:none}.native-edit-caption{text-align:center;color:#fff;white-space:pre-wrap;line-height:1.3;font-weight:500;font-size:calc(var(--ref-cut-preview-width,400px)*.035);text-shadow:0 1px 2px #000,1px 0 2px #000,-1px 0 2px #000;pointer-events:none}
+.native-edit-volume{display:grid!important;grid-template-columns:minmax(0,1fr) 38px;gap:8px;align-items:center}
+.native-edit-volume input{height:20px;padding:0;accent-color:#6b9a8c}.native-edit-volume output{text-align:right;font-variant-numeric:tabular-nums}
+.native-edit-secondary{border:1px solid var(--line)!important;border-radius:5px;padding:5px 8px;font-size:11px!important;color:var(--text)}
+.native-edit-add-text{height:76px!important;display:flex!important;align-items:center;justify-content:center;gap:7px;background:var(--panel)!important;border:1px solid var(--line)!important}
+.native-edit-add-text>svg:last-child{display:none}
+.native-edit-track .ref-cut-clip-group.is-text{top:8px;bottom:8px}
+.native-edit-track:has(.is-text){height:44px}
+.native-edit-track-actions button:focus-visible,.native-edit-secondary:focus-visible{outline:1px solid var(--text);outline-offset:2px}
+.native-edit-audio-actions{display:flex;gap:6px;flex-wrap:wrap}
+.native-edit-inspecting{position:relative;opacity:.55;pointer-events:none}
+.native-edit-inspecting:after{content:'';position:absolute;left:calc(50% - 8px);top:25px;width:16px;height:16px;border:2px solid var(--line);border-top-color:var(--text);border-radius:50%;animation:native-analysis-spin .8s linear infinite}
+
+.native-edit-buffer,.native-edit-media{position:absolute;inset:0;width:100%;height:100%}
+.native-edit-captions{z-index:100!important}

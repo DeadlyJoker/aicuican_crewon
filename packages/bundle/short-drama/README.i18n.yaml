@@ -1,0 +1,46 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/short-drama/README.md
+/:
+  en: 5bc807b6e54d1ca3
+  zh: 3e758cabd5209587
+/deepseek-ai-dsh-short-drama-bundle:
+  en: a5d91c7842e322f5
+  zh: e80d1f7ee49ec5c4
+/deepseek-ai-dsh-short-drama-bundle/summary:
+  en: dc76137bd4caca8a
+  zh: f463563f3dc2de3a
+/deepseek-ai-dsh-short-drama-bundle/table-of-contents:
+  en: 5a95b71f36be1f6c
+  zh: f6d15602745239c3
+/deepseek-ai-dsh-short-drama-bundle/use-this-package:
+  en: 38749e06e8b9fcb3
+  zh: 1b2b4ae9eb5bfb9f
+/deepseek-ai-dsh-short-drama-bundle/understand-the-implementation:
+  en: fa0fc5fb229c7dad
+  zh: 2257841a4a7b5c17
+/deepseek-ai-dsh-short-drama-bundle/further-exploration:
+  en: e77f21586082c3a2
+  zh: e20b2f5a818ee594
+/deepseek-ai-dsh-short-drama-bundle/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/deepseek-ai-dsh-short-drama-bundle/model-experience/project-writing-and-execution:
+  en: fff70719bbb51641
+  zh: 95d1aa841993a033
+/deepseek-ai-dsh-short-drama-bundle/model-experience/project-writing-and-execution/what-the-model-sees:
+  en: 0fd4d2377088a122
+  zh: ed6d30688449c7a4
+/deepseek-ai-dsh-short-drama-bundle/model-experience/project-writing-and-execution/token-effect:
+  en: 1acc902eb2689735
+  zh: 7a37d19ecb63cf30
+/deepseek-ai-dsh-short-drama-bundle/model-experience/project-writing-and-execution/kv-cache-effect:
+  en: f1421d80d2aaf199
+  zh: 5fd45915821dbeed
+/deepseek-ai-dsh-short-drama-bundle/known-limitations-and-deferred-work:
+  en: 0fe4370233ab42e3
+  zh: e0b079669da4c0c2
+/deepseek-ai-dsh-short-drama-bundle/known-limitations-and-deferred-work/dev-note:
+  en: f66a0339b07d6884
+  zh: 8a30f68931b1fb7c

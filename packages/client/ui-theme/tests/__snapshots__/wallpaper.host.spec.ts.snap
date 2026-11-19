@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`shared wallpaper catalog > retains old schemes and rejects missing or mismatched media references 1`] = `
+{
+  "active": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.mp4",
+  "blur": 0,
+  "items": [
+    {
+      "file": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.mp4",
+      "kind": "video",
+      "name": "Drift",
+    },
+  ],
+  "opacity": 25,
+}
+`;

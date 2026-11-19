@@ -1,0 +1,9 @@
+node_modules/
+.npm-cache/
+.dsh-home/
+history/
+project/.hyperframes/
+project/renders/
+.profile-preview.txt
+project/gsap.min.js
+project/GSAP-NOTICE.txt

@@ -1,0 +1,15 @@
+/* Relation selection is separate from node properties and remains anchored to the line. */
+.connections .canvas-link-hit { fill:none; stroke:transparent; stroke-width:16px; pointer-events:stroke; cursor:pointer; vector-effect:non-scaling-stroke; }
+.connections .canvas-link-hit:hover,.connections .canvas-link-hit:focus-visible { stroke:var(--accent); opacity:.15; outline:none; }
+.connections .canvas-edge-selected { stroke:var(--accent); stroke-width:2; }
+.connections .canvas-link-preview { fill:none; stroke:var(--accent); stroke-dasharray:6 5; stroke-width:2; pointer-events:none; }
+.node.canvas-drop-target { outline:2px solid var(--accent); outline-offset:4px; }
+.canvas-link-panel { position:absolute; z-index:35; display:flex; align-items:center; gap:7px; max-width:calc(100% - 24px); width:max-content; padding:9px 10px 9px 12px; border:.5px solid var(--dsw-alias-border-l3); border-radius:10px; background:var(--dsw-alias-bg-layer-1); box-shadow:var(--dsw-elevation-soft); }
+.canvas-link-panel > div { min-width:0; max-width:290px; }
+.canvas-link-panel strong { display:block; font-size:12px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.canvas-link-panel strong svg { width:12px; height:12px; vertical-align:-2px; margin-inline:4px; }
+.canvas-link-panel small { display:block; margin-top:3px; color:var(--muted); font-size:11px; }
+.canvas-link-panel .icon-btn { flex:none; width:28px; height:28px; }
+.canvas-link-panel .icon-btn svg { width:14px; height:14px; }
+.floating-tools .icon-btn:disabled { opacity:.35; cursor:default; }
+@media(pointer:coarse) { .canvas-link-panel .icon-btn { width:36px; height:36px; } }

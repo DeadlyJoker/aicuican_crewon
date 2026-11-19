@@ -1,0 +1,10 @@
+# Bilingual-pair consistency record for crewon.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write docs/subsystems/crewon.md
+/crewon-bundle-services:
+  en: 0fd972f8ca495588
+  zh: 7e5690a022d10ba7
+/crewon-bundle-services/cordis-surface:
+  en: b399d48ea5ba6af1
+  zh: 5f8a16b11c2c9440

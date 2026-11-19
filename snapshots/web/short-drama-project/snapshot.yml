@@ -1,0 +1,10 @@
+version: 1
+scenario: short-drama-project
+profile: web
+composition: web-short-drama
+recording: authored
+header:
+  class: web-short-drama
+  pin: true
+workspace:
+  final: true

@@ -1,0 +1,90 @@
+[
+  {
+    "type": "command/run",
+    "seq": 4,
+    "time": 1793818259782,
+    "data": {
+      "commandId": "cmd-f4960377-3",
+      "name": "team-office-open",
+      "args": " 1479d43e-8800-466c-b9c6-07d9896cb296",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 8,
+    "time": 1793818259784,
+    "data": {
+      "commandId": "cmd-f4960377-3",
+      "kind": "success"
+    }
+  },
+  {
+    "type": "command/run",
+    "seq": 17,
+    "time": 1793818260133,
+    "data": {
+      "commandId": "cmd-f4960377-4",
+      "name": "team-office-send",
+      "args": " {\"memberId\":\"a9d5e4b8-5783-4012-a03c-0f6c1da01a8f\",\"text\":\"请记住办公室代号「月桥732」。只回复已记住及代号。\",\"id\":\"87884ead-70c4-440f-bb03-9bc9d59c482a\"}",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 19,
+    "time": 1793818260145,
+    "data": {
+      "commandId": "cmd-f4960377-4",
+      "kind": "success"
+    }
+  },
+  {
+    "type": "command/run",
+    "seq": 21,
+    "time": 1793818261558,
+    "data": {
+      "commandId": "cmd-f4960377-5",
+      "name": "team-office-send",
+      "args": " {\"memberId\":\"e36aa4b5-2839-49ec-a2fa-baa5c5b37480\",\"text\":\"计算 17 + 25，只输出结果。\",\"id\":\"3d742a54-1425-4bb2-8ee5-ccf12f72261b\"}",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 23,
+    "time": 1793818261574,
+    "data": {
+      "commandId": "cmd-f4960377-5",
+      "kind": "success"
+    }
+  },
+  {
+    "type": "command/run",
+    "seq": 28,
+    "time": 1793818292313,
+    "data": {
+      "commandId": "cmd-11f4a123-1",
+      "name": "team-office-send",
+      "args": " {\"memberId\":\"a9d5e4b8-5783-4012-a03c-0f6c1da01a8f\",\"text\":\"上次让你记住的办公室代号是什么？只回复代号。\",\"id\":\"d3b72357-29cc-4e6f-a0df-23cebef25e81\"}",
+      "source": {
+        "kind": "user"
+      }
+    }
+  },
+  {
+    "type": "command/done",
+    "seq": 29,
+    "time": 1793818292336,
+    "data": {
+      "commandId": "cmd-11f4a123-1",
+      "kind": "success"
+    }
+  }
+]

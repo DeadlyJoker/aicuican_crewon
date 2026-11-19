@@ -1,0 +1,22 @@
+- insert:
+    - id: expert-teams
+      name: '../../../packages/bundle/agent-teams/node_modules/@nanmicoder/dsh-agent-teams/lib/index.js'
+      config:
+        profiles:
+          Product experts:
+            description: Review product decisions with a reusable specialist roster.
+            taskPlanning: captain
+            members:
+              - name: product-reviewer
+                role: Product requirements reviewer
+                executionPrompt: Check the user goal and return testable acceptance criteria.
+
+- insert:
+    - id: expert-preset-registry
+      name: '../../../packages/preset/agent-preset-registry/lib/index.js'
+      config:
+        default: standard
+
+- insert:
+    - id: expert-team-authoring
+      name: '../../../packages/bundle/agent-teams/lib/index.js'

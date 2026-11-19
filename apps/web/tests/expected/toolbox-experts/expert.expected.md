@@ -1,0 +1,57 @@
+- dialog "New expert":
+  - heading "New expert" [level=2]
+  - button "Cancel"
+  - text: Expert name
+  - textbox "Expert name": Document reviewer
+  - text: Specialty
+  - textbox "Specialty"
+  - text: Category
+  - combobox "Category":
+    - option "General" [selected]
+    - option "Engineering"
+    - option "Design"
+    - option "Product"
+    - option "Project management"
+    - option "Marketing"
+    - option "Sales"
+    - option "Paid media"
+    - option "Support"
+    - option "Testing"
+    - option "Security"
+    - option "Research"
+    - option "Academic"
+    - option "Finance"
+    - option "Legal"
+    - option "Human resources"
+    - option "Healthcare"
+    - option "Supply chain"
+    - option "Game development"
+    - option "Spatial computing"
+    - option "GIS"
+    - option "Company"
+    - option "Specialized"
+  - text: Base capabilities
+  - combobox "Base capabilities":
+    - option "standard" [selected]
+    - option "ptc"
+    - option "minimal"
+    - option "cordis"
+  - text: Responsibilities and working instructions
+  - textbox "Responsibilities and working instructions": Review the supplied document using the checklist.
+  - group: Default model (optional)
+  - region "Choose what this Agent can use":
+    - heading "Choose what this Agent can use" [level=3]
+    - paragraph: Inherit the base capabilities, or restrict this expert to selected skills, connectors and local tools. Connections and programs must be configured in the toolbox first. These selections control access; they do not preload skill instructions.
+    - switch "Restrict this Agent’s capabilities" [checked]
+    - text: Restrict this Agent’s capabilities
+    - paragraph: Selected capabilities apply to future calls by this Agent, including team members and workflow steps using this preset.
+    - searchbox "Search by name or purpose"
+    - heading "Skills" [level=3]
+    - checkbox "create-expert-team"
+    - text: create-expert-team
+    - checkbox "review-checklist" [checked]
+    - text: review-checklist
+    - group: Advanced · Native tools
+  - paragraph: Saving creates a new version. Existing tasks and history retain their original version. Configure skills, connectors and tools below.
+  - button "Cancel"
+  - button "Save expert"

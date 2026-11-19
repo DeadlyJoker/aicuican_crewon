@@ -1,0 +1,43 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/bundle/interactive-ui/README.md
+/:
+  en: 3e2deda01fb1f6dc
+  zh: fb92ddc752ad6c02
+/interactive-ui:
+  en: 0cf914632f931ce0
+  zh: 8b8b5589daa72acd
+/interactive-ui/summary:
+  en: 7a065da97bfb71c1
+  zh: c97176bf37e51401
+/interactive-ui/table-of-contents:
+  en: 122f0d41696980b1
+  zh: f366d2759fbb78b1
+/interactive-ui/use-this-package:
+  en: 386ff6a9370dab3d
+  zh: cbd1774d8872b9dd
+/interactive-ui/understand-the-implementation:
+  en: 1dee1fda7b86b571
+  zh: c2cc7ef3c18c097a
+/interactive-ui/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/interactive-ui/model-experience/card-authoring:
+  en: baddd49222b69476
+  zh: 42d003e8a6980a84
+/interactive-ui/model-experience/card-authoring/what-the-model-sees:
+  en: 808095cfed1592f6
+  zh: 981f486733df2b1e
+/interactive-ui/model-experience/card-authoring/token-effect:
+  en: 266b4a5c8fa39a29
+  zh: 55df8a6387c7754a
+/interactive-ui/model-experience/card-authoring/kv-cache-effect:
+  en: bc93a8e733ac3b7c
+  zh: d36a00f53559d20f
+/interactive-ui/known-limitations-and-deferred-work:
+  en: a93f5291a084fd32
+  zh: e76748364212fb60
+/interactive-ui/known-limitations-and-deferred-work/dev-note:
+  en: 12d1b7e4eaefe6db
+  zh: 79a1579368aa49e9

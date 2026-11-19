@@ -1,0 +1,16 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write dev-notes/studio-design/tools/hyperframes/README.md
+/isolated-hyperframes-playback-validation:
+  en: 3f175b0f02facbc2
+  zh: 74e3dd2efa4ae45d
+/isolated-hyperframes-playback-validation/pinned-sources:
+  en: 95abec0c03e28d70
+  zh: fff1501ddd2f2062
+/isolated-hyperframes-playback-validation/owned-test-project:
+  en: bd8625f1baa0fae7
+  zh: 1220f89e84f66551
+/isolated-hyperframes-playback-validation/evidence-from-2026-11-11:
+  en: 4d8c7331c9bb4d14
+  zh: 26f6139067ae155b

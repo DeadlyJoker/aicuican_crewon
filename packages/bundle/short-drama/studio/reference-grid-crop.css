@@ -1,0 +1,20 @@
+.ref-grid-crop-dialog{width:760px!important;max-width:calc(100vw - 24px)!important;display:flex;flex-direction:column;background:var(--panel)!important;color:var(--text)}
+.ref-grid-crop-dialog>.dialog-body{overflow:auto;min-height:0;padding:18px}
+.ref-grid-crop-dialog>.dialog-header{padding:14px 18px}
+.ref-grid-crop-dialog>.dialog-header h2{font-size:14px;font-weight:500}
+.ref-grid-crop-dialog>.dialog-footer{padding:12px 18px}
+.ref-grid-crop-layout{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:18px;align-items:start}
+.ref-grid-crop-stage{display:grid;place-items:center;min-height:140px;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--ref-tile)}
+.ref-grid-image{position:relative;width:100%}
+.ref-grid-image>img{display:block;width:100%;height:auto}
+.ref-grid-lines{display:grid;position:absolute;inset:0;pointer-events:none}
+.ref-grid-lines>span{display:flex;align-items:flex-start;justify-content:flex-start;min-width:0;min-height:0;overflow:hidden;padding:3px;border:1px solid #ffffffa6;color:var(--studio-chrome-label,#fff);text-shadow:0 1px 3px #000;font-size:10px}
+.ref-grid-crop-layout aside{display:grid;gap:14px}
+.ref-grid-crop-layout label{display:grid;gap:7px;font-size:12px;color:var(--muted)}
+.ref-grid-crop-layout :is(input,select){width:100%;min-width:0;height:34px;padding:0 9px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--text);font-size:12px}
+.ref-grid-dimensions{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:end}
+.ref-grid-dimensions>span{line-height:34px;color:var(--muted)}
+.ref-grid-crop-layout :is(small,p){font-size:11px;color:var(--muted);line-height:1.6}
+.ref-grid-crop-layout [role=alert]{color:var(--red)}
+.ref-grid-crop-dialog .button.primary{background:var(--text);color:var(--panel)}
+@media(max-width:600px){.ref-grid-crop-layout{grid-template-columns:1fr}.ref-grid-crop-layout aside{grid-template-columns:1fr 1fr;align-items:end;gap:10px}.ref-grid-crop-layout aside>small,.ref-grid-crop-layout aside>p{grid-column:1/-1}.ref-grid-crop-dialog>.dialog-footer{gap:8px}.ref-grid-crop-dialog .dialog-footer .note{display:block!important;flex-basis:100%;font-size:11px}.ref-grid-crop-dialog .dialog-footer .button{font-size:12px;padding-inline:10px}.ref-grid-crop-stage{min-height:100px}}

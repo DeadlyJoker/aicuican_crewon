@@ -1,0 +1,81 @@
+/* Native creative records drive the retained canvas; AI execution stays in project chat. */
+'use strict';
+const studioCompileErrors={'shot-version-changed':'分镜已更新，请同步导演计划','timeline-invalid':'动作时间段需连续且不重叠','timeline-duration-mismatch':'时间轴总长需与分镜时长一致','dialogue-not-in-script':'对白需与已采用剧本一致','dialogue-omitted':'计划遗漏了已保存的对白','references-required':'参考模式需要已采用的资产','reference-not-adopted':'请先审阅并采用参考资产','asset-version-changed':'参考资产版本已变化','script-version-changed':'已采用剧本已变化','duplicate-reference':'存在重复参考','reference-purpose-mismatch':'参考用途与资产类型不一致','first-frame-required':'首帧模式需要已采用首帧','first-frame-extra-references':'首帧模式不混用完整参考图组','text-mode-references':'文生模式不使用参考图','compiled-input-too-long':'模型输入过长，请精简重复内容'};
+const studioCreativeKinds={diagnosis:'剧本诊断',assets:'资产设定',plans:'分镜计划',reviews:'审片记录'};
+const studioReviewDimensions={identity:'人物身份',space:'空间与状态',appearance:'色彩与质感',performance:'动作与表演',sound:'声音与对白',cut:'镜头衔接'};
+const studioCreativeCanvas=canvasHtml;
+canvasHtml=function(){return studioCreativeCanvas().replace('aria-label="工作流" data-action="workflow-library"','aria-label="制作检查" data-action="native-creative"');};
+function studioCreativeState(){return studioNativeConfig.production?.creative||{diagnoses:[],assets:[],plans:[],reviews:[]};}
+function studioCreativeRows(title,body,open=false){return `<details class="native-creative-record" ${open?'open':''}><summary>${esc(title)}</summary><div>${body}</div></details>`;}
+function studioReviewTitle(review){
+ const production=studioNativeConfig.production,job=production.jobs.find(item=>item.id===review.jobId);
+ const target=job&&(job.targetType==='asset'?production.assets:production.shots).find(item=>item.id===job.targetId);
+ const verdict=review.dimensions.some(item=>item.verdict==='failed')?'需返修':review.dimensions.some(item=>item.verdict==='unknown')?'部分待检查':'已记录';
+ return `${target?.name||target?.title||'候选'}${job?` · v${job.targetVersion}`:''} · ${verdict}`;
+}
+function studioCreativeDialog(tab='diagnosis'){
+ const creative=studioCreativeState(),production=studioNativeConfig.production;
+ S.studioCreativeTab=tab;
+ const tabs=Object.entries(studioCreativeKinds).map(([key,label])=>`<button class="button ${tab===key?'primary':'outline'}" data-action="native-creative:${key}">${label}</button>`).join('');
+ let body='';
+ if(tab==='diagnosis')body=creative.diagnoses.slice().reverse().map((item,index)=>studioCreativeRows(`${index===0?'最近诊断':'历史诊断'} · ${item.issues.length} 项建议${item.scriptId!==studioNativeConfig.project.adoptedScriptId?' · 旧剧本':''}`, `<details class="native-creative-record"><summary>查看整体判断</summary><p>${esc(item.summary)}</p></details>${item.issues.map(issue=>studioCreativeRows(`${issue.scene} · ${({note:'建议',warning:'注意',blocking:'需修改'})[issue.severity]} · ${issue.quote.slice(0,24)}${issue.quote.length>24?'…':''}`,`<blockquote>${esc(issue.quote)}</blockquote><p>${esc(issue.problem)}</p><p class="muted">${esc(issue.suggestion)}</p>`)).join('')||'<p>本次未发现需修改项</p>'}`,index===0)).join('')||'<p class="muted">诊断会引用原文并记录建议，不改动已采用剧本。</p>';
+ if(tab==='assets')body=production.assets.map(asset=>{const brief=creative.assets.filter(item=>item.assetId===asset.id&&item.assetVersion===asset.version).at(-1);return studioCreativeRows(`${asset.name} · v${asset.version}`,`<p>${esc(asset.prompt)}</p>${brief?`<small>${esc(({explicit:'原文明确',inferred:'合理推导',designed:'创作设计'})[brief.origin])}</small><blockquote>${esc(brief.evidence)}</blockquote><ul>${brief.locked.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>${brief.variants.map(item=>`<p><strong>${esc(item.name)}</strong> · ${esc(item.appliesTo)}<br>${esc(item.description)}</p>`).join('')}`:'<p class="muted">已有资产保留；尚未补充来源和状态设定。</p>'}`);}).join('')||'<p class="muted">从剧本提取角色、场景和道具，自动构建画布节点。</p>';
+ if(tab==='plans')body=studioNativeStoryboardBody();
+ if(tab==='reviews')body=creative.reviews.slice().reverse().map(review=>studioCreativeRows(studioReviewTitle(review),`${review.dimensions.map(item=>`<p><strong>${studioReviewDimensions[item.dimension]}</strong> · ${esc(({passed:'通过',failed:'退回',unknown:'待检查','not-applicable':'不适用'})[item.verdict])}<br>${esc(item.observation)}</p>`).join('')}${review.repair?`<blockquote>${esc(review.repair)}</blockquote><button class="button outline" data-action="native-repair:${review.jobId}">交给 Agent 返修</button>`:''}`)).join('')||'<p class="muted">打开生成候选，按身份、空间、表演和声音分别记录审阅结果。</p>';
+ showDialog('制作检查',`<nav class="native-creative-tabs">${tabs}</nav><div class="native-creative-body">${body}</div>`,`<button class="button outline" data-action="native-creative-run:${tab}">${({diagnosis:'检查剧本',assets:'提取资产设定',plans:'构建分镜',reviews:'审查待检候选'})[tab]}</button>${btn('关闭','close-modal','outline')}`);
+}
+function studioMediaReviewDialog(jobId){
+ const job=studioNativeConfig.production.jobs.find(item=>item.id===jobId);if(!job)return;
+ showDialog('审片记录',`<p class="muted">只记录这个候选；没有实际检查的项目保留“待检查”。</p><form id="native-media-review" data-job="${job.id}" class="native-review-fields">${Object.entries(studioReviewDimensions).map(([key,label])=>`<label><span>${label}</span><select name="verdict-${key}" aria-label="${label}结论"><option value="unknown">待检查</option><option value="passed">通过</option><option value="failed">退回</option><option value="not-applicable">不适用</option></select><input name="note-${key}" aria-label="${label}依据" placeholder="现象、依据或时间点"></label>`).join('')}<label class="native-review-repair">返修要求<textarea name="repair" aria-label="返修要求" placeholder="只修改有问题的部分，保留已认可内容"></textarea></label></form>`,`${btn('取消','close-modal','outline')}<button class="button primary" data-action="native-review-save">保存记录</button>`);
+}
+const studioCreativeCandidate=openCandidateReview;
+openCandidateReview=function(nodeId,candidateId){studioCreativeCandidate(nodeId,candidateId);const node=nodeById(nodeId),selected=node?.candidates?.find(item=>item.id===candidateId)||node?.candidates?.at(-1);if(!selected?.nativeJobId)return;const footer=document.querySelector('.modal footer,.dialog footer,[role="dialog"] footer');if(footer){const button=document.createElement('button');button.className='button outline';button.dataset.action='native-review-form:'+selected.nativeJobId;button.textContent='记录审片';footer.prepend(button);const review=studioCreativeState().reviews.filter(item=>item.jobId===selected.nativeJobId).at(-1);if(review?.dimensions.some(item=>item.verdict==='failed')){const adopt=footer.querySelector('[data-action^="native-adopt-media:"]');if(adopt){adopt.disabled=true;adopt.textContent='已退回，需返修';}const note=document.createElement('p');note.className='muted';note.textContent=review.repair||'此候选已退回，请先根据审片记录返修。';footer.before(note);}}};
+const studioCreativeAction=handleAction;
+handleAction=function(action){
+ const split=action.indexOf(':'),key=split<0?action:action.slice(0,split),value=split<0?'':action.slice(split+1);
+ if(key==='native-creative'||key==='workflow-library'){studioCreativeDialog(value||'diagnosis');return;}
+ if(key==='asset-vault'){const script=studioScriptNode();if(script)openScriptWorkbench(script.id,'assets');return;}
+ if(key==='character-library'){studioCreativeDialog('assets');return;}
+ if(key==='native-creative-run'){closeDialog();studioNativeRun(({diagnosis:'加载 studio-script-diagnosis，诊断已采用剧本并保存原文关联问题记录，不改剧本',assets:'加载 studio-asset-bible，提取并保存当前剧本的资产及来源、锁定项和状态变体，复用已有资产身份',plans:'加载 studio-storyboard，基于当前剧本和资产保存分镜与结构化导演计划，调用原生编译校验并修正错误，先不生成视频',reviews:'加载 studio-media-review，检查已归档的实际候选并保存有依据的分项审片记录，未查看或未听的项目不能标通过'})[value]);return;}
+ if(key==='native-compile'){studioNativePost('compile-shot',{shotId:value});return;}
+ if(key==='native-create-video'){closeDialog();studioNativeRun('加载 studio-u22-compiler，校验这个结构化分镜，全部通过后使用当前已配置服务生成一个新视频候选。未知任务只恢复查询，不重新提交。生成后留在画布待审阅，不自动采用',nodeById('shot:'+value));return;}
+ if(key==='native-review-form'){studioMediaReviewDialog(value);return;}
+ if(key==='native-repair'){const job=studioNativeConfig.production.jobs.find(item=>item.id===value);closeDialog();studioNativeRun('加载 studio-media-review，读取任务 '+value+' 的审片问题，只返修受影响的资产或分镜及计划，保留原候选和已采用版本。图像资产更新设定后生成新候选，视频分镜必须重新编译通过后才生成新候选，新审片记录用 replacesJobId 关联原任务，不擅自修改服务、模型或采样配置',job?nodeById(job.targetType+':'+job.targetId):null);return;}
+ if(key==='native-review-save'){
+  const form=document.getElementById('native-media-review');if(!form)return;const data=new FormData(form),dimensions=Object.keys(studioReviewDimensions).map(dimension=>({dimension,verdict:data.get('verdict-'+dimension),observation:String(data.get('note-'+dimension)||'').trim()||'尚未检查'}));
+  if(dimensions.some(item=>item.verdict!=='unknown'&&item.observation==='尚未检查')){toast('请填写已判定项目的依据');return;}
+  const button=document.querySelector('[data-action="native-review-save"]');if(button?.disabled)return;if(button)button.disabled=true;
+  studioNativePost('save-review',{revision:studioNativeConfig.production.revision,document:JSON.stringify({id:studioRandomUUID(),jobId:form.dataset.job,reviewer:'用户审阅',dimensions,repair:String(data.get('repair')||''),replacesJobId:null})});return;
+ }
+ if(key==='ref-wb-reparse'){handleAction('native-creative-run:assets');return;}
+ if(['ref-sb-parse','ref-sb-build','ref-storyboard-parse'].includes(key)){handleAction('native-creative-run:plans');return;}
+ return studioCreativeAction(action);
+};
+window.addEventListener('message',event=>{
+ if(event.source!==parent||event.data?.channel!=='crewon-studio-v1')return;
+ if(event.data.type==='shot-compiled'){const value=event.data.value;showDialog('编译校验',`<p>${value.valid?'校验通过，可使用当前配置生成候选':'需要修正后才能生成'}</p>${value.errors.length?`<ul>${value.errors.map(item=>`<li>${esc(studioCompileErrors[item]||item)}</li>`).join('')}</ul>`:''}<small>${esc(value.mode)} · ${value.seconds} 秒 · ${value.references.length} 项参考</small><details class="native-creative-record"><summary>查看实际模型输入</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(value.prompt)}</pre></details>`,btn('关闭','close-modal','outline'));}
+ if(event.data.type==='review-saved'){studioCreativeDialog('reviews');toast('审片记录已保存');}
+ if(event.data.type==='error')document.querySelector('[data-action="native-review-save"]')?.removeAttribute('disabled');
+});
+document.addEventListener('click',event=>{const button=event.target.closest('[data-action]');if(!button)return;const action=button.dataset.action;if(action?.startsWith('native-')||['asset-vault','character-library','workflow-library','ref-wb-reparse','ref-sb-parse','ref-sb-build','ref-storyboard-parse'].includes(action)){if(action==='native-adopt-script'||action.startsWith('native-adopt-media')||action.startsWith('native-review:')||action.startsWith('native-script-'))return;event.preventDefault();event.stopImmediatePropagation();handleAction(action);}},true);
+const studioCreativeStyles=document.createElement('style');studioCreativeStyles.textContent=`.native-creative-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}.native-creative-tabs .button{font-size:12px;padding:6px 10px;min-height:30px}.native-creative-record{border-bottom:1px solid var(--line);padding:12px 0}.native-creative-record summary{cursor:pointer;font-size:13px;line-height:1.6}.native-creative-record>div{padding:10px 0 0 14px}.native-creative-record p{line-height:1.7;overflow-wrap:anywhere}.native-creative-record blockquote{border-left:2px solid var(--line);margin:12px 0;padding-left:12px;color:var(--muted)}.native-creative-record dt{color:var(--muted);margin-top:8px}.native-creative-record dd{margin:4px 0 0}.native-creative-record li{margin:6px 0}.native-review-fields{display:grid;gap:12px}.native-review-fields>label{display:grid;grid-template-columns:90px 96px minmax(0,1fr);gap:8px;align-items:center}.native-review-fields input,.native-review-fields select,.native-review-fields textarea{width:100%;min-width:0;box-sizing:border-box;font-size:12px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--text);background:var(--panel)}.native-review-fields>.native-review-repair{display:grid;grid-template-columns:1fr}.native-review-fields textarea{min-height:72px;resize:vertical}@media(max-width:540px){.native-review-fields>label{grid-template-columns:1fr 96px}.native-review-fields input{grid-column:1/-1}}`;document.head.append(studioCreativeStyles);
+render();
+
+function studioNativeStoryboardBody(){
+ const production=studioNativeConfig.production,creative=studioCreativeState();
+ return production.shots.map(shot=>{const plan=creative.plans.filter(item=>item.shotId===shot.id).at(-1);return studioCreativeRows(`${shot.title} · ${(shot.frames/production.fps).toFixed(1)} 秒`,plan?`<small>${esc(({i2va:'首帧生视频',ref2va:'参考生视频',t2va:'文生视频'})[plan.mode])} · ${plan.shotVersion===shot.version?'当前版本':'待更新'}</small><p>${esc(plan.purpose)}</p><dl><dt>空间</dt><dd>${esc(plan.geography)}</dd><dt>摄影</dt><dd>${esc(plan.camera)}</dd><dt>光线</dt><dd>${esc(plan.lighting)}</dd></dl><ol>${plan.beats.map(beat=>`<li><small>${beat.start}–${beat.end}s</small> ${esc(beat.action)}${beat.dialogue?`<br>${esc(beat.speaker)}：${esc(beat.dialogue)}`:''}</li>`).join('')}</ol><p class="muted">${esc(plan.entryState)} → ${esc(plan.exitState)}</p><button class="button outline" data-action="native-compile:${shot.id}">编译校验</button> <button class="button outline" data-action="native-create-video:${shot.id}">生成候选</button>`:`<p>${esc(shot.prompt||'')}</p><p class="muted">旧分镜仍可使用；可让项目 Agent 补充结构化计划。</p>`);}).join('')||'<p class="muted">保存分镜后，场景、资产引用和故事连线会同步到画布。</p>';
+}
+let studioNativeSelectedShot=null;
+const studioNativeStoryboardFallback=referenceStoryboardPending;
+function studioNativeStoryboardPage(){
+ const production=studioNativeConfig.production,shots=production.shots;
+ const shot=shots.find(item=>item.id===studioNativeSelectedShot)||shots[0];
+ const plan=studioCreativeState().plans.filter(item=>item.shotId===shot.id).at(-1);
+ const assets=shot.assetIds.map(id=>nodeById('asset:'+id)).filter(Boolean);
+ const field=(label,value)=>`<section class="ref-sb-read-field"><h3>${label}</h3><p>${esc(value||'未填写')}</p></section>`;
+ const details=field('画面描述',shot.prompt)+field('对白',shot.dialogue)+(plan?field('镜头目的',plan.purpose)+field('空间与走位',plan.geography)+field('摄影',plan.camera)+field('光影氛围',plan.lighting)+`<section class="ref-sb-read-field"><h3>动作时间段</h3>${plan.beats.map(beat=>`<p><span class="ref-sb-time">${beat.start}–${beat.end}s</span>${esc(beat.action)}${beat.dialogue?'<br>'+esc(beat.speaker||'')+'：'+esc(beat.dialogue):''}</p>`).join('')}</section>`+field('入镜状态',plan.entryState)+field('出镜状态',plan.exitState):'');
+ return `<main class="ref-sb-result${referenceStoryboardAssetsExpanded?' is-assets-open':''}"><header><span>共 ${shots.length} 个镜头 · ${shots.reduce((sum,item)=>sum+item.frames,0)/production.fps} 秒</span><small>项目已保存分镜</small></header><div class="ref-sb-body"><aside id="ref-sb-assets"><h2>镜头 ${shots.indexOf(shot)+1}<small>${shot.frames/production.fps}s</small></h2><div class="ref-sb-assets-panel"><h3>关联素材</h3><div class="ref-sb-asset-grid">${assets.map(referenceStoryboardAssetMarkup).join('')||'<p>暂无关联素材</p>'}</div></div></aside><div class="ref-sb-main"><div class="ref-sb-actions"><button class="button ghost ref-sb-assets-toggle" data-action="ref-sb-assets" aria-controls="ref-sb-assets" aria-expanded="${referenceStoryboardAssetsExpanded}">${referenceStoryboardAssetsExpanded?'收起素材':'关联素材'}</button><strong>${esc(shot.title)}</strong>${plan?`<button class="button outline" data-action="native-compile:${shot.id}">编译校验</button>`:''}</div><div class="ref-sb-details" role="region" aria-label="分镜内容" tabindex="0">${details}</div><nav class="ref-sb-strip" aria-label="分镜">${shots.map((item,index)=>`<button data-action="native-shot-select:${item.id}" aria-current="${item.id===shot.id}" title="${esc(item.title)}"><span class="ref-sb-thumb" aria-hidden="true"></span><small>${index+1}. ${esc(item.title)} · ${item.frames/production.fps}s</small></button>`).join('')}</nav></div></div></main>`;
+}
+referenceStoryboardPending=function(node){return studioNativeConfig.production?.shots?.length?studioNativeStoryboardPage():studioNativeStoryboardFallback(node);};
+const studioNativeStoryboardAction=handleAction;
+handleAction=function(action){if(action.startsWith('native-shot-select:')){studioNativeSelectedShot=action.slice('native-shot-select:'.length);referenceDrawWorkbench();return;}return studioNativeStoryboardAction(action);};

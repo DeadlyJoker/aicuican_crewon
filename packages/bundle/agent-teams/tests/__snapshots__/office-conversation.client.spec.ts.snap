@@ -1,0 +1,177 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`replays a recorded default-leader request followed by its delegated command and an explicit member request 1`] = `
+[
+  {
+    "anchorSeq": 10,
+    "data": {
+      "args": " {"text":"请让核查员核对 17 + 25，拿到他的实际结果后，由你作为组长用一句话汇总。请实际委派给已有成员。","id":"00000000-0000-4000-8000-000000000101"}",
+      "commandId": "cmd-office-leader-2",
+      "kind": "command",
+      "name": "team-office-send",
+      "outcome": {
+        "kind": "success",
+      },
+      "seq": 10,
+      "time": 1700000004252,
+    },
+    "groupTree": "input",
+    "id": "cmd-office-leader-2",
+    "key": "cmd-office-leader-2",
+    "kind": "office-message",
+    "location": {
+      "kind": "session",
+    },
+    "target": "chat",
+    "visibility": "visible",
+  },
+  {
+    "anchorSeq": 13,
+    "data": {
+      "args": " {"id":"00000000-0000-4000-8000-000000000102","memberId":"00000000-0000-4000-8000-000000000012","text":"请核对计算结果：17 + 25 等于多少？请给出实际计算过程和最终数值结果，并说明是否正确。"}",
+      "commandId": "cmd-office-leader-3",
+      "kind": "command",
+      "name": "team-office-send",
+      "outcome": {
+        "kind": "success",
+      },
+      "seq": 13,
+      "time": 1700000006038,
+    },
+    "groupTree": "input",
+    "id": "cmd-office-leader-3",
+    "key": "cmd-office-leader-3",
+    "kind": "office-message",
+    "location": {
+      "kind": "session",
+    },
+    "target": "chat",
+    "visibility": "visible",
+  },
+  {
+    "anchorSeq": 16,
+    "data": {
+      "args": " {"memberId":"00000000-0000-4000-8000-000000000012","text":"这条直接交给你，请只回复“定向命中”。","id":"00000000-0000-4000-8000-000000000103"}",
+      "commandId": "cmd-office-leader-4",
+      "kind": "command",
+      "name": "team-office-send",
+      "outcome": {
+        "kind": "success",
+      },
+      "seq": 16,
+      "time": 1700000119867,
+    },
+    "groupTree": "input",
+    "id": "cmd-office-leader-4",
+    "key": "cmd-office-leader-4",
+    "kind": "office-message",
+    "location": {
+      "kind": "session",
+    },
+    "target": "chat",
+    "visibility": "visible",
+  },
+]
+`;
+
+exports[`replays recorded addressed commands outside collapsed model work and retains their order 1`] = `
+[
+  {
+    "anchorSeq": 17,
+    "data": {
+      "args": " {"memberId":"a9d5e4b8-5783-4012-a03c-0f6c1da01a8f","text":"请记住办公室代号「月桥732」。只回复已记住及代号。","id":"87884ead-70c4-440f-bb03-9bc9d59c482a"}",
+      "commandId": "cmd-f4960377-4",
+      "kind": "command",
+      "name": "team-office-send",
+      "outcome": {
+        "kind": "success",
+      },
+      "seq": 17,
+      "time": 1793818260133,
+    },
+    "groupTree": "input",
+    "id": "cmd-f4960377-4",
+    "key": "cmd-f4960377-4",
+    "kind": "office-message",
+    "location": {
+      "kind": "session",
+    },
+    "target": "chat",
+    "visibility": "visible",
+  },
+  {
+    "anchorSeq": 21,
+    "data": {
+      "args": " {"memberId":"e36aa4b5-2839-49ec-a2fa-baa5c5b37480","text":"计算 17 + 25，只输出结果。","id":"3d742a54-1425-4bb2-8ee5-ccf12f72261b"}",
+      "commandId": "cmd-f4960377-5",
+      "kind": "command",
+      "name": "team-office-send",
+      "outcome": {
+        "kind": "success",
+      },
+      "seq": 21,
+      "time": 1793818261558,
+    },
+    "groupTree": "input",
+    "id": "cmd-f4960377-5",
+    "key": "cmd-f4960377-5",
+    "kind": "office-message",
+    "location": {
+      "kind": "session",
+    },
+    "target": "chat",
+    "visibility": "visible",
+  },
+  {
+    "anchorSeq": 28,
+    "data": {
+      "args": " {"memberId":"a9d5e4b8-5783-4012-a03c-0f6c1da01a8f","text":"上次让你记住的办公室代号是什么？只回复代号。","id":"d3b72357-29cc-4e6f-a0df-23cebef25e81"}",
+      "commandId": "cmd-11f4a123-1",
+      "kind": "command",
+      "name": "team-office-send",
+      "outcome": {
+        "kind": "success",
+      },
+      "seq": 28,
+      "time": 1793818292313,
+    },
+    "groupTree": "input",
+    "id": "cmd-11f4a123-1",
+    "key": "cmd-11f4a123-1",
+    "kind": "office-message",
+    "location": {
+      "kind": "session",
+    },
+    "target": "chat",
+    "visibility": "visible",
+  },
+]
+`;
+
+exports[`restores command-only workflow runs as visible chat activity after restart 1`] = `
+[
+  {
+    "anchorSeq": 4,
+    "data": {
+      "args": " {"id":"5bca2e15-139c-48d7-a76f-695286d9ede2","input":"请核对 17 + 25 = 42。"}",
+      "commandId": "cmd-48ff10eb-1",
+      "kind": "command",
+      "name": "team-workflow-run",
+      "outcome": {
+        "kind": "success",
+      },
+      "seq": 4,
+      "time": 1793878326766,
+    },
+    "groupTree": "input",
+    "id": "cmd-48ff10eb-1",
+    "key": "cmd-48ff10eb-1",
+    "kind": "workflow-message",
+    "location": {
+      "kind": "session",
+    },
+    "target": "chat",
+    "visibility": "visible",
+  },
+]
+`;

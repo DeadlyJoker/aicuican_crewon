@@ -1,0 +1,135 @@
+/* Desktop pointer controls use a compact density; touch keeps the original targets. */
+@media (min-width:721px) and (pointer:fine) {
+  .shell {
+    --studio-control-height:28px;
+    --studio-icon-size:14px;
+    --studio-panel-width:560px;
+    grid-template-columns:56px minmax(0,1fr);
+  }
+  .rail { gap:6px; padding:12px 8px; }
+  .brand-mark { width:32px; height:32px; font-size:18px; margin-bottom:18px; }
+  .rail-btn { width:34px; height:34px; border-radius:10px; }
+  .rail-btn svg { width:17px; height:17px; }
+  .user-avatar { width:28px; height:28px; font-size:11px; }
+  .topbar { height:52px; padding-inline:22px; gap:12px; }
+  .wordmark { font-size:16px; gap:7px; }
+  .wordmark span { font-size:10px; letter-spacing:1.5px; }
+  .top-actions { gap:6px; }
+  .top-actions .button { height:30px; min-height:30px; padding-inline:10px; font-size:12px; gap:5px; border-radius:9px; }
+  .top-actions .icon-btn { width:28px; height:28px; }
+  .top-actions svg { width:15px; height:15px; }
+  .canvas-top { height:40px; padding-inline:16px; }
+  .canvas-top .segmented { padding:2px; gap:2px; border-radius:8px; }
+  .canvas-top .segmented button { height:24px; padding-inline:10px; font-size:12px; border-radius:6px; }
+  .canvas-actions .button { height:28px; padding-inline:8px; }
+  .canvas-actions .icon-btn { width:28px; height:28px; }
+  .floating-tools { left:14px; top:14px; gap:2px; padding:4px; border-radius:10px; }
+  .floating-tools .icon-btn { width:28px; height:28px; border-radius:7px; }
+  .floating-tools svg { width:15px; height:15px; }
+  .floating-tools .tool-sep { margin-block:2px; }
+
+  .creation-toolbar {
+    padding:4px 6px;
+    gap:1px;
+    border-radius:14px;
+    border-color:var(--dsw-alias-border-l3);
+    box-shadow:var(--dsw-elevation-soft);
+  }
+  .creation-toolbar .button,
+  .creation-toolbar .icon-btn,
+  .creation-toolbar .node-more > summary,
+  .canvas-tool-menu > summary {
+    height:var(--studio-control-height);
+    min-height:var(--studio-control-height);
+    padding-inline:8px;
+    border-radius:8px;
+    font-size:12px;
+    line-height:18px;
+    gap:5px;
+  }
+  .creation-toolbar .icon-btn { width:28px; padding:0; }
+  .creation-toolbar .button svg,
+  .creation-toolbar .icon-btn svg,
+  .canvas-tool-menu > summary svg { display:block; width:var(--studio-icon-size); height:var(--studio-icon-size); }
+  .canvas-tool-menu > summary svg:last-child { width:10px; height:10px; }
+  .creation-toolbar > .creation-tool-divider { height:16px; margin-inline:5px; }
+  .canvas-tool-menu > div,.node-more > div { padding:4px; border:.5px solid var(--dsw-alias-border-l3); border-radius:10px; }
+  .canvas-tool-menu > div .button,.creation-toolbar .node-more > div .button { height:30px; min-height:30px; font-size:12px; }
+
+  .canvas-creation {
+    width:min(var(--studio-panel-width),calc(100% - 100px));
+    padding:12px 14px 10px;
+    border-radius:16px;
+    border-color:var(--dsw-alias-border-l3);
+    box-shadow:var(--dsw-elevation-soft);
+  }
+  .creation-reference-row { gap:10px; margin-bottom:8px; }
+  .creation-reference-row > .icon-btn { width:26px; height:26px; border-radius:7px; }
+  .creation-reference-row > .icon-btn svg { width:14px; height:14px; }
+  .creation-references { gap:8px; }
+  .creation-reference,.creation-reference-add { width:40px; height:40px; border-radius:8px; }
+  .creation-reference-add { border-style:solid; border-color:var(--dsw-alias-border-l3); }
+  .creation-reference-add svg { width:17px; height:17px; }
+  .creation-reference > span:not(.studio-asset-thumb) { padding:0 2px; font-size:9px; line-height:14px; }
+  .creation-reference > small { font-size:9px; }
+  .creation-selection { margin-left:2px; line-height:18px; font-size:12px; }
+  .creation-selection small { font-size:10px; line-height:16px; }
+  #canvas-creation-prompt { min-height:54px; height:64px; max-height:144px; padding:2px 0; font-size:13px; line-height:21px; }
+  .creation-expanded #canvas-creation-prompt { height:160px; max-height:36vh; }
+  .creation-control-row { margin-top:6px; min-height:32px; gap:8px; }
+  .creation-model { gap:5px; }
+  .creation-model svg,.creation-settings > summary svg { width:14px; height:14px; }
+  .creation-control-row select { min-height:28px; max-width:160px; font-size:12px; }
+  .creation-settings > summary { height:28px; font-size:12px; gap:4px; }
+  .creation-settings > div { width:220px; padding:12px; border-radius:12px; }
+  .creation-settings .field { gap:5px; margin-bottom:10px; font-size:12px; }
+  .creation-settings .field input,.creation-settings .field select { min-height:30px; max-width:none; padding:4px 8px; font-size:12px; line-height:20px; border-radius:8px; }
+  .creation-submit { width:32px; height:32px; }
+  .creation-submit svg { width:18px; height:18px; }
+  .creation-demo-label { font-size:10px; }
+
+  .node-tool-panel { width:min(var(--studio-panel-width),calc(100% - 100px)); padding:0; }
+  .node-tool-header { padding:8px 12px; gap:12px; }
+  .node-tool-header > div { gap:8px; }
+  .node-tool-header strong { font-size:13px; line-height:20px; }
+  .node-tool-header span { font-size:11px; line-height:18px; }
+  .node-tool-header .icon-btn { width:24px; height:24px; border-radius:6px; }
+  .node-tool-header .icon-btn svg { width:14px; height:14px; }
+  .node-tool-body { grid-template-columns:minmax(0,.95fr) minmax(0,1fr); gap:16px; padding:12px; }
+  .lighting-preview,.angle-preview,.person-preview { height:194px; border-radius:10px; }
+  .tool-photo { inset:12px; border-radius:7px; }
+  .angle-preview .tool-photo { inset:24px; }
+  .tool-preview-caption { left:6px; right:6px; bottom:6px; font-size:9px; line-height:16px; border-radius:4px; }
+  .light-position { width:11px; height:11px; border-width:1.5px; }
+  .node-tool-controls { gap:8px; }
+  .tool-field-title { font-size:12px; line-height:18px; }
+  .tool-choice-grid { gap:4px; }
+  .tool-choice-grid .button { height:28px; min-height:28px; border-radius:7px; font-size:12px; line-height:18px; padding-inline:5px; }
+  .tool-range { font-size:12px; line-height:18px; }
+  .tool-range > span { margin-bottom:2px; }
+  .tool-range input { height:18px; margin:0; }
+  .tool-color { gap:8px; font-size:12px; line-height:18px; }
+  .tool-color input { width:22px; height:22px; border-radius:5px; }
+  .tool-color output { font-size:10px; }
+  .tool-person-tabs { padding:2px; border-radius:8px; }
+  .tool-person-tabs button { height:26px; padding:3px 6px; border-radius:6px; font-size:12px; }
+  .tool-help { font-size:11px; line-height:18px; }
+  .person-preview-marker { left:14px; right:14px; top:16px; padding:3px; font-size:9px; }
+  .node-tool-footer { gap:8px; padding:8px 12px; }
+  .node-tool-footer .button { height:30px; min-height:30px; padding-inline:9px; gap:5px; border-radius:8px; font-size:12px; }
+  .node-tool-footer .button svg { width:14px; height:14px; }
+  .node-tool-footer > span { font-size:10px; line-height:16px; }
+
+  /* Keep the range hit area while reducing its visible track and handle. */
+  .tool-range input[type=range] { appearance:none; background:transparent; cursor:pointer; }
+  .tool-range input[type=range]::-webkit-slider-runnable-track { height:2px; background:color-mix(in srgb,var(--dsw-alias-label-secondary) 28%,transparent); border-radius:2px; }
+  .tool-range input[type=range]::-webkit-slider-thumb { appearance:none; width:10px; height:10px; margin-top:-4px; border:0; border-radius:50%; background:var(--dsw-alias-label-primary); box-shadow:0 0 0 .5px var(--dsw-alias-border-l3); }
+  .tool-range input[type=range]::-moz-range-track { height:2px; background:color-mix(in srgb,var(--dsw-alias-label-secondary) 28%,transparent); border-radius:2px; }
+  .tool-range input[type=range]::-moz-range-thumb { width:10px; height:10px; border:0; border-radius:50%; background:var(--dsw-alias-label-primary); }
+  .tool-range input[type=range]:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+}
+
+/* At overview zoom, connection targets must not cover a node's own actions. */
+html[data-studio-native] .port::before { max-width:64px; max-height:64px; }
+html[data-studio-native] .ref-canvas-header>[data-action="settings"] { display:grid; place-items:center; }
+@media(max-width:520px){html[data-studio-native] .ref-canvas-header>.ref-account{display:none}html[data-studio-native] .ref-canvas-header>[data-action="toggle-theme"]{font-size:0;gap:0}}

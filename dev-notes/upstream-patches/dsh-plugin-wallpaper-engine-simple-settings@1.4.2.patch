@@ -1,0 +1,126 @@
+--- a/lib/client.js
++++ b/lib/client.js
+@@ -696,6 +696,11 @@
+ 				const WE_I18N_EN_PICKER = {
+ 				  // ── src/picker-modal.js ──
+ 				  "返回": "Back",
++				  "高级设置": "Advanced settings",
++ "壁纸与外观": "Wallpaper and appearance", "导入壁纸": "Import wallpaper", "背景模糊": "Background blur", "无壁纸": "No wallpaper", "跟随主题": "Follow theme", "其他": "Other",
++ "轮播与过渡": "Slideshow and transitions",
++ "外观细节": "Appearance details",
++ "文件与兼容": "Files and compatibility",
+ 				  "正常列表（{n}）": "Normal list ({n})",
+ 				  "已隐藏（{n}）": "Hidden ({n})",
+ 				  "没有已隐藏的壁纸": "No hidden wallpapers",
+@@ -13457,10 +13462,13 @@
+ 				    // verify-scene-live 的节顺序一节），**不**靠求值顺序。
+ 				    // ⚠️ 注册表为空 = 该子包没装 / 被关：本页签为空，**不**崩、不整页消失
+ 				    //    （D3①/D3③ 在这条通道上的形态：缺的是这几节，不是这一页）。
+-				    const registered = wePanelSectionsOf("library").map((section) => (
+-				      React.createElement(React.Fragment, { key: section.id }, section.render(ctx))
+-				    ));
+-				    return React.createElement(React.Fragment, null, registered);
++				    const sections = wePanelSectionsOf("library");
++                const basic = sections.filter(section => ["wallpaper-current", "wallpaper-uploads"].includes(section.id));
++                const extra = sections.filter(section => !basic.includes(section));
++                const render = section => React.createElement(React.Fragment, { key: section.id }, section.render(ctx));
++                return React.createElement(React.Fragment, null, basic.map(render),
++                  React.createElement("details", { className: "we-picker__section" },
++                    React.createElement("summary", { style: { cursor: "pointer", padding: "12px 0" } }, weT("轮播与过渡")), extra.map(render)));
+ 				  }
+ 
+ 
+@@ -13484,13 +13492,15 @@
+ 				      ));
+ 				    return React.createElement(React.Fragment, null,
+ 				      renderAppearanceThemeSection(ctx),
+-				      renderAppearanceDetailSection(ctx),
+-				      renderAppearanceGlassSection(ctx),
+-				      renderAppearanceSidebarCornersSection(ctx),
++                  renderAppearanceDetailSection(ctx),
++                  renderAppearanceGlassSection(ctx),
++                  React.createElement("details", { className: "we-picker__section" },
++                    React.createElement("summary", { style: { cursor: "pointer", padding: "12px 0" } }, weT("外观细节")),
++                    renderAppearanceSidebarCornersSection(ctx),
+ 				      // 「全局 UI 配色」在「全局字体」**上面**（用户口径：「变成全局UI配色放在全局字体上面」）；
+ 				      // 原「输入光标」节已撤销，其唯一一行（光标颜色）并入本节（见该渲染器的 ③）。
+ 				      renderAppearanceUiColorSection(ctx),
+-				      registered,
++				      registered),
+ 				    );
+ 				  }
+ 
+@@ -26639,7 +26649,9 @@
+ 		  // 经 ctx 传进各渲染器（渲染器不得直接读 selection）；判定只有一处实现 —— 本文件的
+ 		  // `weComponentVisible`。可见页签表（D3① 的"页签安全"）另见 visiblePickerTabs。
+ 		  const components = sel.inventory && sel.inventory.components;
+-		  const visibleTabs = visiblePickerTabs();
++		  const [advanced, setAdvanced] = React.useState(false);
++          const [mediaFilter, setMediaFilter] = React.useState("all");
++		  const visibleTabs = visiblePickerTabs().filter(tab => advanced || ["library", "appearance", "playback"].includes(tab.id));
+ 		  // 视频类壁纸（原生视频 + 内嵌 MP4 场景）: 只有它们有
+ 		  // 「真实播放态」的概念。实时渲染（live iframe）形态必须排除在外：它没有
+ 		  // <video> 元素可回写真实状态，且 sceneVideo 在 live 形态下非空（降级备用），
+@@ -26804,7 +26816,7 @@
+ 		  // ── 页签状态：调节面板分六个页签（壁纸库/外观/播放/系统/扩展/关于 —— 前四个由原六域
+ 		  //    合并，「扩展」「关于」后加），每份实例独立记忆（设置页与仓库抽屉互不影响）；只存
+ 		  //    localStorage，不进 config.json。useState 必须在下方早退分支之前调用（Rules of Hooks）。 ──
+-		  const [activeTab, setActiveTab] = React.useState(() => resolvePickerTab(readSavedPickerTab()));
++		  const [activeTab, setActiveTab] = React.useState("library");
+ 		  const switchTab = (id) => {
+ 		    // 校验走**可见页签表**（不是 PICKER_TABS）：子包浏览器半边缺席时被 gate 掉的页签不该再能被
+ 		    // 切进去（那正是"点进一块空面板"的来源）。
+@@ -27090,7 +27102,44 @@
+ 		      INTERVALS, armedConfirm: sel.armedConfirm, cdMode, current, editing, editorPageView, group, groups, isLiveScene, onArmConfirm: armConfirm, onArmDeleteGroup, onCancelEditUploadDir, onCancelEditWeAssetsDir, onClear, onDeleteGroup, onDisarmConfirm: disarmConfirm, onEditInterval, onEditName, onEditOrder, onEditTrigger, onGroupChange, onGroupInterval, onGroupTrigger, onPictureSlideSeconds, onOpenPicker, onOpenPickerDraft, onRefresh, onStartEditUploadDir, onStartEditWeAssetsDir, onSwitchTransition, onSwitchTransitionDir, onSwitchTransitionSpeed, onToggleAudio, onTogglePlay, onTogglePropsPanel, onToggleRotation, onUploadDirDraft, onWeAssetsDirDraft, pagerRow, playableCount, playableList, playbackLive, propsPanelOpen, renderUserPropsPanel, sel, setPickerOpener, uploadedList,
+ 		    });
+ 		  };
+-		  const tabIdx = Math.max(0, visibleTabs.findIndex((t) => t.id === activeTab));
++		
++  if (!advanced) return React.createElement("div", { className: "we-picker crewon-wallpapers" },
++    React.createElement("style", null, `
++      .crewon-wallpapers { color: var(--we-ink, inherit); }
++      .crewon-wallpapers .cw-head { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px; }
++      .crewon-wallpapers h3 { margin:0;font-size:16px;font-weight:500; }
++      .crewon-wallpapers .cw-action { border:0;background:var(--dsw-alias-interactive-bg-hover);color:inherit;border-radius:8px;padding:7px 12px;cursor:pointer;font:inherit;font-size:13px; }
++      .crewon-wallpapers .cw-basic { display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:16px 0;margin-bottom:20px;border-bottom:1px solid var(--dsw-alias-border-l2); }
++      .crewon-wallpapers .cw-range { display:grid;grid-template-columns:1fr auto;gap:10px;font-size:13px; }
++      .crewon-wallpapers .cw-range input { grid-column:1/-1;width:100%;accent-color:var(--dsw-alias-brand-primary); }
++      .crewon-wallpapers .cw-filters { display:flex;gap:6px;margin:14px 0; }
++      .crewon-wallpapers .cw-filters button[aria-pressed=true] { background:var(--dsw-alias-interactive-bg-active);box-shadow:inset 0 -2px var(--dsw-alias-brand-primary); }
++      .crewon-wallpapers .cw-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px; }
++      .crewon-wallpapers .cw-card { position:relative;padding:0;border:2px solid transparent;border-radius:12px;overflow:hidden;background:var(--dsw-alias-bg-layer-1);color:inherit;cursor:pointer;text-align:left;min-width:0; }
++      .crewon-wallpapers .cw-card[aria-pressed=true] { border-color:var(--dsw-alias-brand-primary); }
++      .crewon-wallpapers .cw-card img,.crewon-wallpapers .cw-empty { display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--dsw-alias-interactive-bg-hover); }
++      .crewon-wallpapers .cw-empty { display:grid;place-items:center;font-size:13px; }
++      .crewon-wallpapers .cw-name { display:block;padding:9px 10px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
++      .crewon-wallpapers .cw-check { position:absolute;top:8px;right:8px;background:var(--dsw-alias-brand-primary);color:white;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px; }
++      @media(max-width:500px){.crewon-wallpapers .cw-basic{grid-template-columns:1fr}.crewon-wallpapers .cw-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
++    `),
++    React.createElement("div", { className:"cw-head" }, React.createElement("h3", null, weT("壁纸与外观")),
++      React.createElement("button", { className:"cw-action", type:"button", onClick:()=>setAdvanced(true) }, weT("高级设置"))),
++    React.createElement("div", { className:"cw-basic" },
++      React.createElement("label", { className:"cw-range" }, weT("玻璃透明度"), React.createElement("span",null,sel.glassAlpha+"%"),
++        React.createElement("input", { type:"range",min:0,max:100,value:sel.glassAlpha,onChange:e=>onGlassAlpha(Number(e.target.value),false),"aria-label":weT("玻璃透明度") })),
++      React.createElement("label", { className:"cw-range" }, weT("背景模糊"), React.createElement("span",null,sel.wallpaperBlur+"px"),
++        React.createElement("input", { type:"range",min:0,max:60,value:sel.wallpaperBlur,onChange:e=>onWallpaperBlur(Number(e.target.value),false),"aria-label":weT("背景模糊") }))),
++    React.createElement("div", { className:"cw-head" },React.createElement("h3",null,weT("壁纸库")),
++      React.createElement("label", { className:"cw-action" }, weT("导入壁纸"),React.createElement("input", { type:"file",accept:".jpg,.jpeg,.png,.webp,.mp4",style:{display:"none"},disabled:sel.uploading,onChange:e=>{const f=e.target.files&&e.target.files[0];if(f)uploadWallpaperFile(f);e.target.value="";} }))),
++    React.createElement("div", { className:"cw-filters" },[["all","全部"],["image","图片"],["video","视频"],["other","其他"]].map(([id,label])=>React.createElement("button", { key:id,type:"button",className:"cw-action","aria-pressed":mediaFilter===id,onClick:()=>setMediaFilter(id) },weT(label)))),
++    React.createElement("div", { className:"cw-grid" },
++      mediaFilter==="all"&&React.createElement("button", {type:"button",className:"cw-card","aria-pressed":!sel.id,onClick:()=>applySelection("")},React.createElement("span",{className:"cw-empty"},weT("无壁纸")),React.createElement("span",{className:"cw-name"},weT("跟随主题"))),
++      playableList.filter(w=>mediaFilter==="all"||w.type===mediaFilter||(mediaFilter==="other"&&!["image","video"].includes(w.type))).map(w=>React.createElement("button", {type:"button",key:w.id,className:"cw-card","aria-label":w.title,"aria-pressed":sel.id===w.id,onClick:()=>applySelection(w.id)},
++        w.preview?React.createElement("img",{src:w.preview,alt:"",loading:"lazy"}):React.createElement("span",{className:"cw-empty"},weT(w.type==="video"?"视频":"图片")),
++        sel.id===w.id&&React.createElement("span",{className:"cw-check","aria-hidden":true},"✓"),React.createElement("span",{className:"cw-name"},w.title)))),
++    sel.uploadError&&React.createElement("p",{role:"alert"},sel.uploadError));
++  const tabIdx = Math.max(0, visibleTabs.findIndex((t) => t.id === activeTab));
+ 
+ 		  return React.createElement("div", { className: "we-picker", "data-we-cards": sel.pickerLayout, ref: pickerRootRef },
+ 		    // ── Card header (mirrors the skin-center's pluginCard header): plugin
+@@ -27098,6 +27147,7 @@
+ 		    React.createElement("div", { className: "we-picker__card-head" },
+ 		      React.createElement("span", { className: "we-picker__card-name" }, weT("壁纸引擎")),
+ 		      React.createElement("span", { className: "we-picker__card-badge" }, String(playableList.length)),
++		      React.createElement("button", { type: "button", className: "we-btn", "aria-pressed": advanced, onClick: () => { setAdvanced(false); setActiveTab("library"); } }, weT("返回")),
+ 		      React.createElement("span", { className: "we-picker__card-desc" }, weT("本地 Wallpaper Engine 壁纸 · 液态玻璃主题")),
+ 		    ),
+ 		    // ── 页签栏（分段式）：六个页签互斥展示，替代三十控件的单列长滚动。

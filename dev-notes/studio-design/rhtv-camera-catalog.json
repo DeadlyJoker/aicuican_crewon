@@ -1,0 +1,214 @@
+{
+  "source": "https://rhtv.runninghub.ai/project/canvas/2119975870931091458",
+  "observedAt": "2026-11-10",
+  "groups": {
+    "相机": [
+      {
+        "name": "ARRI ALEXA 65（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/arri-alexa-65.webp"
+      },
+      {
+        "name": "RED V-RAPTOR（瑞德）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/red-v-raptor.webp"
+      },
+      {
+        "name": "Panavision Millennium DXL2（潘那维申）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/panavision-dxl2.webp"
+      },
+      {
+        "name": "ARRI ALEXA Mini LF（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/arri-alexa-mini-lf.webp"
+      },
+      {
+        "name": "Phantom Flex4K（幻影）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/phantom-flex4k.webp"
+      },
+      {
+        "name": "ARRIFLEX 435（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/arriflex-435.webp"
+      },
+      {
+        "name": "ARRICAM LT（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/arricam-lt.webp"
+      },
+      {
+        "name": "Panavision Millennium XL2（潘那维申）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/panavision-millennium-xl2.webp"
+      },
+      {
+        "name": "ARRIFLEX 16SR3（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/arriflex-16sr3.webp"
+      },
+      {
+        "name": "Panavision System 65（潘那维申）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/panavision-system-65.webp"
+      },
+      {
+        "name": "IMAX Film Camera",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/imax-msm-9802.webp"
+      },
+      {
+        "name": "IMAX Keighley",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/imax-keighley.webp"
+      },
+      {
+        "name": "ARRI 765（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/arri-765.webp"
+      },
+      {
+        "name": "Bolex H16 Reflex（博莱克斯）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/bolex-h16.webp"
+      },
+      {
+        "name": "Mitchell BNCR（米切尔）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/mitchell-bncr.webp"
+      },
+      {
+        "name": "Hasselblad 500C/M（哈苏）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/hasselblad-500cm.webp"
+      },
+      {
+        "name": "Hasselblad X2D 100C（哈苏）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/hasselblad-x2d.webp"
+      },
+      {
+        "name": "Leica M6（徕卡）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/leica-m6.webp"
+      },
+      {
+        "name": "Pentax 67（宾得）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/pentax-67.webp"
+      },
+      {
+        "name": "Contax T2（康泰时）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/contax-t2.webp"
+      },
+      {
+        "name": "Sony VENICE（索尼）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/sony-venice.webp"
+      },
+      {
+        "name": "ARRI ALEXA 35（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/cameras/arri-alexa-35.webp"
+      }
+    ],
+    "镜头": [
+      {
+        "name": "Canon K-35（佳能）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/canon-k35.webp"
+      },
+      {
+        "name": "Cooke S4/i（库克）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/cooke-s4.webp"
+      },
+      {
+        "name": "Cooke Panchro（库克）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/cooke-speed-panchro.webp"
+      },
+      {
+        "name": "Cooke SF 1.8x（库克）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/cooke-sf-1-8x.webp"
+      },
+      {
+        "name": "Helios（赫利奥斯）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/helios.webp"
+      },
+      {
+        "name": "Panavision C-Series（潘那维申）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/panavision-c-series.webp"
+      },
+      {
+        "name": "Panavision Primo（潘那维申）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/panavision-primo.webp"
+      },
+      {
+        "name": "Hawk Class-X（霍克）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/hawk-class-x.webp"
+      },
+      {
+        "name": "Zeiss Ultra Prime（蔡司）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/zeiss-ultra-prime.webp"
+      },
+      {
+        "name": "ARRI Signature Prime（阿莱）",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/lenses/arri-signature-prime.webp"
+      }
+    ],
+    "焦距": [
+      {
+        "name": "20 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/20.webp"
+      },
+      {
+        "name": "28 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/28.webp"
+      },
+      {
+        "name": "35 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/35.webp"
+      },
+      {
+        "name": "50 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/50.webp"
+      },
+      {
+        "name": "85 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/85.webp"
+      },
+      {
+        "name": "135 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/135.webp"
+      },
+      {
+        "name": "200 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/200.webp"
+      },
+      {
+        "name": "280 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/280.webp"
+      },
+      {
+        "name": "8 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/8.webp"
+      },
+      {
+        "name": "14 mm",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/focal/14.webp"
+      }
+    ],
+    "光圈": [
+      {
+        "name": "f/11",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/11.webp"
+      },
+      {
+        "name": "f/16",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/16.webp"
+      },
+      {
+        "name": "f/1.4",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/1.4.webp"
+      },
+      {
+        "name": "f/2",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/2.webp"
+      },
+      {
+        "name": "f/2.8",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/2.8.webp"
+      },
+      {
+        "name": "f/4",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/4.webp"
+      },
+      {
+        "name": "f/5.6",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/5.6.webp"
+      },
+      {
+        "name": "f/8",
+        "image": "https://rh-canvas-files.xiaoyaoyou.com/canvasfile/camera-control/aperture/8.webp"
+      }
+    ]
+  }
+}

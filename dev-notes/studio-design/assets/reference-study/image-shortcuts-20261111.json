@@ -1,0 +1,888 @@
+{
+  "observedAt": "2026-11-10T21:49:08.758788+00:00",
+  "source": {
+    "command": "rhtvcli image shortcut list",
+    "site": "ai",
+    "origin": "https://www.runninghub.ai",
+    "contractVersion": "1"
+  },
+  "scope": "Account-visible catalogue metadata only; no generation or graph mutation performed.",
+  "nodeType": "image",
+  "items": [
+    {
+      "scene": "canvas-image-quick-create-multi-camera-9-grid",
+      "label": "多机位九宫格",
+      "labelEn": "Multi-Camera 9-Grid",
+      "gridType": 9,
+      "mode": "IN_PLACE",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-story-board-4-grid",
+      "label": "剧情推演四宫格",
+      "labelEn": "Story Progression 4-Grid",
+      "gridType": 4,
+      "mode": "IN_PLACE",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-story-board-25-grid",
+      "label": "25宫格连贯分镜",
+      "labelEn": "25-Grid Storyboard",
+      "gridType": 25,
+      "mode": "IN_PLACE",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-key-light",
+      "label": "主光",
+      "labelEn": "Key Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-fill-light",
+      "label": "辅光",
+      "labelEn": "Fill Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-back-light",
+      "label": "逆光/轮廓光",
+      "labelEn": "Back Light / Rim Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-hair-light",
+      "label": "发丝光",
+      "labelEn": "Hair Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-side-light",
+      "label": "侧光",
+      "labelEn": "Side Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-edge-light",
+      "label": "边缘光",
+      "labelEn": "Edge Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-top-light",
+      "label": "顶光",
+      "labelEn": "Top Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-bottom-light",
+      "label": "底光",
+      "labelEn": "Bottom Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-eye-light",
+      "label": "眼神光",
+      "labelEn": "Eye Light",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-chiaroscuro",
+      "label": "明暗对比法",
+      "labelEn": "Chiaroscuro",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-rembrandt",
+      "label": "伦勃朗布光",
+      "labelEn": "Rembrandt Lighting",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-butterfly",
+      "label": "蝴蝶光",
+      "labelEn": "Butterfly Lighting",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-loop-lighting",
+      "label": "环形光",
+      "labelEn": "Loop Lighting",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-split-lighting",
+      "label": "二分光",
+      "labelEn": "Split Lighting",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-high-key",
+      "label": "高调光",
+      "labelEn": "High-Key Lighting",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-cinematic-lighting-flat-lighting",
+      "label": "平光",
+      "labelEn": "Flat Lighting",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-character-tri-view",
+      "label": "角色三视图生成",
+      "labelEn": "Character Tri-View",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-predict-3-s-after",
+      "label": "画面推演 - 3秒后",
+      "labelEn": "Scene Prediction - 3s Later",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-predict-5-s-before",
+      "label": "画面推演 - 5秒前",
+      "labelEn": "Scene Prediction - 5s Before",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-push-in",
+      "label": "推镜头",
+      "labelEn": "Push In",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-pull-out",
+      "label": "拉镜头",
+      "labelEn": "Pull Out",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-pan",
+      "label": "摇镜头",
+      "labelEn": "Pan",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-dolly",
+      "label": "移镜头",
+      "labelEn": "Dolly",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-tracking",
+      "label": "跟镜头",
+      "labelEn": "Tracking Shot",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-static",
+      "label": "固定镜头",
+      "labelEn": "Static Shot",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-orbit",
+      "label": "环拍镜头",
+      "labelEn": "Orbit Shot",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-camera-motion-control-arc-shot",
+      "label": "弧线运动镜头",
+      "labelEn": "Arc Shot",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-anger",
+      "label": "生气",
+      "labelEn": "Angry",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-smile",
+      "label": "微笑",
+      "labelEn": "Smile",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-thinking",
+      "label": "思考",
+      "labelEn": "Thinking",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-confused",
+      "label": "疑惑",
+      "labelEn": "Confused",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-scared",
+      "label": "吓到",
+      "labelEn": "Scared",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-peeking",
+      "label": "偷窥",
+      "labelEn": "Peeking",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-evil",
+      "label": "邪恶",
+      "labelEn": "Evil",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-emotion-reshape-crying",
+      "label": "哭泣",
+      "labelEn": "Crying",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-depth-parallax",
+      "label": "深度视差（空间维补）",
+      "labelEn": "Depth Parallax",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-dynamic-scene-effects-rain",
+      "label": "雨天",
+      "labelEn": "Rain",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-dynamic-scene-effects-snow",
+      "label": "雪天",
+      "labelEn": "Snow",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-dynamic-scene-effects-sandstorm",
+      "label": "沙尘",
+      "labelEn": "Sandstorm",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-dynamic-scene-effects-tyndall",
+      "label": "丁达尔效应",
+      "labelEn": "Tyndall Effect",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-dynamic-scene-effects-embers",
+      "label": "余烬",
+      "labelEn": "Embers",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    },
+    {
+      "scene": "canvas-image-quick-create-dynamic-scene-effects-bioluminescence",
+      "label": "荧光浮游生物效果",
+      "labelEn": "Bioluminescence",
+      "gridType": null,
+      "mode": "CREATE_RIGHT",
+      "modelBuckets": [
+        "IMAGE_IMAGE"
+      ],
+      "available": true,
+      "defaultModel": null,
+      "requiredInputs": [
+        "image"
+      ],
+      "paramsLocked": [
+        "resolution"
+      ],
+      "modelSet": "models-1"
+    }
+  ],
+  "modelSets": {
+    "models-1": [
+      "image-image-rhart-image-g-2.5-official-token-sunburst-edit",
+      "image-image-rhart-image-g-2.5-official-token-flare-edit",
+      "image-image-rhart-image-g-2.5-sunburst",
+      "image-image-rhart-image-g-2.5-flare",
+      "image-imagerhart-image-g-2-official-image-to-image",
+      "image-image-g-2-text-to-image",
+      "image-image-rhart-image-n-nb21-image-to-image",
+      "image-image-rhart-image-n-nb21-official",
+      "image-image-rhart-image-n-nb21-official-token",
+      "image-image-rhart-image-n-g31-flash",
+      "image-image-rhart-image-n-g31-flash-official",
+      "image-image-rhart-image-n-pro",
+      "image-image-rhart-image-n-pro-official",
+      "image-image-rhart-imagine-image-quality-edit",
+      "image-image-rhart-image-flux3-klein",
+      "image-image-rhart-image-flux3"
+    ]
+  }
+}

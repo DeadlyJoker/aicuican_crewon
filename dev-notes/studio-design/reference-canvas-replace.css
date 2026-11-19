@@ -1,0 +1,9 @@
+.ref-canvas-image-replace{position:absolute;right:12px;top:12px;z-index:2;display:inline-flex;align-items:center;gap:5px;border:1px solid #ffffff30;border-radius:7px;padding:6px 10px;background:#151515b8;color:#eee;font-size:12px;line-height:18px;opacity:0;pointer-events:none}
+.ref-canvas-image-replace svg{width:14px;height:14px}
+.node:hover>.ref-canvas-image-replace,.node:focus-within>.ref-canvas-image-replace{opacity:1;pointer-events:auto}
+.ref-canvas-image-replace:focus-visible{outline:2px solid #eee;outline-offset:2px}
+.ref-wb-library-card.is-selected{outline:1px solid var(--text);outline-offset:2px}
+.ref-wb-library>footer:has([data-canvas-replace-confirm]){display:flex;align-items:center;gap:12px;justify-content:space-between}
+.ref-wb-library>footer>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ref-wb-library>footer .button{flex:none;font-size:12px;min-height:32px;padding:6px 12px}
+@media(hover:none){.node>.ref-canvas-image-replace{opacity:1;pointer-events:auto}}

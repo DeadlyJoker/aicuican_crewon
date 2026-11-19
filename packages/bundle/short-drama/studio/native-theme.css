@@ -1,0 +1,432 @@
+/* Native surfaces share resolved host tokens, independently of theme names. */
+html[data-studio-native] body {
+ --studio-chrome-base:var(--dsw-alias-bg-base);
+ --studio-chrome-panel:var(--dsw-alias-bg-layer-1);
+ --studio-chrome-raised:var(--dsw-alias-interactive-bg-hover-solid);
+ --studio-chrome-label:var(--dsw-alias-label-primary);
+ --studio-chrome-secondary:var(--dsw-alias-label-secondary);
+ --studio-chrome-contrast:var(--dsw-alias-bg-base);
+ --studio-chrome-border:var(--dsw-alias-border-l3);
+ --studio-chrome-focus:var(--dsw-alias-button-info-fill);
+ --studio-chrome-error:var(--dsw-alias-state-error-primary);
+ --bg:var(--dsw-alias-bg-base);
+ --surface:var(--dsw-alias-bg-layer-1);
+ --panel:var(--dsw-alias-bg-layer-1);
+ --raised:var(--dsw-alias-interactive-bg-hover-solid);
+ --line:var(--dsw-alias-border-l3);
+ --text:var(--dsw-alias-label-primary);
+ --muted:var(--dsw-alias-label-secondary);
+ --ref-theme-panel:var(--panel);
+ --ref-theme-ink:var(--text);
+ --ref-theme-border:var(--line);
+ --ref-theme-hover:var(--raised);
+ --ref-canvas-bg:var(--bg);
+ --ref-dot:var(--line);
+ --ref-tile:var(--raised);
+ --ref-group:color-mix(in srgb,var(--text) 5%,transparent);
+ --ref-shadow:var(--dsw-elevation-panel);
+ background:var(--bg);
+ color:var(--text);
+}
+html[data-studio-native] [data-action=toggle-theme]{display:none!important}
+html[data-studio-native] .ref-home{background-color:var(--bg);background-image:radial-gradient(var(--line) .65px,transparent .65px)}
+html[data-studio-native] :is(.ref-media-node,.ref-node-footer,.ref-composer-body,.ref-input-wrap,.ref-composer-footer,.ref-script-source){background-color:var(--panel);border-color:var(--line);color:var(--text)}
+html[data-studio-native] :is(.ref-node-caption strong,.ref-script-source strong,.ref-input-wrap textarea){color:var(--text)}
+html[data-studio-native] :is(.ref-node-caption small,.ref-node-actions .icon-btn,.ref-setting-trigger,.ref-upload p,.ref-upload small){color:var(--muted)}
+html[data-studio-native] :is(.ref-input-wrap>.icon-btn,.ref-selected-style,.ref-mode-tabs button.active){background:var(--raised);border-color:var(--line);color:var(--text);box-shadow:none}
+html[data-studio-native] .ref-drama-tabs button{color:var(--muted)}
+html[data-studio-native] .ref-drama-tabs button.active{color:var(--text);background:var(--panel)}
+html[data-studio-native] .ref-canvas-body .ref-media-node .node-media:not(:has(img,video,canvas)){background-color:var(--raised);color:var(--muted)}
+html[data-studio-native] .ref-canvas-body .ref-media-node.selected{border-color:var(--dsw-alias-button-info-fill);outline-color:var(--dsw-alias-button-info-fill)}
+html[data-studio-native] :is(.studio-entry-source-chip button,.studio-entry-language select,#studio-custom-style input,#studio-custom-style textarea,#studio-custom-style select){background:var(--raised);color:var(--text);border-color:var(--line)}
+html[data-studio-native] .connections path:not(.canvas-link-hit):not(.canvas-edge-selected):not(.canvas-link-preview){stroke:var(--muted)}
+html[data-studio-native] .ref-drama-tabs button.active::before{box-shadow:8px 0 var(--panel)}
+html[data-studio-native] .ref-drama-tabs button.active::after{box-shadow:-8px 0 var(--panel)}
+html[data-studio-native] .ref-composer{border:1px solid var(--line);background:var(--raised)}
+html[data-studio-native] .ref-drama-tabs{background:var(--raised)}
+html[data-studio-native] .ref-mode-tabs{background:var(--raised);border:1px solid var(--line)}
+html[data-studio-native] .ref-mode-tabs button.active{background:var(--panel);color:var(--text)}
+
+/* The directory uses one card surface; category headings carry the grouping. */
+html[data-studio-native] .canvas-navigator.is-grid-mode .canvas-nav-scroll{padding:8px 12px 16px}
+html[data-studio-native] .canvas-nav-group.is-grid-group:not(.ungrouped){padding:0;background:transparent;border-radius:0;margin-bottom:18px}
+html[data-studio-native] .canvas-nav-group.is-grid-group>.canvas-nav-group-heading{padding:0 2px;height:32px;margin-bottom:8px}
+html[data-studio-native] .canvas-nav-group.is-grid-group .canvas-nav-group-heading small{display:block;font-size:11px;color:var(--muted)}
+html[data-studio-native] .canvas-nav-group-heading>svg:nth-child(2){display:none}
+html[data-studio-native] .canvas-nav-items.is-grid{gap:10px;grid-template-columns:repeat(auto-fill,minmax(138px,1fr))}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-nav-row{padding:0;gap:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+html[data-studio-native] .canvas-nav-items.is-grid :is(.canvas-nav-thumb,.canvas-nav-kind){aspect-ratio:16/11;border-radius:7px 7px 0 0;background:var(--raised)}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-nav-row>span:not(.canvas-nav-thumb):not(.canvas-nav-kind){height:34px;line-height:34px;padding:0 28px 0 10px;font-size:12px}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview{background:var(--raised)}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview-fallback{gap:6px}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview-fallback svg{width:20px;height:20px}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-document{padding:10px;gap:6px}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-excerpt{-webkit-line-clamp:3;font-size:10px}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview-badge{font-size:9px;padding:2px 4px;right:5px;bottom:5px}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-node-more{bottom:7px}
+html[data-studio-native] .ref-asset-group{background-color:color-mix(in srgb,var(--text) 3%,transparent);border:1px solid var(--line);border-radius:12px}
+html[data-studio-native] .ref-group-name{font-size:14px;font-weight:500;color:var(--text)}
+
+/* One composer surface keeps the input and footer connected in every host theme. */
+html[data-studio-native] .ref-composer{background:var(--panel);border:1px solid var(--line);overflow:visible}
+html[data-studio-native] .ref-drama-tabs{background:color-mix(in srgb,var(--text) 4%,var(--panel));border-radius:22px 22px 0 0}
+html[data-studio-native] .ref-drama-tabs button.active{background:var(--panel)}
+html[data-studio-native] .ref-composer .ref-composer-body{background:var(--panel);border-radius:0 0 22px 22px}
+html[data-studio-native] .ref-composer .ref-composer-footer{background:transparent;border:0}
+html[data-studio-native] .ref-composer .ref-input-wrap{background:var(--panel);border-color:var(--line)}
+html[data-studio-native] .ref-composer .ref-start-button{background:var(--text);color:var(--panel)}
+html[data-studio-native] .ref-composer .ref-start-button:disabled{background:var(--raised);color:var(--muted);opacity:.65}
+
+/* Media and empty previews share identical geometry and caption alignment. */
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-nav-thumb{aspect-ratio:16/11;height:auto;width:100%;border-radius:7px 7px 0 0}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty{background:color-mix(in srgb,var(--text) 2%,var(--panel))}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:16px;color:var(--muted)}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-fallback::before{content:"";position:absolute;inset:12px;border:1px dashed var(--line);border-radius:6px;pointer-events:none}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-fallback svg{width:24px;height:24px;opacity:.55}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-fallback small{display:block;font-size:11px;line-height:16px;align-self:auto;font-weight:400}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-badge{display:none}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty[data-preview-state=failed] .studio-node-preview-fallback small{color:var(--dsw-alias-state-error-primary)}
+
+/* Workbench controls inherit the same foreground/surface pairs as the canvas. */
+html[data-studio-native] :is(.ref-wb-header,.ref-wb-meta,.ref-wb-document,.ref-wb-document>section+section){border-color:var(--line)}
+html[data-studio-native] .ref-workbench-dialog{background:var(--bg)!important}
+html[data-studio-native] :is(.ref-wb-meta h2,.ref-wb-document h1,.ref-wb-document h2,.ref-wb-document h3){color:var(--text)}
+html[data-studio-native] .ref-wb-sections{background:transparent}
+html[data-studio-native] .ref-wb-sections>[role=tablist]{background:var(--raised)}
+html[data-studio-native] .ref-wb-sections [role=tab]{color:var(--muted)}
+html[data-studio-native] .ref-wb-sections [role=tab].active{background:var(--panel);color:var(--text)}
+html[data-studio-native] :is(.ref-wb-directory small,.ref-wb-meta,.ref-wb-sections>.button,.ref-wb-document>.icon-btn,.ref-wb-document blockquote:before){color:var(--muted)}
+html[data-studio-native] .ref-wb-directory button{color:var(--text)}
+html[data-studio-native] .ref-wb-directory button.active{border-color:var(--line);background:var(--raised)}
+html[data-studio-native] .ref-wb-bottom{background:var(--panel);color:var(--text);border-color:var(--line);box-shadow:var(--ref-shadow)}
+html[data-studio-native] .ref-wb-bottom .button{background:var(--text);color:var(--panel)}
+html[data-studio-native] :is(.ref-wb-asset-form .field,.ref-wb-asset-preview-caption small,.ref-script-series-state,.ref-script-open>span){color:var(--muted)}
+html[data-studio-native] :is(.ref-script-open,.ref-wb-assets-handoff){border-color:var(--line)}
+html[data-studio-native] .ref-script-open .button{background:var(--text);color:var(--panel)}
+
+/* Track colors identify media types without changing the rendered media itself. */
+html[data-studio-native] .ref-cut-workbench .ref-cut-clip{background:color-mix(in srgb,var(--accent) 14%,var(--panel));color:var(--text);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+html[data-studio-native] .ref-cut-workbench :is(.native-edit-original-group .ref-cut-clip,.ref-cut-clip.native-edit-audio){background:color-mix(in srgb,var(--dsw-alias-state-success-primary) 12%,var(--panel));color:var(--text);border-color:var(--line)}
+html[data-studio-native] .ref-cut-workbench .ref-cut-clip.is-text{background:color-mix(in srgb,var(--accent) 9%,var(--raised));color:var(--text);border-color:var(--line)}
+html[data-studio-native] :is(.ref-cut-clock,.ref-cut-workbench button:focus-visible){color:var(--text);outline-color:var(--accent)}
+html[data-studio-native] :is(.ref-cut-timeline-tools input[type=range],.native-edit-volume input,.ref-cut-export-fields input[type=checkbox]){accent-color:var(--accent)}
+html[data-studio-native] .ref-cut-ruler{background-image:repeating-linear-gradient(to right,var(--line) 0 1px,transparent 1px 17px)}
+html[data-studio-native] :is(.ref-cut-workbench,.ref-cut-export,.camera-control-panel,.image-preset-panel,.ref-result-dialog,.ref-collection,.ref-character-library,.ref-wb-readonly>div,.face-presets>div,.ref-image-popover,.ref-model-popover,.ref-audio-popover){box-shadow:var(--ref-shadow)}
+html[data-studio-native] :is(.pose-card>header button,.canvas-nav-items.is-grid .canvas-node-more,.canvas-nav-items.is-grid .canvas-node-tag){background:var(--panel);color:var(--muted)}
+html[data-studio-native] :is(.ref-wb-asset-actions .icon-btn,.ref-wb-assets article>header>span){background:var(--panel);color:var(--text)}
+html[data-studio-native] :is(.ref-cut-clip.is-selected,.ref-cut-clip:focus-visible){border-color:var(--accent);outline-color:var(--accent)}
+html[data-studio-native] :is(.ref-image-options,.ref-audio-options,.ref-model-filters,.ref-model-categories,.ref-model-list,.ref-settings-ratio,.ref-settings-episodes,.face-tabs,.makeup-tabs,.image-preset-filter,.camera-control-panel nav) :is(button[aria-pressed=true],button[aria-selected=true],button[aria-current=page]){background:color-mix(in srgb,var(--text) 12%,var(--panel));color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
+html[data-studio-native] :is(.ref-image-options,.ref-audio-options,.ref-model-list) button:hover{background:var(--raised);color:var(--text)}
+html[data-studio-native] .ref-cut-workbench .ref-cut-snap[aria-pressed=true]{color:var(--text);background:color-mix(in srgb,var(--accent) 14%,var(--panel))}
+html[data-studio-native] .ref-cut-drag-ghost{background:var(--panel);color:var(--text);border-color:var(--accent);box-shadow:var(--ref-shadow)}
+html[data-studio-native] .ref-cut-drag-ghost small{color:var(--muted)}
+html[data-studio-native] :is(.ref-cut-drop-guide,.ref-cut-drop-guide:before){background:var(--accent)}
+html[data-studio-native] .ref-cut-clip-handle:focus-visible{outline-color:var(--accent)}
+
+/* Compact project chrome keeps mode selection distinct without a large pill. */
+html[data-studio-native] .ref-canvas-header{height:44px;min-height:44px;padding:0 16px;gap:10px}
+html[data-studio-native] .ref-project-title{font-size:13px;line-height:20px;font-weight:500;max-width:240px;margin-right:4px}
+html[data-studio-native] .ref-mark{width:24px;height:24px;padding:3px}
+html[data-studio-native] .ref-view-switch{align-self:stretch;align-items:center;gap:4px;padding:0;background:transparent;border:0;border-radius:0}
+html[data-studio-native] .ref-view-switch button{position:relative;height:30px;min-height:30px;padding:0 9px;gap:6px;border-radius:5px;background:transparent;color:var(--muted);font-size:12px;line-height:18px}
+html[data-studio-native] .ref-view-switch button.active{background:transparent;color:var(--text);font-weight:500}
+html[data-studio-native] .ref-view-switch button.active:after{content:'';position:absolute;height:2px;bottom:0;left:9px;right:9px;border-radius:1px;background:var(--text)}
+html[data-studio-native] .ref-view-switch button:hover{background:var(--raised)}
+html[data-studio-native] .ref-view-switch svg{width:14px;height:14px}
+html[data-studio-native] .ref-canvas-header>.icon-btn{width:28px;height:28px;min-height:28px;border-radius:5px}
+html[data-studio-native] .ref-canvas-header>.icon-btn svg{width:16px;height:16px}
+@media(max-width:600px){html[data-studio-native] .ref-canvas-header{padding-inline:10px;gap:6px}html[data-studio-native] .ref-project-title{max-width:130px}html[data-studio-native] .ref-view-switch button{padding-inline:7px}}
+
+/* Desktop density and interaction feedback share the Host palette. */
+html[data-studio-native] .ref-canvas-body{
+ --studio-control-radius:6px;
+ --studio-hover:var(--dsw-alias-interactive-bg-hover-solid);
+ --studio-selected:color-mix(in srgb,var(--accent) 9%,var(--panel));
+ --studio-selection-ring:var(--dsw-alias-button-info-fill);
+}
+html[data-studio-native] .ref-canvas-body>.canvas-navigator{top:52px;bottom:54px}
+html[data-studio-native] .canvas-navigator>header{height:38px;padding:4px 10px;gap:2px}
+html[data-studio-native] .canvas-navigator>header strong{font-size:12px;font-weight:500}
+html[data-studio-native] .canvas-navigator :is(header .icon-btn,.canvas-tag-filter){width:26px;height:26px;padding:5px;border-radius:var(--studio-control-radius)}
+html[data-studio-native] .canvas-navigator :is(header .icon-btn,.canvas-tag-filter) svg{width:14px;height:14px}
+html[data-studio-native] .canvas-nav-types{gap:2px;padding:5px 10px}
+html[data-studio-native] .canvas-nav-types button{height:27px;padding:3px 9px;font-size:12px;border-radius:var(--studio-control-radius)}
+html[data-studio-native] .canvas-navigator.is-grid-mode .canvas-nav-scroll{padding:6px 10px 12px}
+html[data-studio-native] .canvas-nav-group.is-grid-group:not(.ungrouped){margin-bottom:12px}
+html[data-studio-native] .canvas-nav-group.is-grid-group>.canvas-nav-group-heading{height:28px;margin-bottom:5px;font-size:12px}
+html[data-studio-native] .canvas-nav-items.is-grid{gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-nav-row{border-radius:7px;transition:border-color .12s,box-shadow .12s}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-nav-row>span:not(.canvas-nav-thumb):not(.canvas-nav-kind){height:28px;line-height:28px;padding-inline:8px 26px;font-size:12px}
+html[data-studio-native] .canvas-nav-items.is-grid :is(.canvas-nav-thumb,.canvas-nav-kind){aspect-ratio:16/10;border-radius:6px 6px 0 0}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-node-more{bottom:3px}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-fallback{gap:6px;padding:10px}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-fallback::before{display:none}
+html[data-studio-native] .canvas-nav-items.is-grid .studio-node-preview.is-empty .studio-node-preview-fallback svg{width:20px;height:20px}
+html[data-studio-native] .canvas-nav-items:not(.is-grid) .canvas-nav-row{min-height:38px;padding-block:4px;gap:7px}
+html[data-studio-native] .canvas-nav-items:not(.is-grid) :is(.canvas-nav-thumb,.canvas-nav-kind){width:28px;height:28px}
+html[data-studio-native] .canvas-nav-items:not(.is-grid) .canvas-nav-row>span:not(.canvas-nav-thumb):not(.canvas-nav-kind){font-size:12px;font-weight:400}
+html[data-studio-native] .ref-canvas-body .ref-floating-tools{padding:4px;gap:3px;border-radius:12px;box-shadow:var(--dsw-elevation-soft)}
+html[data-studio-native] .ref-canvas-body .ref-floating-tools .icon-btn{width:30px;height:30px;min-height:30px;padding:7px;border-radius:7px}
+html[data-studio-native] .ref-canvas-body .ref-floating-tools .icon-btn svg{width:16px;height:16px}
+html[data-studio-native] .ref-canvas-body .ref-floating-tools .icon-btn:first-child{width:30px;height:30px;min-height:30px;margin-bottom:3px;border-radius:8px}
+html[data-studio-native] .ref-canvas-body .ref-navigation-bar{height:32px;padding:2px 5px;gap:2px;border-radius:9px;box-shadow:var(--dsw-elevation-soft)}
+html[data-studio-native] .ref-navigation-bar :is(.icon-btn,.ref-navigation-menu>summary){width:26px;height:26px;padding:6px;border-radius:var(--studio-control-radius)}
+html[data-studio-native] .ref-navigation-bar :is(.icon-btn,.ref-navigation-menu>summary) svg{width:14px;height:14px}
+html[data-studio-native] .ref-canvas-body .canvas-bottom.ref-canvas-navigation{left:12px;bottom:10px;gap:5px}
+html[data-studio-native] .ref-canvas-body .ref-media-node{border-radius:10px}
+html[data-studio-native] .ref-canvas-body .ref-media-node .node-media{border-radius:9px 9px 0 0}
+html[data-studio-native] .ref-node-footer{height:44px;padding:5px 8px;gap:5px}
+html[data-studio-native] .ref-node-caption strong{font-size:12px;line-height:17px}
+html[data-studio-native] .ref-node-caption small{font-size:10px;line-height:14px}
+html[data-studio-native] .ref-node-actions .icon-btn{width:26px;height:28px;padding:6px;border-radius:var(--studio-control-radius)}
+html[data-studio-native] .ref-node-actions .icon-btn svg{width:14px;height:14px}
+html[data-studio-native] .ref-canvas-body .pending-media>svg{width:26px;height:26px}
+html[data-studio-native] .ref-asset-group{border-radius:10px}
+html[data-studio-native] .ref-group-name{font-size:12px;line-height:20px}
+html[data-studio-native] .ref-canvas-body :is(.canvas-nav-types button[aria-selected=true],.floating-tools button[aria-pressed=true],.ref-navigation-bar button[aria-pressed=true],.canvas-tag-filter[aria-pressed=true]){background:var(--studio-selected);color:var(--text);box-shadow:inset 0 0 0 1px var(--studio-selection-ring)}
+html[data-studio-native] .ref-canvas-body :is(.canvas-nav-row.active,.ref-media-node.selected){border-color:var(--studio-selection-ring);outline:1px solid var(--studio-selection-ring);outline-offset:1px;box-shadow:none}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-nav-row.active>span:last-of-type{background:var(--studio-selected);color:var(--text)}
+html[data-studio-native] .ref-canvas-body :is(button,summary):focus-visible{outline:2px solid var(--studio-selection-ring);outline-offset:2px}
+@media(hover:hover){
+ html[data-studio-native] .ref-canvas-body :is(.canvas-navigator header .icon-btn,.canvas-tag-filter,.canvas-nav-group-heading,.canvas-nav-types button,.ref-floating-tools .icon-btn,.ref-navigation-bar .icon-btn,.ref-navigation-menu>summary,.ref-node-actions .icon-btn):hover{background:var(--studio-hover);color:var(--text)}
+ html[data-studio-native] .ref-canvas-body .canvas-nav-row:not(.active):hover{border-color:var(--muted);box-shadow:0 0 0 1px var(--line)}
+ html[data-studio-native] .ref-canvas-body .ref-media-node:not(.selected):hover{border-color:var(--muted)}
+}
+@media(pointer:coarse){html[data-studio-native] .ref-canvas-body :is(.ref-floating-tools .icon-btn,.ref-navigation-bar .icon-btn,.canvas-navigator header .icon-btn){min-width:36px;min-height:36px}html[data-studio-native] .canvas-nav-types button{height:36px}}
+
+/* Node-bound editing stays compact; only the prompt scrolls as its text grows. */
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel){width:min(600px,calc(100% - 48px));padding:10px 12px 8px;border-radius:12px}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) .creation-reference-row{margin-bottom:8px;gap:8px}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) :is(.creation-reference,.creation-reference-add){width:32px;height:32px;border-radius:5px}
+html[data-studio-native] .ref-canvas-body .creation-reference-add svg{width:16px;height:16px}
+html[data-studio-native] .ref-canvas-body #canvas-creation-prompt{min-height:64px;height:64px;max-height:64px;padding:0 4px 0 0;font-size:13px;line-height:20px;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;resize:none}
+html[data-studio-native] .ref-canvas-body.creation-expanded #canvas-creation-prompt{height:min(144px,24vh);min-height:64px;max-height:min(144px,24vh)}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) .creation-control-row{min-height:30px;gap:6px;flex-wrap:wrap}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) :is(.creation-control-row select,.creation-settings>summary){font-size:12px;min-height:28px;height:28px}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) .creation-control-row select{max-width:180px}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) .creation-submit{width:28px;height:28px;flex:none}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) .creation-control-row svg{width:15px;height:15px}
+html[data-studio-native] .ref-canvas-body .canvas-creation .creation-demo-label{display:none}
+html[data-studio-native] .ref-canvas-body .creation-toolbar{width:min(680px,calc(100% - 48px));height:32px;min-height:32px;padding:2px;border-radius:9px;box-shadow:var(--dsw-elevation-soft)}
+html[data-studio-native] .ref-canvas-body .creation-toolbar :is(.button,.canvas-tool-menu>summary){height:26px;min-height:26px;padding:4px 6px;gap:4px;font-size:12px;line-height:18px;border-radius:5px}
+html[data-studio-native] .ref-canvas-body .creation-toolbar :is(.button,.canvas-tool-menu>summary) svg{width:14px;height:14px}
+@media(max-width:600px){html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel){padding:8px}html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel) .creation-control-row{gap:4px}}
+
+/* Keep direct tools visible without a clipped horizontal strip. */
+html[data-studio-native] .ref-canvas-body .creation-toolbar{width:max-content;height:auto;min-height:32px;flex-wrap:wrap;overflow:visible;border-radius:14px;justify-content:flex-start}
+html[data-studio-native][data-theme=light] .ref-canvas-body :is(.creation-toolbar,.canvas-creation:not(.node-tool-panel),.ref-navigation-bar){border-color:color-mix(in srgb,var(--text) 8%,transparent);box-shadow:0 2px 12px color-mix(in srgb,var(--text) 6%,transparent)}
+html[data-studio-native][data-theme=light] .ref-canvas-body .ref-media-node:not(.selected){border-color:color-mix(in srgb,var(--text) 9%,transparent)}
+html[data-studio-native][data-theme=light] .ref-asset-group{border-color:transparent;background-color:color-mix(in srgb,var(--text) 2%,transparent)}
+html[data-studio-native][data-theme=light] .connections path:not(.canvas-link-hit):not(.canvas-edge-selected):not(.canvas-link-preview){stroke:color-mix(in srgb,var(--text) 25%,transparent)}
+html[data-studio-native] .ref-canvas-body :is(.canvas-nav-row.active,.ref-media-node.selected){outline:0;box-shadow:0 0 0 1px var(--studio-selection-ring);border-color:var(--studio-selection-ring)}
+
+/* Visual layers: canvas floor, quiet groups, content cards and floating controls. */
+html[data-studio-native] .ref-canvas-body{
+ --studio-floor:color-mix(in srgb,var(--bg) 97%,var(--text));
+ --studio-card:var(--panel);
+ --studio-group-fill:color-mix(in srgb,var(--text) 4%,transparent);
+ --studio-chrome-edge:color-mix(in srgb,var(--text) 8%,transparent);
+ --studio-card-shadow:0 1px 3px color-mix(in srgb,var(--text) 5%,transparent);
+ --studio-float-shadow:0 4px 20px color-mix(in srgb,var(--text) 9%,transparent),0 1px 3px color-mix(in srgb,var(--text) 4%,transparent);
+ --studio-node-ring:color-mix(in srgb,var(--text) 58%,var(--panel));
+ --ref-canvas-bg:var(--studio-floor);
+ --ref-dot:color-mix(in srgb,var(--text) 12%,transparent);
+ background:var(--studio-floor);
+}
+html[data-studio-native][data-theme=dark] .ref-canvas-body{
+ --studio-floor:var(--bg);
+ --studio-card:color-mix(in srgb,var(--panel) 96%,var(--text));
+ --studio-group-fill:color-mix(in srgb,var(--text) 3%,transparent);
+ --studio-float-shadow:0 6px 24px #0005,0 1px 4px #0003;
+ --ref-dot:color-mix(in srgb,var(--text) 9%,transparent);
+}
+html[data-studio-native] .ref-canvas-body .canvas-viewport{background-color:var(--studio-floor);background-image:radial-gradient(var(--ref-dot) .7px,transparent .7px)}
+html[data-studio-native] .ref-canvas-header{background:transparent}
+html[data-studio-native] .ref-canvas-body .ref-asset-group{border:0;border-radius:14px;background:var(--studio-group-fill);box-shadow:none}
+html[data-studio-native] .ref-canvas-body .ref-group-name{color:var(--muted);font-size:12px;font-weight:500}
+html[data-studio-native] .ref-canvas-body .ref-media-node{background:var(--studio-card);border:1px solid transparent;border-radius:12px;box-shadow:var(--studio-card-shadow)}
+html[data-studio-native] .ref-canvas-body .ref-media-node .node-media{border-radius:11px 11px 0 0;background-color:color-mix(in srgb,var(--text) 3%,var(--studio-card))}
+html[data-studio-native] .ref-canvas-body .ref-node-footer{background:var(--studio-card);border:0;border-radius:0 0 11px 11px}
+html[data-studio-native] .ref-canvas-body .ref-media-node.selected{border-color:var(--studio-node-ring);outline:0;box-shadow:var(--studio-card-shadow)}
+html[data-studio-native] .ref-canvas-body .ref-node-name{font-size:12px;color:var(--muted)}
+html[data-studio-native] .ref-canvas-body :is(.creation-toolbar,.canvas-creation:not(.node-tool-panel),.ref-floating-tools,.ref-navigation-bar){background:var(--studio-card);border:1px solid var(--studio-chrome-edge);box-shadow:var(--studio-float-shadow)}
+html[data-studio-native] .ref-canvas-body .creation-toolbar{border-radius:18px;padding:3px 6px;gap:2px}
+html[data-studio-native] .ref-canvas-body .canvas-creation:not(.node-tool-panel){border-radius:16px;padding:12px 14px 10px}
+html[data-studio-native] .ref-canvas-body :is(.creation-toolbar,.creation-control-row) :is(.button,.icon-btn,summary){color:var(--muted)}
+html[data-studio-native] .ref-canvas-body .creation-tool-divider{height:16px;background:var(--studio-chrome-edge)}
+html[data-studio-native] .ref-canvas-body .creation-reference-add{border:1px solid var(--studio-chrome-edge);background:transparent;color:var(--muted)}
+html[data-studio-native] .ref-canvas-body :is(.creation-control-row select,.ref-image-model-trigger){background:transparent;border-color:transparent;box-shadow:none}
+html[data-studio-native] .ref-canvas-body .ref-floating-tools{border-radius:18px}
+html[data-studio-native] .ref-canvas-body .ref-navigation-bar{border-radius:18px}
+html[data-studio-native] .ref-canvas-body .canvas-navigator{background:var(--studio-card);border:0;box-shadow:2px 0 12px color-mix(in srgb,var(--text) 4%,transparent)}
+html[data-studio-native] .canvas-navigator>header{border:0}
+html[data-studio-native] .canvas-nav-types{border-color:var(--studio-chrome-edge)}
+html[data-studio-native] .canvas-nav-items.is-grid .canvas-nav-row{border:1px solid transparent;background:var(--studio-card);box-shadow:var(--studio-card-shadow)}
+html[data-studio-native] .ref-canvas-body .canvas-nav-row.active{border-color:var(--studio-node-ring);outline:0;box-shadow:none}
+html[data-studio-native] .ref-canvas-body .canvas-nav-types button[aria-selected=true]{color:var(--text);background:var(--studio-hover);box-shadow:none}
+html[data-studio-native] .ref-canvas-body .connections path:not(.canvas-link-hit):not(.canvas-edge-selected):not(.canvas-link-preview){stroke:color-mix(in srgb,var(--text) 23%,transparent)}
+html[data-studio-native] .ref-canvas-body .port{background:var(--studio-card);border-color:var(--muted);opacity:0;transition:opacity .12s}
+html[data-studio-native] .ref-canvas-body :is(.node:hover,.node.selected,.node:focus-within) .port{opacity:.75}
+@media(hover:hover){
+ html[data-studio-native] .ref-canvas-body .ref-media-node:not(.selected):hover{border-color:var(--studio-chrome-edge);box-shadow:0 3px 12px color-mix(in srgb,var(--text) 8%,transparent)}
+ html[data-studio-native] .ref-canvas-body .canvas-nav-row:not(.active):hover{border-color:transparent;background:var(--studio-hover);box-shadow:none}
+ html[data-studio-native] .ref-canvas-body :is(.creation-toolbar,.creation-control-row) :is(.button,.icon-btn,summary):hover{background:var(--studio-hover);color:var(--text)}
+}
+
+/* The Studio floor shares the Host appearance while media keeps its authored colors. */
+html[data-studio-native] .canvas-viewport { isolation:isolate; }
+html[data-studio-native] .canvas-viewport::before {
+ content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;
+ background-image:var(--dsw-appearance-background,none);background-size:cover;background-position:center;
+ opacity:var(--dsw-appearance-background-opacity,0);filter:blur(var(--dsw-appearance-background-blur,0px));
+}
+
+html[data-studio-native] .canvas-viewport > .crewon-wallpaper-video {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none;opacity:var(--dsw-appearance-background-opacity,0);filter:blur(var(--dsw-appearance-background-blur,0px));}
+
+/* The entry has one editing surface; controls share a compact desktop scale. */
+html[data-studio-entry] .ref-start h1{font-size:24px;line-height:32px;margin-bottom:14px}
+html[data-studio-entry] .ref-mode-tabs{margin-bottom:22px;padding:3px;border:0;background:color-mix(in srgb,var(--panel) 55%,transparent);border-radius:12px}
+html[data-studio-entry] .ref-mode-tabs button{font-size:12px;line-height:20px;padding:5px 22px;border-radius:9px}
+html[data-studio-entry] .ref-mode-tabs button.active{background:var(--panel);box-shadow:0 1px 4px color-mix(in srgb,var(--text) 6%,transparent)}
+html[data-studio-entry] .ref-composer{margin-bottom:0;border-radius:16px;border:0;background:var(--panel);box-shadow:0 6px 24px color-mix(in srgb,var(--text) 5%,transparent)}
+html[data-studio-entry] .ref-drama-tabs{height:44px;padding:6px 8px;gap:4px;border-radius:16px 16px 0 0;background:transparent;box-sizing:border-box}
+html[data-studio-entry] .ref-drama-tabs button{font-size:12px;border-radius:8px;gap:6px;color:var(--muted)}
+html[data-studio-entry] .ref-drama-tabs button.active{background:var(--raised);color:var(--text)}
+html[data-studio-entry] .ref-drama-tabs button.active::before,html[data-studio-entry] .ref-drama-tabs button.active::after{display:none}
+html[data-studio-entry] .ref-drama-tabs svg{width:15px;height:15px}
+html[data-studio-entry] .ref-composer .ref-composer-body{padding:8px 16px 12px;border-radius:0 0 16px 16px;background:transparent}
+html[data-studio-entry] .ref-composer .ref-input-wrap{min-height:132px;border:0;border-radius:0;padding:8px 0;gap:12px;background:transparent}
+html[data-studio-entry] .ref-input-wrap>.icon-btn{width:36px;height:36px;border:0;border-radius:8px;background:var(--raised)}
+html[data-studio-entry] .ref-input-wrap>.icon-btn svg{width:18px;height:18px}
+html[data-studio-entry] .ref-input-wrap textarea{height:112px;font-size:14px;line-height:23px;color:var(--text)}
+html[data-studio-entry] .ref-input-wrap textarea::placeholder{color:var(--muted);opacity:1}
+html[data-studio-entry] .ref-selected-style{font-size:11px;border:0;border-radius:6px;padding:3px 7px;line-height:18px;background:var(--raised)}
+html[data-studio-entry] .ref-composer-footer{min-height:40px;padding:4px 0 0;gap:6px;align-items:center}
+html[data-studio-entry] .ref-composer-footer :is(.ref-option>summary,.ref-setting-trigger){font-size:12px;min-height:30px;padding:4px 7px;gap:5px;max-width:230px;box-sizing:border-box}
+html[data-studio-entry] .ref-composer-footer :is(.ref-option>summary,.ref-setting-trigger) svg{width:15px;height:15px;flex:none}
+html[data-studio-entry] .ref-composer-footer :is(.ref-option>summary,.ref-setting-trigger){overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+html[data-studio-entry] .ref-composer .ref-start-button{font-size:12px;min-height:30px;padding:6px 14px;border:0;border-radius:8px;background:var(--text);color:var(--panel)}
+html[data-studio-entry] .ref-composer .ref-start-button:disabled{background:var(--raised);color:var(--muted);opacity:.65}
+@media(max-width:640px){html[data-studio-entry] .ref-start{width:100%}html[data-studio-entry] .ref-drama-tabs button{gap:4px;font-size:11px}html[data-studio-entry] .ref-composer-footer{flex-wrap:wrap}html[data-studio-entry] .ref-composer-footer :is(.ref-option>summary,.ref-setting-trigger){max-width:180px}}
+
+html[data-studio-entry] .ref-composer-footer .ref-setting-trigger>span{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Overlay choices retain the host hue but never reveal content behind the menu. */
+html[data-studio-native] :is([role="dialog"],[role="menu"],[role="listbox"],.ref-settings-panel){background:color(from var(--panel) srgb r g b / 1)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+
+/* Import controls use a paired host button palette, never an independently themed inverse. */
+html[data-studio-native] .ref-import-primary,
+html[data-studio-native] .ref-import-actions .ref-import-primary{background:var(--dsw-alias-button-primary-fill);color:var(--dsw-alias-label-primary-foreground);border:0}
+html[data-studio-entry] .ref-home .ref-upload{height:auto;min-height:132px;border:0;border-radius:0;padding:16px 8px;box-sizing:border-box}
+html[data-studio-entry] .ref-import-actions{gap:10px}
+html[data-studio-entry] .ref-import-actions button,
+html[data-studio-entry] .ref-import-primary{height:32px;padding:0 12px;border-radius:8px;font-size:12px}
+html[data-studio-entry] .ref-upload>small{font-size:11px;line-height:18px;color:var(--muted)}
+html[data-studio-entry] .ref-upload p{font-size:12px;line-height:18px;margin:10px 0 4px;color:var(--muted)}
+
+/* A workspace is a glass surface; transient menus retain their opaque treatment. */
+html[data-studio-native]:has(.ref-workbench-dialog),
+html[data-studio-native] body:has(.ref-workbench-dialog){background:transparent}
+html[data-studio-native] body:has(.ref-workbench-dialog) #app{visibility:hidden}
+html[data-studio-native] .overlay:has(.ref-workbench-dialog){background:transparent;backdrop-filter:none}
+html[data-studio-native] .ref-workbench-dialog{
+ --wb-glass:color-mix(in srgb,var(--panel) 72%,transparent);
+ --wb-paper:color-mix(in srgb,var(--panel) 88%,transparent);
+ background:var(--wb-glass)!important;
+ backdrop-filter:blur(var(--we-blur,16px)) saturate(var(--we-saturate,1.2))!important;
+ -webkit-backdrop-filter:blur(var(--we-blur,16px)) saturate(var(--we-saturate,1.2))!important;
+}
+html[data-studio-native] .ref-workbench{background:transparent}
+html[data-studio-native] .ref-workbench :is(.ref-wb-header,.ref-wb-script-workspace,.ref-wb-asset-workspace,.ref-wb-meta,.ref-wb-sections,.ref-wb-directory,.ref-wb-series-outline){background:transparent}
+html[data-studio-native] .ref-wb-header{border-bottom:1px solid var(--line)}
+html[data-studio-native] .ref-wb-header nav{position:static;transform:none;margin-inline:auto;gap:4px}
+html[data-studio-native] .ref-wb-header nav button{border:0;border-radius:8px;padding:6px 12px;font-size:12px}
+html[data-studio-native] .ref-wb-header nav button.active{background:var(--raised);color:var(--text)}
+html[data-studio-native] .ref-wb-meta{border:0}
+html[data-studio-native] .ref-wb-meta h2{font-size:15px;font-weight:500}
+html[data-studio-native] .ref-wb-status{border:0;background:var(--raised);padding:2px 8px;border-radius:6px}
+html[data-studio-native] .ref-wb-sections{border-bottom:1px solid var(--line);padding-bottom:0}
+html[data-studio-native] .ref-wb-sections>[role=tablist]{background:transparent}
+html[data-studio-native] .ref-wb-sections [role=tab].active{background:transparent}
+html[data-studio-native] .ref-wb-content{gap:16px;padding:4px 16px 16px;overflow:hidden}
+html[data-studio-native] .ref-wb-directory{width:128px;padding:16px 0;box-sizing:border-box}
+html[data-studio-native] .ref-wb-directory button{padding:8px 10px;margin-bottom:4px;border:0;border-radius:8px;font-size:12px}
+html[data-studio-native] .ref-wb-directory button.active{background:var(--raised);color:var(--text)}
+html[data-studio-native] .ref-wb-scroll{padding:0 0 16px;scrollbar-gutter:stable}
+html[data-studio-native] .ref-wb-content-wide .ref-wb-scroll{padding-left:0}
+html[data-studio-native] .ref-wb-document{max-width:820px;margin:0 auto;background:var(--wb-paper);border:1px solid var(--line);border-radius:12px;padding:28px clamp(20px,4vw,48px);min-height:100%;box-sizing:border-box}
+html[data-studio-native] .ref-wb-document h1{font-size:20px;line-height:1.5;font-weight:500;margin-bottom:20px}
+html[data-studio-native] .ref-wb-document p{font-size:14px!important;line-height:1.9!important}
+html[data-studio-native] .ref-wb-bottom{position:static;transform:none;flex-shrink:0;border:0;border-top:1px solid var(--line);border-radius:0;box-shadow:none;background:transparent;padding:12px 16px;justify-content:flex-end;white-space:normal}
+html[data-studio-native] .ref-wb-bottom>span{margin-right:auto;font-size:12px;line-height:18px}
+html[data-studio-native] .ref-wb-bottom>.button{border-radius:8px;min-height:32px}
+html[data-studio-native] .ref-workbench button:focus-visible{outline:2px solid var(--studio-chrome-focus);outline-offset:2px}
+@media(max-width:600px){
+ html[data-studio-native] .ref-wb-content{gap:8px;padding:0 12px 12px}
+ html[data-studio-native] .ref-wb-directory{width:auto;padding:0;display:flex;flex-direction:row}
+ html[data-studio-native] .ref-wb-document{padding:20px}
+ html[data-studio-native] .ref-wb-header{padding:0 12px}
+ html[data-studio-native] .ref-wb-bottom{padding:10px 12px;gap:8px}
+}
+html[data-studio-native] .ref-workbench :is(.ref-wb-assets-scroll,.ref-wb-asset-filters,.ref-wb-asset-creation,.ref-wb-assets-handoff){background:transparent;border-color:var(--line)}
+html[data-studio-native] .ref-workbench :is(.ref-wb-outline-card,.ref-wb-setting-facts,.ref-wb-asset-card){background:var(--wb-paper);border-color:var(--line);border-radius:12px}
+html[data-studio-native] .ref-wb-readonly>summary{display:flex;align-items:center;gap:5px;cursor:pointer}
+
+/* Workbench sections share quiet selections rather than divider underlines. */
+html[data-studio-native] .ref-workbench :is(.ref-wb-header,.ref-wb-sections){border:0}
+html[data-studio-native] .ref-wb-sections>[role=tablist]{gap:4px;padding:3px;border-radius:10px;background:color-mix(in srgb,var(--panel) 30%,transparent)}
+html[data-studio-native] .ref-wb-sections [role=tab]{padding:6px 12px;border:0;border-radius:8px}
+html[data-studio-native] .ref-wb-sections [role=tab].active{border:0;background:var(--raised);color:var(--text)}
+html[data-studio-native] .ref-workbench :is(.ref-wb-series-outline,.ref-sb-result,.ref-storyboard-pending){background:transparent;color:var(--text);min-height:0}
+html[data-studio-native] .ref-wb-setting-facts{padding:16px;gap:16px;margin-bottom:24px}
+html[data-studio-native] .ref-wb-setting-facts dt{margin-bottom:6px;font-size:12px;color:var(--muted)}
+html[data-studio-native] .ref-wb-setting-document>section{border:0;margin-top:24px;padding-top:0}
+html[data-studio-native] .ref-wb-series-outline{padding:16px;max-width:920px;margin:0 auto}
+html[data-studio-native] .ref-wb-series-outline>h1{font-size:20px;margin-bottom:12px}
+html[data-studio-native] .ref-wb-outline-card{padding:20px;margin-bottom:16px;background:var(--wb-paper);border:1px solid var(--line);box-shadow:none}
+html[data-studio-native] .ref-wb-outline-card h2{font-size:16px;font-weight:500}
+html[data-studio-native] .ref-wb-outline-card p{font-size:14px!important;line-height:1.8!important}
+html[data-studio-native] .ref-wb-asset-filters{padding:16px;gap:12px;border:0}
+html[data-studio-native] .ref-wb-asset-categories{gap:4px}
+html[data-studio-native] .ref-wb-asset-categories button{padding:7px 12px;border:0;border-radius:8px;font-size:13px}
+html[data-studio-native] .ref-wb-asset-categories button.active{background:var(--raised)}
+html[data-studio-native] .ref-wb-asset-creation{padding:12px 0 0;gap:8px;border:0}
+html[data-studio-native] .ref-wb-assets-scroll{padding:0 16px 16px}
+html[data-studio-native] .ref-wb-assets{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px}
+html[data-studio-native] .ref-wb-assets>article{background:var(--wb-paper);border:1px solid var(--line);border-radius:12px;box-shadow:none}
+html[data-studio-native] .ref-wb-assets :is(.ref-wb-asset-cover,.ref-wb-asset-empty){background:color-mix(in srgb,var(--panel) 45%,transparent)}
+html[data-studio-native] .ref-wb-add-asset{border:1px dashed var(--line);border-radius:12px;background:transparent;color:var(--muted)}
+html[data-studio-native] .ref-wb-assets-handoff{padding:12px 16px;background:transparent;box-shadow:none;border:0;justify-content:space-between}
+html[data-studio-native] .ref-storyboard-pending{display:flex;flex:1;flex-direction:column;padding:16px;gap:16px}
+html[data-studio-native] .ref-storyboard-pending>header{display:flex;align-items:center;gap:12px;padding:0;background:transparent;border:0;font-size:12px;color:var(--muted)}
+html[data-studio-native] .ref-storyboard-pending>section{flex:1;display:grid;place-items:center;min-height:220px;background:var(--wb-paper);border:1px dashed var(--line);border-radius:12px}
+html[data-studio-native] .ref-storyboard-pending>footer{background:transparent;border:0;padding:0;font-size:12px;color:var(--muted)}
+html[data-studio-native] .ref-sb-result>header{background:transparent;border:0;padding:16px;gap:12px;font-size:12px}
+html[data-studio-native] .ref-sb-body{gap:16px;padding:0 16px 16px;min-height:0}
+html[data-studio-native] .ref-sb-body>aside{background:transparent;border:0}
+html[data-studio-native] :is(.ref-sb-assets-panel,.ref-sb-details){background:var(--wb-paper);border:1px solid var(--line);border-radius:12px;box-shadow:none}
+html[data-studio-native] .ref-sb-actions{background:transparent;padding:8px 0}
+html[data-studio-native] .ref-sb-strip{background:transparent;border:0;padding:12px 0}
+html[data-studio-native] .ref-sb-strip button{border-radius:8px;border:1px solid transparent;background:var(--wb-paper)}
+html[data-studio-native] .ref-sb-strip [aria-current=true]{border-color:var(--text);background:var(--raised)}
+@media(max-width:600px){html[data-studio-native] .ref-wb-sections [role=tab]{padding:6px 8px}html[data-studio-native] .ref-wb-assets{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}html[data-studio-native] .ref-wb-asset-filters{padding:12px}html[data-studio-native] .ref-sb-body{padding:0 12px 12px}}
+
+/* The Host sidebar owns the background and glass layer for every Studio page. */
+html[data-studio-native] .ref-workbench-dialog{
+ --wb-paper:var(--studio-card,var(--panel));
+ background:transparent!important;
+ backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+}
+html[data-studio-native] .ref-workbench :is(.ref-wb-document,.ref-wb-outline-card,.ref-wb-setting-facts,.ref-wb-assets>article,.ref-sb-assets-panel,.ref-sb-details,.ref-storyboard-pending>section){background:var(--wb-paper)}
+
+/* The host owns the continuous glass background above and below the iframe. */
+html[data-studio-native],html[data-studio-native] body,
+html[data-studio-native] :is(#app,.studio-body,.ref-canvas-body,.ref-canvas-header,.ref-home,.ref-project-page),
+html[data-studio-native] .ref-canvas-body .canvas-viewport{background:transparent}
+html[data-studio-native] .canvas-viewport::before{display:none}
+html[data-studio-native] .ref-view-switch button.active::after{display:none}
+
+@media(max-width:900px){
+ html[data-studio-native] .ref-sb-result.is-assets-open .ref-sb-body>aside{background:var(--panel);backdrop-filter:blur(20px);border:1px solid var(--line)}
+}

@@ -1,0 +1,184 @@
+diff --git a/lib/client.js b/lib/client.js
+index 93d52f863fcd24106e2bfdee89dde2a0c3ac4902..083b64b6f1626bdea078007d2a887ff5a0de8884 100644
+--- a/lib/client.js
++++ b/lib/client.js
+@@ -6139,7 +6139,7 @@ window.__ModuleLoader__.load({
+ 				  sidebarContentAlpha: 38,
+ 				  sidebarContentColor: "",
+ 				  // Persisted: show the chat-interface mascot pull-cord (rope dock).
+-				  ropeShown: true,
++				  ropeShown: false,
+ 				  // Persisted: which mascot artwork + how big. ropeForm ∈ ROPE_FORM_VALUES（见本文件顶部；
+ 				  // 出厂默认是 `deepseek` —— 上游口径：刚下载、没改过任何配置的人看见的就是它）;
+ 				  // ropeScale multiplies the form's base box (0.5×–2.5×).
+@@ -6476,7 +6476,7 @@ window.__ModuleLoader__.load({
+ 				  sidebarColor: { kind: 'hex' },
+ 				  sidebarContentAlpha: { kind: 'num', min: 0, max: 100 },
+ 				  sidebarContentColor: { kind: 'hex' },
+-				  ropeShown: { kind: 'boolTrue' },
++				  ropeShown: { kind: 'boolFalse' },
+ 				  ropeForm: { kind: 'enum', values: ROPE_FORM_VALUES },
+ 				  ropeScale: { kind: 'num', min: ROPE_SCALE_MIN, max: ROPE_SCALE_MAX },
+ 				  noticeSeen: { kind: 'str' },
+@@ -16951,7 +16951,7 @@ window.__ModuleLoader__.load({
+ 				  // 手动切换不走渐变 → 立即放行轮换音频闸（轮换提交由旧层退场放行）。
+ 				  if (!opts || !opts.fromRotation) releaseRotationAudioGate();
+ 				  selection.id = id || "";
+-				  persistSelection();
++				  if (!opts || !opts.fromShared) persistSelection();
+ 				  if (!selection.id) {
+ 				    selection.blockedNote = "";
+ 				    selection.url = null;
+@@ -28296,6 +28296,48 @@ window.__ModuleLoader__.load({
+ 		  //    缺服务时静默停在默认语言，见 src/i18n.js）。放在最前面：界面首次渲染就要按当前
+ 		  //    语言取词；服务通常已在（dsh-web-app 的 base bundle 自带），轮询只是兜底。
+ 		  if (ctx.effect) ctx.effect(() => weI18nAttach(ctx) || undefined);
++  // Operational overlays remain solid; wallpaper glass belongs to the workspace.
++  if (ctx.effect) ctx.effect(() => {
++    const style = document.createElement('style');
++    style.textContent = `body[data-we-glass-page] :is([data-menu-material], [role="menu"], [role="listbox"], [role="dialog"], [role="alertdialog"]) { background: var(--we-readability-base, var(--dsw-alias-bg-base)) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
++body[data-ds-dark-theme][data-we-glass-chat][data-we-glass-page] [data-composer-card] { background-image: none !important; box-shadow: 0 4px 16px rgba(0,0,0,.08) !important; border-color: rgba(255,255,255,.10) !important; }`;
++    document.head.appendChild(style);
++    return () => style.remove();
++  });
++
++  // CrewON: adopt shared Host edits without overwriting a pending local write.
++  ctx.effect(() => {
++    let disposed = false, busy = false;
++    const syncSharedAppearance = async () => {
++      if (disposed || busy || document.hidden || !selection.hostLoaded || persistTimer || persistInFlight || persistDirty) return;
++      busy = true;
++      const writes = persistWrites;
++      try {
++        const response = await apiJson(SETTINGS_URL);
++        if (disposed || writes !== persistWrites || persistTimer || persistInFlight || persistDirty || !response.ok || response.error || !response.data?.settings) return;
++        const incoming = sanitizeSettings(response.data.settings);
++        if (JSON.stringify(serializeSettings(incoming)) === JSON.stringify(serializeSelection())) return;
++        const previousId = selection.id;
++        Object.assign(selection, incoming);
++        writeLocalCache();
++        pushedSnapshot = cloneSettingsSnapshot(serializeSelection());
++        if (previousId !== incoming.id) {
++          selection.id = previousId;
++          applySelection(incoming.id, { fromShared: true });
++        } else { applyEffects(); emit(); }
++      } finally { busy = false; }
++    };
++    const timer = window.setInterval(syncSharedAppearance, 3000);
++    window.addEventListener('focus', syncSharedAppearance);
++    document.addEventListener('visibilitychange', syncSharedAppearance);
++    return () => {
++      disposed = true;
++      window.clearInterval(timer);
++      window.removeEventListener('focus', syncSharedAppearance);
++      document.removeEventListener('visibilitychange', syncSharedAppearance);
++    };
++  });
++
+ 
+ 		  // 0b. 启动预取：inventory / 字体集清单与设置无关，启动链却要等 settings 之后才发。
+ 		  //     在这里先发出去，链走到它们时通常已经回来（只预取一次；失败不影响启动链）。
+diff --git a/lib/index.js b/lib/index.js
+index 1c822a62afa739a6a174d2b631c51132d402f11c..6e73fd9a7a452824eb81739808361bb06e49a980 100644
+--- a/lib/index.js
++++ b/lib/index.js
+@@ -172,13 +172,24 @@ function sanitizeSettings(raw) {
+  * is web-only (its dsh.client declares platform "web"), so a hard injection is
+  * correct; it is simply not added to headless/TUI profiles.
+  */
+-export const inject = ['webServer'];
++export const inject = ['webServer', 'connection'];
+ 
+ export function apply(ctx) {
+   // issue #267：注册面容错（只吞本插件命名空间内的"重复路由" = 1.3.3 残留；其余错误照抛）。
+   // JSDoc 与边界见 lib/host-boot.js 的 tolerantWebServer。告警用惰性闭包：log 在本次 apply
+   // 稍后由 createHostSession 产出，而回调只在注册期（log 已就绪）才可能被调用。
+-  const webServer = tolerantWebServer(ctx.webServer, (route, err) => {
++  const guardedServer = new Proxy(ctx.webServer, {
++    get(target, key) {
++      if (key === 'register') return (route) => target.register({ ...route, handler(req, res) {
++        const rejection = ctx.connection.requestRejection(req);
++        if (rejection) { res.writeHead(rejection); res.end(); return; }
++        return route.handler(req, res);
++      } });
++      const value = Reflect.get(target, key, target);
++      return typeof value === 'function' ? value.bind(target) : value;
++    },
++  });
++  const webServer = tolerantWebServer(guardedServer, (route, err) => {
+     try {
+       log('skip stale route ' + String(route && route.path) + ': ' + String((err && err.message) || err), 'warn');
+     } catch { /* ignore */ }
+diff --git a/lib/kernel/data-dir.js b/lib/kernel/data-dir.js
+index 6e7b16c199e0dd02fc6ec6f43b96e101ea49d0d5..c5e7be20da23e5f293378237a173a79366949823 100644
+--- a/lib/kernel/data-dir.js
++++ b/lib/kernel/data-dir.js
+@@ -30,7 +30,7 @@ import { homedir } from 'node:os';
+  */
+ export function pluginDataDir() {
+   const override = process.env.DSH_WE_DATA_DIR;
+-  return override && override.trim() ? resolve(override.trim()) : join(homedir(), '.dsh-wallpaper-engine');
++  return override && override.trim() ? resolve(override.trim()) : join(process.env.DSH_HOME || join(homedir(), '.dsh'), 'wallpaper-engine');
+ }
+ 
+ /** Config file that remembers the user-chosen upload directory. */
+diff --git a/lib/settings-schema.js b/lib/settings-schema.js
+index 1e81af0ed7230e489c72954c2bdc2eb93fdd43e9..c25f45636beda0bd6ee1efb2369c74505406d57b 100644
+--- a/lib/settings-schema.js
++++ b/lib/settings-schema.js
+@@ -808,7 +808,7 @@ const DEFAULTS = {
+   sidebarContentAlpha: 38,
+   sidebarContentColor: "",
+   // Persisted: show the chat-interface mascot pull-cord (rope dock).
+-  ropeShown: true,
++  ropeShown: false,
+   // Persisted: which mascot artwork + how big. ropeForm ∈ ROPE_FORM_VALUES（见本文件顶部；
+   // 出厂默认是 `deepseek` —— 上游口径：刚下载、没改过任何配置的人看见的就是它）;
+   // ropeScale multiplies the form's base box (0.5×–2.5×).
+@@ -1145,7 +1145,7 @@ const KINDS = {
+   sidebarColor: { kind: 'hex' },
+   sidebarContentAlpha: { kind: 'num', min: 0, max: 100 },
+   sidebarContentColor: { kind: 'hex' },
+-  ropeShown: { kind: 'boolTrue' },
++  ropeShown: { kind: 'boolFalse' },
+   ropeForm: { kind: 'enum', values: ROPE_FORM_VALUES },
+   ropeScale: { kind: 'num', min: ROPE_SCALE_MIN, max: ROPE_SCALE_MAX },
+   noticeSeen: { kind: 'str' },
+diff --git a/package.json b/package.json
+index f8cf86a1f9fa3d22e4fe51591891250983893146..b06e8849ff218ab549659b8b62c451d647aa2daf 100644
+--- a/package.json
++++ b/package.json
+@@ -5,7 +5,7 @@
+   "type": "module",
+   "engines": {
+     "node": ">=22.12.0",
+-    "dsh": "^0.2.0-rc.1"
++    "dsh": "^0.2.0-rc.1 || 0.2.2-alpha.3"
+   },
+   "main": "lib/index.js",
+   "types": "lib/types/index.d.ts",
+@@ -146,7 +146,7 @@
+     },
+     "client": {
+       "inject": [
+-        "@deepseek-ai/dsh-client-runtime"
++        "@deepseek-ai/dsh-client-ui-slots"
+       ],
+       "platform": "web",
+       "immediately": true
+@@ -155,15 +155,11 @@
+   "license": "MIT",
+   "peerDependencies": {
+     "@deepseek-ai/cordis": "^4.0.4",
+-    "@deepseek-ai/dsh-client-runtime": ">=0.1.5-rc.1",
+     "@deepseek-ai/dsh-client-ui-slots": ">=0.1.5-rc.1",
+     "@deepseek-ai/dsh-host-webserver": ">=0.1.5-rc.1",
+     "react": "^18.2.0"
+   },
+   "peerDependenciesMeta": {
+-    "@deepseek-ai/dsh-client-runtime": {
+-      "optional": true
+-    },
+     "@deepseek-ai/dsh-client-ui-slots": {
+       "optional": true
+     },

@@ -1,0 +1,8 @@
+version: 1
+scenario: expert-team-tools
+profile: headless
+composition: expert-team-tools
+recording: authored
+header:
+  class: expert-team-tools
+  pin: true
